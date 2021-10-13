@@ -73,8 +73,8 @@ const renderDetail = (inisiator) => {
             </TouchableOpacity>
             <View style={styles.cover}>
                 <View style={styles.overlay}></View>
-                <Image style={{width: '100%', height: '100%', resizeMode: 'cover'}} source={{ uri: HelpDetailReducer.help.photo }} />
-            </View>
+                    <Image style={{width: '100%', height: '100%', resizeMode: 'cover'}} source={{ uri: HelpDetailReducer.help.photo }} />
+                </View>
             <View style={styles.content}>
                 <View style={{ flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between' }}>
                     <PrimaryButton style={{ width: 75, height: 35, marginBottom: 24 }} title={HelpDetailReducer.help.category.name} />
