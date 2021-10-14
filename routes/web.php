@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/chart', [DashboardController::class, 'chart']);
+
     Route::resource('/help', HelpController::class);
     Route::put('/user/verified', [UserController::class, 'verified'])->name('user.verified');
     Route::put('/user/unverified', [UserController::class, 'unverified'])->name('user.unverified');

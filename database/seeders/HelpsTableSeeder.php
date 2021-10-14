@@ -41,6 +41,7 @@ class HelpsTableSeeder extends Seeder
             'help_status_id' => 1
         ]);
 
+
         //eriko dewantoro
         Help::create([
             'id' => 3,
