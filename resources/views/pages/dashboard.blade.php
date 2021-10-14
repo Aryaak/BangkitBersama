@@ -3,125 +3,125 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<div class="content-header row">
-</div>
-<div class="content-body">
-  <!-- Analytics spakline & chartjs  -->
-  <div class="row">
-    <div class="col-lg-12 col-md-12 col-12">
+    <div class="content-header row">
+    </div>
+    <div class="content-body">
+        <!-- Analytics spakline & chartjs  -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
 
-    </div>
-  </div>
-  <!--/ Analytics spakline & chartjs  -->
-  <!--stats-->
-  <div class="row">
-    <div class="col-xl-3 col-lg-6 col-12">
-      <div class="card">
-        <div class="card-content">
-          <div class="card-body">
-            <div class="media">
-              <div class="media-body text-left w-100">
-                <h3 class="primary">{{$user}}</h3>
-                <span>Total User</span>
-              </div>
-              <div class="media-right media-middle">
-                <i class="icon-user-follow primary font-large-2 float-right"></i>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-xl-3 col-lg-6 col-12">
-      <div class="card">
-        <div class="card-content">
-          <div class="card-body">
-            <div class="media">
-              <div class="media-body text-left w-100">
-                <h3 class="danger">{{$covid}}</h3>
-                <span>Bantuan Covid</span>
-              </div>
-              <div class="media-right media-middle">
-                <i class="icon-heart danger font-large-2 float-right"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-3 col-lg-6 col-12">
-      <div class="card">
-        <div class="card-content">
-          <div class="card-body">
-            <div class="media">
-              <div class="media-body text-left w-100">
-                <h3 class="success">{{$ekonomi}}</h3>
-                <span>Bantuan Ekonomi</span>
-              </div>
-              <div class="media-right media-middle">
-                <i class="icon-drawer success font-large-2 float-right"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-3 col-lg-6 col-12">
-      <div class="card">
-        <div class="card-content">
-          <div class="card-body">
-            <div class="media">
-              <div class="media-body text-left w-100">
-                <h3 class="warning">{{$pangan}}</h3>
-                <span>Bantuan Pangan</span>
-              </div>
-              <div class="media-right media-middle">
-                <i class="icon-cup warning font-large-2 float-right"></i>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-3 col-lg-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media">
-                <div class="media-body text-left w-100">
-                  <h3 class="primary">{{$jasa}}</h3>
-                  <span>Bantuan Jasa</span>
+        <!--/ Analytics spakline & chartjs  -->
+        <!--stats-->
+        <div class="row">
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body text-left w-100">
+                                    <h3 class="primary">{{ $user }}</h3>
+                                    <span>Total User</span>
+                                </div>
+                                <div class="media-right media-middle">
+                                    <i class="icon-user-follow primary font-large-2 float-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="media-right media-middle">
-                  <i class="icon-paper-clip primary font-large-2 float-right"></i>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-  </div>
-  <section id="description" class="card">
-    <div class="card-header">
-      <h4 class="card-title">Chart User</h4>
-    </div>
-    <div class="card-content">
-      <div class="card-body">
-        <div class="card-text">
-            <canvas id="myChart" width="400" height="400"></canvas>
-        </div>
-      </div>
-    </div>
-  </section>
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body text-left w-100">
+                                    <h3 class="danger">{{ $covid }}</h3>
+                                    <span>Bantuan Covid</span>
+                                </div>
+                                <div class="media-right media-middle">
+                                    <i class="icon-heart danger font-large-2 float-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body text-left w-100">
+                                    <h3 class="success">{{ $ekonomi }}</h3>
+                                    <span>Bantuan Ekonomi</span>
+                                </div>
+                                <div class="media-right media-middle">
+                                    <i class="icon-drawer success font-large-2 float-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body text-left w-100">
+                                    <h3 class="warning">{{ $pangan }}</h3>
+                                    <span>Bantuan Pangan</span>
+                                </div>
+                                <div class="media-right media-middle">
+                                    <i class="icon-cup warning font-large-2 float-right"></i>
+                                </div>
+                            </div>
 
-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body text-left w-100">
+                                    <h3 class="primary">{{ $jasa }}</h3>
+                                    <span>Bantuan Jasa</span>
+                                </div>
+                                <div class="media-right media-middle">
+                                    <i class="icon-paper-clip primary font-large-2 float-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id="description" class="card">
+            <div class="card-header">
+                <h4 class="card-title">Chart User</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="card-text">
+                        <canvas id="myChart" width="400" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
 
 @endsection
 
 @push('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
-    <script>
+    {{-- <script>
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
@@ -157,5 +157,100 @@
                 }
             }
         });
-        </script>
+    </script> --}}
+
+    <script>
+        var url = "{{ url('/dashboard/chart') }}";
+        var Bulan = new Array();
+        var Labels = new Array();
+        var Covid = new Array();
+        var Ekonomi = new Array();
+        var Pangan = new Array();
+        var Jasa = new Array();
+
+        $(document).ready(function() {
+            $.get(url, function(response) {
+                console.log(response);
+                $.each(response.bulan, function(index, value) {
+                    Bulan.push(value);
+                });
+                $.each(response.covid, function(index, value) {
+                    Covid.push(value);
+                });
+                $.each(response.ekonomi, function(index, value) {
+                    Ekonomi.push(value);
+                });
+                $.each(response.pangan, function(index, value) {
+                    Pangan.push(value);
+                });
+                $.each(response.jasa, function(index, value) {
+                    Jasa.push(value);
+                });
+                new Chart(document.getElementById("myChart"), {
+                    type: 'bar',
+                    data: {
+                        labels: Bulan,
+                        datasets: [{
+                            label: ['covid'],
+                            data: Covid,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+
+                            ],
+                            borderWidth: 1
+                        },
+                    {
+                            label: ['ekonomi'],
+                            data: Ekonomi,
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.2)',
+
+                            ],
+                            borderColor: [
+                                'rgba(54, 162, 235, 1)',
+
+                            ],
+                            borderWidth: 1
+                        },
+                        {
+                            label: ['pangan'],
+                            data: Pangan,
+                            backgroundColor: [
+                                'rgba(255, 206, 86, 0.2)',
+
+                            ],
+                            borderColor: [
+                                'rgba(255, 206, 86, 1)',
+
+                            ],
+                            borderWidth: 1
+                        },
+                        {
+                            label: ['ekonomi'],
+                            data: Jasa,
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 0.2)',
+
+                            ],
+                            borderColor: [
+                                'rgba(75, 192, 192, 1)',
+
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Total Income, Hutang, n Pengeluaran'
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 @endpush
