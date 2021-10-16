@@ -2,9 +2,9 @@ import React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import { RoundedSquare, Small } from '../../../components'
 
-const CategoryItem = ({ icon, title }) => {
+const CategoryItem = ({ icon, title, onPress }) => {
     return (
-        <TouchableOpacity style={styles.wrapper}>
+        <TouchableOpacity onPress={onPress} style={styles.wrapper}>
             <RoundedSquare content={icon} />
             <Small title={title} style={{ fontWeight: '400', marginTop: 8 }} />
         </TouchableOpacity>

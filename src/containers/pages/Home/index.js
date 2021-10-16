@@ -21,7 +21,7 @@ const Home = ({ navigation }) => {
         <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
             <HeaderHome />
             <View style={styles.contentWrapper}>
-                <HelpCategory style={{ marginBottom: 40, paddingHorizontal: 30 }} />
+                <HelpCategory navigation={navigation} style={{ marginBottom: 40, paddingHorizontal: 30 }} />
                 <HomeScrollContentOne navigation={navigation} style={{ marginBottom: 40 }} />
                 <HomeScrollContentTwo style={{ marginBottom: 80 }} />
             </View>
