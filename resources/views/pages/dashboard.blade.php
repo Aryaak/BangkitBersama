@@ -2,6 +2,16 @@
 
 @section('title', 'Dashboard')
 
+@push('style')
+    <style>
+        .tinggi{
+
+            height: 300px;
+            width: 600px;
+        }
+    </style>
+@endpush
+
 @section('content')
     <div class="content-header row">
     </div>
@@ -38,11 +48,28 @@
                         <div class="card-body">
                             <div class="media">
                                 <div class="media-body text-left w-100">
-                                    <h3 class="danger">{{ $covid }}</h3>
+                                    <h3 class="danger">{{ $bantuan }}</h3>
+                                    <span>Total Bantuan</span>
+                                </div>
+                                <div class="media-right media-middle">
+                                    <i class="icon-book-open danger font-large-2 float-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body text-left w-100">
+                                    <h3 class="success">{{ $covid }}</h3>
                                     <span>Bantuan Covid</span>
                                 </div>
                                 <div class="media-right media-middle">
-                                    <i class="icon-heart danger font-large-2 float-right"></i>
+                                    <i class="icon-heart success font-large-2 float-right"></i>
                                 </div>
                             </div>
                         </div>
@@ -55,11 +82,11 @@
                         <div class="card-body">
                             <div class="media">
                                 <div class="media-body text-left w-100">
-                                    <h3 class="success">{{ $ekonomi }}</h3>
+                                    <h3 class="warning">{{ $ekonomi }}</h3>
                                     <span>Bantuan Ekonomi</span>
                                 </div>
                                 <div class="media-right media-middle">
-                                    <i class="icon-drawer success font-large-2 float-right"></i>
+                                    <i class="icon-drawer warning font-large-2 float-right"></i>
                                 </div>
                             </div>
                         </div>
@@ -72,11 +99,11 @@
                         <div class="card-body">
                             <div class="media">
                                 <div class="media-body text-left w-100">
-                                    <h3 class="warning">{{ $pangan }}</h3>
+                                    <h3 class="primary">{{ $pangan }}</h3>
                                     <span>Bantuan Pangan</span>
                                 </div>
                                 <div class="media-right media-middle">
-                                    <i class="icon-cup warning font-large-2 float-right"></i>
+                                    <i class="icon-cup primary font-large-2 float-right"></i>
                                 </div>
                             </div>
 
@@ -90,29 +117,89 @@
                         <div class="card-body">
                             <div class="media">
                                 <div class="media-body text-left w-100">
-                                    <h3 class="primary">{{ $jasa }}</h3>
+                                    <h3 class="danger">{{ $jasa }}</h3>
                                     <span>Bantuan Jasa</span>
                                 </div>
                                 <div class="media-right media-middle">
-                                    <i class="icon-paper-clip primary font-large-2 float-right"></i>
+                                    <i class="icon-paper-clip danger  font-large-2 float-right"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
-        <section id="description" class="card">
-            <div class="card-header">
-                <h4 class="card-title">Chart User</h4>
-            </div>
-            <div class="card-content">
-                <div class="card-body">
-                    <div class="card-text">
-                        <canvas id="myChart" width="400" height="400"></canvas>
+            {{-- batas  --}}
+            <div class="row match-height">
+                <div class="col-xl-8 col-lg-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <h4 class="card-title">Bantuan</h4>
+                      <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                      <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                          <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                          <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                        </ul>
+                      </div>
                     </div>
+                    <div class="card-content">
+                      <div class="card-body">
+                        <div id="products-sales" class="height-300 ">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-            </div>
+                <div class="col-xl-4 col-lg-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <h4 class="card-title">New User</h4>
+                      <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                      <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                          <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="card-content px-1">
+                      <div id="recent-buyers" class="media-list height-400 position-relative overflow-auto">
+                          @foreach ($new_user as $new)
+                          <a href="#" class="media border-0">
+                            {{-- <div class="media-left pr-1">
+                              <span class="avatar avatar-md">
+                                <img class="media-object rounded-circle" src=""
+                                alt="Generic placeholder image">
+                                <i></i>
+                              </span>
+                            </div> --}}
+                            <div class="media-body w-100">
+                              <h6 class="list-group-item-heading">{{$new-> name}}
+                              </h6>
+                              <p class="list-group-item-text mb-0">
+                                    @if ($new->user_status_id==1)
+                                        <span class="badge badge-warning">Pending</span>
+                                    @elseif ($new->user_status_id==2)
+                                        <span class="badge badge-success">Accepted</span>
+                                    @else
+                                        <span class="badge badge-danger">Rejected</span>
+                                    @endif
+                              </p>
+                            </div>
+                          </a>
+                          @endforeach
+
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>{{-- batas  --}}
+
+
         </section>
 
     </div>
@@ -121,43 +208,7 @@
 
 @push('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
-    {{-- <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script> --}}
+
 
     <script>
         var url = "{{ url('/dashboard/chart') }}";
@@ -187,7 +238,7 @@
                     Jasa.push(value);
                 });
                 new Chart(document.getElementById("myChart"), {
-                    type: 'bar',
+                    type: 'line',
                     data: {
                         labels: Bulan,
                         datasets: [{
@@ -230,7 +281,7 @@
                             borderWidth: 1
                         },
                         {
-                            label: ['ekonomi'],
+                            label: ['jasa'],
                             data: Jasa,
                             backgroundColor: [
                                 'rgba(75, 192, 192, 0.2)',
@@ -246,11 +297,15 @@
                     options: {
                         title: {
                             display: true,
-                            text: 'Total Income, Hutang, n Pengeluaran'
-                        }
+
+                        },
+                            responsive: true,
+                            maintainAspectRatio: false
                     }
                 });
             });
         });
     </script>
+
+
 @endpush

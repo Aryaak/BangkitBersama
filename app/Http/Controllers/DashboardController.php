@@ -10,12 +10,15 @@ class DashboardController extends Controller
     public function index()
     {
         $user= User::all()->count();
+        $bantuan= Help::all()->count();
         $covid = Help::all()->where('help_category_id', 1)->count();
         $ekonomi = Help::all()->where('help_category_id', 2)->count();
         $pangan = Help::all()->where('help_category_id', 3)->count();
         $jasa = Help::all()->where('help_category_id', 4)->count();
 
-        return view('pages.dashboard', ['user' => $user, 'covid' => $covid, 'ekonomi' => $ekonomi, 'pangan' => $pangan, 'jasa' => $jasa
+        $new_user = User::take(10)->orderBy('created_at', 'desc')->get();
+
+        return view('pages.dashboard', ['user' => $user, 'covid' => $covid, 'ekonomi' => $ekonomi, 'pangan' => $pangan, 'jasa' => $jasa, 'bantuan' => $bantuan, 'new_user' => $new_user
     ]);
     }
 

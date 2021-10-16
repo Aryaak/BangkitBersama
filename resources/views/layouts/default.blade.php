@@ -8,6 +8,8 @@
   <meta name="keywords" content="admin template, stack admin template, dashboard template, flat admin template, responsive admin template, web app">
   <meta name="author" content="PIXINVENT">
   <title>BangkitBersama - @yield('title')</title>
+  <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/core/colors/palette-climacon.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('app-assets/fonts/simple-line-icons/style.min.css')}}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link rel="apple-touch-icon" href="{{asset('app-assets/images/logo/bangkit-bersama.png')}}">
   <link rel="shortcut icon" type="image/x-icon" href="{{asset('app-assets/images/logo/bangkit-bersama.png')}}">
