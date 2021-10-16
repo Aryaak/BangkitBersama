@@ -170,13 +170,13 @@
                           <a href="#" class="media border-0">
                             {{-- <div class="media-left pr-1">
                               <span class="avatar avatar-md">
-                                <img class="media-object rounded-circle" src=""
+                                <img class="media-object rounded-circle" src="{{url($new->photo)}}"
                                 alt="Generic placeholder image">
                                 <i></i>
                               </span>
                             </div> --}}
                             <div class="media-body w-100">
-                              <h6 class="list-group-item-heading">{{$new-> name}}
+                              <h6 class="list-group-item-heading text-capitalize">{{$new-> name}}
                               </h6>
                               <p class="list-group-item-text mb-0">
                                     @if ($new->user_status_id==1)

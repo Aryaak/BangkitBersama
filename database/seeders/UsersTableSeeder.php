@@ -37,7 +37,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'wulandari@gmail.com',
             'password' => bcrypt('password123'),
             'document' => 'assets/document/institution/ICxvy6r6IkPNxhGxjjvKKZmsp1LmhMfCaVZnKwBQ.jpg',
-            'user_status_id' => 2
+            'user_status_id' => 1
         ]);
 
         User::create([
@@ -50,7 +50,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'jomban@gmail.com',
             'password' => bcrypt('password123'),
             'document' => 'assets/document/institution/ICxvy6r6IkPNxhGxjjvKKZmsp1LmhMfCaVZnKwBQ.jpg',
-            'user_status_id' => 2
+            'user_status_id' => 1
         ]);
 
         User::create([
@@ -63,7 +63,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'manda@gmail.com',
             'password' => bcrypt('password123'),
             'document' => 'assets/document/institution/ICxvy6r6IkPNxhGxjjvKKZmsp1LmhMfCaVZnKwBQ.jpg',
-            'user_status_id' => 2
+            'user_status_id' => 1
         ]);
 
         User::create([
@@ -76,7 +76,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'eriko@gmail.com',
             'password' => bcrypt('password123'),
             'document' => 'assets/document/institution/ICxvy6r6IkPNxhGxjjvKKZmsp1LmhMfCaVZnKwBQ.jpg',
-            'user_status_id' => 2
+            'user_status_id' => 1
         ]);
 
         User::create([

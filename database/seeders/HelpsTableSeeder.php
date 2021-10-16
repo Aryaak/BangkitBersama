@@ -120,5 +120,43 @@ class HelpsTableSeeder extends Seeder
             'help_status_id' => 1 //pending
         ]);
 
+        //renia nara tiara
+        Help::create([
+            'id' => 9,
+            'help_category_id' => 1, //covid
+            'user_id' => 11, //renia
+            'photo' => 'assets/photo/profile/tx3RirIqG0GECaYUzCGmV28Uckag0hCgl2laPoEn.png',
+            'name' => 'memberi bantuan jasa pada risti',
+            'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita magni ipsam vero odit officiis. Quam sint a quae voluptatum obcaecati libero amet deserunt voluptatem nam iure. Sunt tenetur culpa reiciendis!',
+            'quota' => 4,
+            'end_date' => Carbon::parse('2021-08-16'),
+            'help_status_id' => 1 //pending
+        ]);
+
+        //amanda aprilia
+        Help::create([
+            'id' => 10,
+            'help_category_id' => 2, //ekonomi
+            'user_id' => 4, //renia
+            'photo' => 'assets/photo/profile/tx3RirIqG0GECaYUzCGmV28Uckag0hCgl2laPoEn.png',
+            'name' => 'memberi bantuan ekonomi pada amanda',
+            'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita magni ipsam vero odit officiis. Quam sint a quae voluptatum obcaecati libero amet deserunt voluptatem nam iure. Sunt tenetur culpa reiciendis!',
+            'quota' => 10,
+            'end_date' => Carbon::parse('2021-08-16'),
+            'help_status_id' => 1 //pending
+        ]);
+
+        Help::create([
+            'id' => 11,
+            'help_category_id' => 2, //ekonomi
+            'user_id' => 4, //renia
+            'photo' => 'assets/photo/profile/tx3RirIqG0GECaYUzCGmV28Uckag0hCgl2laPoEn.png',
+            'name' => 'memberi bantuan ekonomi pada amanda',
+            'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita magni ipsam vero odit officiis. Quam sint a quae voluptatum obcaecati libero amet deserunt voluptatem nam iure. Sunt tenetur culpa reiciendis!',
+            'quota' => 6,
+            'end_date' => Carbon::parse('2021-08-17'),
+            'help_status_id' => 1 //pending
+        ]);
+
     }
 }
