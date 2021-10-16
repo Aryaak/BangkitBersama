@@ -9,6 +9,7 @@ class EkonomiController extends Controller
     public function ekonomi_index()
     {
         $ekonomi = Help::with('user')->where('help_category_id', 2)->get();
+        // dd($ekonomi);
         return view('pages.helps.ekonomi',['data_ekonomi' => $ekonomi]);
     }
 
