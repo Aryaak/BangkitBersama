@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { View, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { P, PrimaryButton, H4, OutlineButton, Small, AlertWarning } from '../../../components'
-import { Colors, Async } from '../../../utils'
+import { Colors, Async, CountDiffDate } from '../../../utils'
 import ArrowLeftIcon from '../../../assets/icon/arrow-left.svg'
 
 import CovidIcon from '../../../assets/icon/covid.svg'
@@ -100,7 +100,7 @@ const TawarBantuan = ({ navigation }) => {
                                 {renderCategoryIcon(item.help_category_id)}
                                 <View style={{ marginLeft: 16, width: 200 }}>
                                     <P title={item.name.toUpperCase()} />
-                                    <Small color={Colors.grey} title="21 Hari lagi" style={{ marginTop: 8 }} />
+                                    <Small color={Colors.grey} title={CountDiffDate(item.end_date)} style={{ marginTop: 8 }} />
                                 </View>
                             </TouchableOpacity>)
                         }

@@ -1,6 +1,5 @@
 import Axios from 'axios'
 import { BASE_API_URL } from '../../../config'
-import { Async } from '../../../utils'
 
 const HandleHelpInput = (data, token, navigation) => async dispatch => {
     let formData = new FormData();

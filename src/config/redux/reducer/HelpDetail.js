@@ -1,12 +1,14 @@
 const initialState = {
     help: {
+        id: '',
         category: {
             name: ''
         },
         user: {
             photo: ''
         },
-        end_date: ''
+        end_date: '',
+        reviews: []
     }
 }
 
@@ -17,6 +19,21 @@ const HelpDetail = (state = initialState, action) => {
             return {
                 ...state,
                 help: action.value
+            }
+        case 'RESET_HELP_DETAIL':
+            return {
+                ...state,
+                help: {
+                    ...state.help,
+                    id: '',
+                    category: {
+                        name: ''
+                    },
+                    user: {
+                        photo: ''
+                    },
+                    end_date: ''
+                }
             }
     }
     return state

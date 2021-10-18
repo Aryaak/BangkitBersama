@@ -8,6 +8,14 @@ import HandleHelpInput from "./HandleHelpInput";
 import SetMyHelps from "./SetMyHelps";
 import SetHelpDetail from "./SetHelpDetail";
 import SetHelpsForHome from "./SetHelpsForHome";
+import HandleHelpSendRequest from "./HandleHelpSendRequest";
+import HandleHelpSendReview from "./HandleHelpSendReview";
+import HandleUpdateHelpReview from "./HandleUpdateHelpReview";
+import HandleUpdateHelpRequest from "./HandleUpdateHelpRequest";
+import HandleDeleteHelpReview from "./HandleDeleteHelpReview";
+import HandleDeleteHelpRequest from "./HandleDeleteHelpRequest";
+import HandleSendMessage from "./HandleSendMessage";
+import HandleGetMessages from "./HandleGetMessages";
 
 module.exports = {
     SetFormRegister,
@@ -19,5 +27,13 @@ module.exports = {
     HandleHelpInput,
     SetMyHelps,
     SetHelpDetail,
-    SetHelpsForHome
+    SetHelpsForHome,
+    HandleHelpSendRequest,
+    HandleHelpSendReview,
+    HandleUpdateHelpReview,
+    HandleUpdateHelpRequest,
+    HandleDeleteHelpReview,
+    HandleDeleteHelpRequest,
+    HandleSendMessage,
+    HandleGetMessages
 }

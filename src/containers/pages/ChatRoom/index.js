@@ -1,41 +1,110 @@
-import React from 'react'
-import { View, Text, ScrollView, Image, TextInput, StyleSheet } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { View, Text, ScrollView, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 import { ProfilePicture, H4, P } from '../../../components'
-import Colors from '../../../utils/Colors'
+import SendIcon from '../../../assets/icon/Send.svg'
+import SendIcon2 from '../../../assets/icon/send-2.svg'
+import VerifiedIcon from '../../../assets/icon/verified.svg'
+import ArrowLeftIcon from '../../../assets/icon/arrow-left.svg'
+import { Colors, Async } from '../../../utils'
+import { HandleSendMessage, HandleGetMessages } from '../../../config/redux/action'
+import { useDispatch, useSelector } from 'react-redux'
+import Pusher from 'pusher-js/react-native'
 
-const ChatRoom = () => {
+const ChatRoom = ({ route, navigation }) => {
+
+    const [message, setMessage] = useState('');
+    const [token, setToken] = useState('');
+    const [user, setUser] = useState('');
+
+    const MessageReducer = useSelector(state => state.Message)
+    const dispatch = useDispatch()
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('46080595e68f22356d9f', {
+        cluster: 'ap1'
+    });
+
+    var channel = pusher.subscribe('chat-room');
+    channel.bind('message-send', function (data) {
+        dispatch({ type: 'SET_MESSAGES', value: data.messages.original.data })
+    });
+
+    useEffect(() => {
+
+        const data = {
+            sender: null,
+            recipient: route.params.user.id
+        }
+        Async.get('user')
+            .then(res => {
+                setUser(res)
+                data.sender = res.id
+            })
+        Async.get('token')
+            .then(res => {
+                setToken(res)
+                dispatch(HandleGetMessages(data, res))
+            })
+
+
+
+
+    }, [])
+
+    const submitMessage = () => {
+        const data = {
+            sender: user.id,
+            recipient: route.params.user.id,
+            message: message
+        }
+        setMessage('')
+        HandleSendMessage(data, token)
+    }
+
     return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, backgroundColor: Colors.overlay }}>
             <View style={{ backgroundColor: 'white', borderBottomRightRadius: 30, borderBottomLeftRadius: 30, height: 89, justifyContent: 'center' }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 30 }}>
-                    <Image source={require('../../../assets/icon/arrow-left.png')} />
-                    <ProfilePicture img={''} style={{ marginLeft: 24 }} />
-                    <H4 title="Arya Rizky" style={{ fontFamily: 'Nunito-Bold' }} style={{ marginLeft: 24 }} />
-                    <Image source={require('../../../assets/icon/verified.png')} style={{ marginLeft: 24 }} />
+                    <View style={{ width: 30, height: 30, marginTop: 10 }}>
+                        <TouchableOpacity onPress={() => navigation.goBack()}>
+                            <ArrowLeftIcon height="100%" width="100%" />
+                        </TouchableOpacity>
+
+                    </View>
+                    <ProfilePicture img={route.params.user.photo} style={{ marginLeft: 24 }} />
+                    <H4 title={route.params.user.name} style={{ fontFamily: 'Nunito-Bold' }} style={{ marginLeft: 10 }} />
+                    <View style={{ width: 30, height: 30 }}>
+                        <VerifiedIcon style={{ marginLeft: 5 }} height="100%" width="100%" />
+                    </View>
                 </View>
             </View>
-            <ScrollView style={{ backgroundColor: Colors.background, flex: 1 }}>
-                <View style={styles.whiteBuble}>
-                    <P title="hi, ada yang bisa saya bantu?" style={{ padding: 10 }} />
+            <ScrollView style={{ backgroundColor: Colors.overlay, flex: 1, paddingBottom: 100 }}>
+                <View style={{ marginBottom: 32 }}>
+                    {(MessageReducer.messages.length > 0) && MessageReducer.messages.map(item => {
+                        if (item.sender == user.id) {
+                            return (<View style={styles.greenBuble}>
+                                <Text style={styles.textBubleGreen}>{item.message}</Text>
+                            </View>)
+                        } else {
+                            return (<View style={styles.whiteBuble}>
+                                <P title={item.message} style={{ padding: 10 }} />
+                            </View>)
+                        }
+
+                    })}
                 </View>
-                <View style={styles.greenBuble}>
-                    <Text style={styles.textBubleGreen}>Saya perlu uang buat spp anak saya pak</Text>
-                </View>
-                <View style={styles.whiteBuble}>
-                    <P title="Baik pak / bu akan segera saya setujui" style={{ padding: 10 }} />
-                </View>
-                <View style={styles.greenBuble}>
-                    <Text style={styles.textBubleGreen}>Terima kasih banyak pak</Text>
-                </View>
-                <View style={styles.whiteBuble}>
-                    <P title="Ok send rekening fast" style={{ padding: 10 }} />
-                </View>
+
+
             </ScrollView>
-            <View style={{ backgroundColor: Colors.background, height: 89, paddingHorizontal: 30, flexDirection: 'row' }}>
-                <TextInput placeholder="Masukkan Pesan" placeholderTextColor="gray" style={{ flex: 1, backgroundColor: 'white', borderRadius: 10, height: 54, marginRight: 20, padding: 16 }} />
-                <View style={{ height: 54, width: 54, backgroundColor: 'rgba(41, 104, 112, 0.3);', borderRadius: 10, justifyContent: 'center' }}>
-                    <Image source={require('../../../assets/icon/send.png')} style={{ width: 26, height: 26, alignSelf: 'center' }} />
-                </View>
+            <View style={{ backgroundColor: 'transparent', paddingHorizontal: 30, flexDirection: 'row', marginBottom: 20 }}>
+                <TextInput value={message} onSubmitEditing={() => submitMessage()} onChangeText={value => setMessage(value)} placeholder="Masukkan Pesan" placeholderTextColor="gray" style={{ flex: 1, backgroundColor: 'white', borderRadius: 10, height: 54, marginRight: 20, padding: 16 }} />
+
+                <TouchableOpacity onPress={() => submitMessage()} style={[styles.sendButton, { backgroundColor: !message ? 'rgba(41, 104, 112, 0.3);' : Colors.primary }]}>
+                    {message == '' && <SendIcon style={{ width: 26, height: 26, alignSelf: 'center' }} />}
+                    {message != '' && <SendIcon2 style={{ width: 26, height: 26, alignSelf: 'center' }} />}
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -61,7 +130,7 @@ const styles = StyleSheet.create({
         marginTop: 32,
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
-        borderBottomRightRadius: 10
+        borderBottomRightRadius: 10,
     },
     textBubleGreen: {
         padding: 10,
@@ -69,5 +138,11 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: 'white',
 
+    },
+    sendButton: {
+        height: 54,
+        width: 54,
+        borderRadius: 10,
+        justifyContent: 'center'
     }
 })

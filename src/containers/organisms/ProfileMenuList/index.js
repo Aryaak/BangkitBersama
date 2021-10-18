@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableOpacity, View } from 'react-native'
+import { TouchableOpacity, View, Linking } from 'react-native'
 import { IconLeftTextRight } from '../../../components'
 import MessageIcon from '../../../assets/icon/message.svg'
 import SettingIcon from '../../../assets/icon/setting.svg'
@@ -27,12 +27,13 @@ const ProfileMenuList = () => {
                     title="Tentang" />
             </TouchableOpacity>
 
-            <TouchableOpacity style={{ marginBottom: 24 }}>
+
+            <TouchableOpacity onPress={() => Linking.openURL('https://play.google.com/store/apps/details?id=com.bangkitbersama')} style={{ marginBottom: 24 }}>
                 <IconLeftTextRight
                     icon={<RateIcon />}
                     title="Beri Rating" />
             </TouchableOpacity>
-        </View>
+        </View >
     )
 }
 

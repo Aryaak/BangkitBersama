@@ -3,9 +3,9 @@ import { StyleSheet, View } from 'react-native'
 import { P } from '../..'
 import WarningIcon from '../../../assets/icon/bell.svg'
 
-const AlertWarning = ({ text }) => {
+const AlertWarning = ({ text, style }) => {
     return (
-        <View style={styles.wrapper}>
+        <View style={[styles.wrapper, style]}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <WarningIcon style={{ marginRight: 16 }} />
                 <P color="#D84910" title={text} />
