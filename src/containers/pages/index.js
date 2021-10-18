@@ -12,7 +12,7 @@ import TawarBantuan from './TawarBantuan'
 import HelpInput from './HelpInput'
 import ChatRoom from './ChatRoom'
 import EditProfile from './EditProfile'
-
+import Kategori from './Kategori'
 
 module.exports = {
     Home,
@@ -28,5 +28,6 @@ module.exports = {
     TawarBantuan,
     HelpInput,
     ChatRoom,
-    EditProfile
+    EditProfile,
+    Kategori
 }

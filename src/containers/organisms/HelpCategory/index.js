@@ -6,13 +6,13 @@ import EkonomiIcon from '../../../assets/icon/ekonomi.svg'
 import PanganIcon from '../../../assets/icon/pangan.svg'
 import JasaIcon from '../../../assets/icon/jasa.svg'
 
-const HelpCategory = ({ style }) => {
+const HelpCategory = ({ style, navigation }) => {
     return (
         <View style={[styles.wrapper, style]}>
-            <CategoryItem title="Covid 19" icon={<CovidIcon />} />
-            <CategoryItem title="Ekonomi" icon={<EkonomiIcon />} />
-            <CategoryItem title="Pangan" icon={<PanganIcon />} />
-            <CategoryItem title="Jasa" icon={<JasaIcon />} />
+            <CategoryItem title="Covid 19"  onPress={() => navigation.navigate('Kategori')} icon={<CovidIcon />} />
+            <CategoryItem title="Ekonomi" onPress={() => navigation.navigate('Kategori')} icon={<EkonomiIcon />} />
+            <CategoryItem title="Pangan" onPress={() => navigation.navigate('Kategori')} icon={<PanganIcon />} />
+            <CategoryItem title="Jasa" onPress={() => navigation.navigate('Kategori')} icon={<JasaIcon />} />
         </View>
     )
 }

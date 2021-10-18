@@ -20,6 +20,7 @@ import LoginContent from './LoginContent'
 import AlertDanger from './AlertDanger'
 import AlertWarning from './AlertWarning'
 import AlertSuccess from './AlertSuccess'
+import KategoriCard from './KategoriCard'
 
 module.exports = {
     FeaturesButton,
@@ -43,5 +44,6 @@ module.exports = {
     LoginContent,
     AlertDanger,
     AlertWarning,
-    AlertSuccess
+    AlertSuccess,
+    KategoriCard
 }
