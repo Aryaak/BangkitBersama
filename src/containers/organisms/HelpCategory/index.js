@@ -9,10 +9,10 @@ import JasaIcon from '../../../assets/icon/jasa.svg'
 const HelpCategory = ({ style, navigation }) => {
     return (
         <View style={[styles.wrapper, style]}>
-            <CategoryItem title="Covid 19"  onPress={() => navigation.navigate('Kategori')} icon={<CovidIcon />} />
-            <CategoryItem title="Ekonomi" onPress={() => navigation.navigate('Kategori')} icon={<EkonomiIcon />} />
-            <CategoryItem title="Pangan" onPress={() => navigation.navigate('Kategori')} icon={<PanganIcon />} />
-            <CategoryItem title="Jasa" onPress={() => navigation.navigate('Kategori')} icon={<JasaIcon />} />
+            <CategoryItem onPress={() => navigation.navigate('Kategori', { category: 1 })} title="Covid 19" icon={<CovidIcon />} />
+            <CategoryItem title="Ekonomi" onPress={() => navigation.navigate('Kategori', { category: 2 })} icon={<EkonomiIcon />} />
+            <CategoryItem title="Pangan" onPress={() => navigation.navigate('Kategori', { category: 3 })} icon={<PanganIcon />} />
+            <CategoryItem title="Jasa" onPress={() => navigation.navigate('Kategori', { category: 4 })} icon={<JasaIcon />} />
         </View>
     )
 }

@@ -1,80 +1,68 @@
-import React from 'react'
-import { View, Text, StyleSheet, ScrollView, Image } from 'react-native'
-import { CategoryItem,H3, H5, KategoriCard } from '../../../components'
+import React, { useEffect, useState } from 'react'
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native'
+import { CategoryItem, H3, H5, KategoriCard } from '../../../components'
 import CovidIcon from '../../../assets/icon/covid.svg'
 import EkonomiIcon from '../../../assets/icon/ekonomi.svg'
 import PanganIcon from '../../../assets/icon/pangan.svg'
 import JasaIcon from '../../../assets/icon/jasa.svg'
 import ArrowLeftIcon from '../../../assets/icon/arrow-left.svg'
-import CloseSquare from '../../../assets/icon/Close Square.svg'
 import VerifiedIcon from '../../../assets/icon/verified.svg'
+import { Async } from '../../../utils'
+import { HandleGetAllHelps } from '../../../config/redux/action'
+import { useDispatch, useSelector } from 'react-redux'
 
-const Kategori = () => {
+const Kategori = ({ navigation, route }) => {
+
+    const [category, setCategory] = useState(route.params.category)
+
+    const dispatch = useDispatch()
+    const HelpsReducer = useSelector(state => state.Helps)
+
+    useEffect(() => {
+        Async.get('token')
+            .then(res => {
+                dispatch(HandleGetAllHelps(res))
+                console.log('Reducer', HelpsReducer)
+            })
+    }, [])
+
+
     return (
-        <View style={{flex: 1}}>
-             <View style={{paddingHorizontal:30, marginBottom:40,justifyContent: 'center'}}>
-                <View style={{ flexDirection:'row', marginTop:30, alignItems: 'center'}}>
-                    <View style={{width:30, height:30}}>
-                        <ArrowLeftIcon width={30} height={30} />
-                    </View>
-                    <H3 title="Kategori" style={{marginLeft:40}}/>
-                </View>
-                <View style={[styles.wrapper]}>
-                    <CategoryItem title="Covid 19"   icon={<CovidIcon />} />
-                    <CategoryItem title="Ekonomi"  icon={<EkonomiIcon />} />
-                    <CategoryItem title="Pangan"  icon={<PanganIcon />} />
-                    <CategoryItem title="Jasa"  icon={<JasaIcon />} />
-                </View>
-            </View>
         <ScrollView>
-            <KategoriCard/>
-            <KategoriCard/>
-            <View style={{paddingHorizontal:20, marginBottom:10}}>
-              <View style={{flexDirection:'row', backgroundColor:'white', padding:10, borderRadius:15}}>
-                    <Image source={require('../../../assets/illustrations/foto.jpg')} style={{height:115, width: 118, borderRadius:15}}/>
-                    <View style={{width: 170, paddingLeft:10}}>
-                     <H5 style={{fontFamily:'Nunito-SemiBold'}} title="BANTUAN BERUPA TUNAI UNTUK GOLONGAN MBR" />
-                    <Text style={{color:'gray', fontSize:12, marginTop:10}}>Ekonomi</Text>
-                    <View style={{flexDirection:'row', marginTop:10 }}>
-                       <CloseSquare/>
-                       <Text style={{fontSize:12, color:'red', marginLeft:5}}>Telah Berakhir</Text>
+            <View style={{ flex: 1, paddingBottom: 62 }}>
+                <View style={{ paddingHorizontal: 30, marginBottom: 40, justifyContent: 'center' }}>
+                    <View style={{ flexDirection: 'row', marginTop: 30, alignItems: 'center' }}>
+                        <View style={{ width: 30, height: 30 }}>
+                            <TouchableOpacity onPress={() => navigation.goBack()}>
+                                <ArrowLeftIcon width={30} height={30} />
+                            </TouchableOpacity>
+                        </View>
+                        <H3 title="Kategori" style={{ marginLeft: 40 }} />
                     </View>
-                    <View style={{marginTop:10, flexDirection:'row'}}>
-                        <H5 title="Arya" />
-                        <VerifiedIcon width={10} height={12}  style={{marginLeft:7, marginTop:3}}/>
+                    <View style={[styles.wrapper]}>
+                        <CategoryItem onPress={() => setCategory(1)} active={category == 1 ? true : false} title="Covid 19" icon={<CovidIcon />} />
+                        <CategoryItem onPress={() => setCategory(2)} active={category == 2 ? true : false} title="Ekonomi" icon={<EkonomiIcon />} />
+                        <CategoryItem onPress={() => setCategory(3)} active={category == 3 ? true : false} title="Pangan" icon={<PanganIcon />} />
+                        <CategoryItem onPress={() => setCategory(4)} active={category == 4 ? true : false} title="Jasa" icon={<JasaIcon />} />
                     </View>
-                 </View>
-              </View>
+                </View>
+                {HelpsReducer.helps.length > 0 && HelpsReducer.helps.map(item => {
+                    if (item.help_category_id == category) {
+                        return (<KategoriCard navigation={navigation} item={item} />)
+                    }
+                })}
+
             </View>
-            <View style={{paddingHorizontal:20, marginBottom:10}}>
-              <View style={{flexDirection:'row', backgroundColor:'white', padding:10, borderRadius:15}}>
-                    <Image source={require('../../../assets/illustrations/foto.jpg')} style={{height:115, width: 118, borderRadius:15}}/>
-                    <View style={{width: 170, paddingLeft:10}}>
-                     <H5 style={{fontFamily:'Nunito-SemiBold'}} title="BANTUAN BERUPA TUNAI UNTUK GOLONGAN MBR" />
-                    <Text style={{color:'gray', fontSize:12, marginTop:10}}>Ekonomi</Text>
-                    <View style={{flexDirection:'row', marginTop:10 }}>
-                       <CloseSquare/>
-                       <Text style={{fontSize:12, color:'red', marginLeft:5}}>Telah Berakhir</Text>
-                    </View>
-                    <View style={{marginTop:10, flexDirection:'row'}}>
-                        <H5 title="Arya" />
-                        <VerifiedIcon width={10} height={12}  style={{marginLeft:7, marginTop:3}}/>
-                    </View>
-                 </View>
-              </View>
-            </View>
-           
         </ScrollView>
-        </View>
-       
-       
+
+
     )
 }
 const styles = StyleSheet.create({
     wrapper: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop:40
+        marginTop: 40
     }
 })
 

@@ -16,6 +16,8 @@ import HandleDeleteHelpReview from "./HandleDeleteHelpReview";
 import HandleDeleteHelpRequest from "./HandleDeleteHelpRequest";
 import HandleSendMessage from "./HandleSendMessage";
 import HandleGetMessages from "./HandleGetMessages";
+import HandleGetAllHelps from "./HandleGetAllHelps";
+import HandleAcceptedRequest from "./HandleAcceptedRequest";
 
 module.exports = {
     SetFormRegister,
@@ -35,5 +37,7 @@ module.exports = {
     HandleDeleteHelpReview,
     HandleDeleteHelpRequest,
     HandleSendMessage,
-    HandleGetMessages
+    HandleGetMessages,
+    HandleGetAllHelps,
+    HandleAcceptedRequest
 }

@@ -7,6 +7,7 @@ import { Colors } from '../../../utils'
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
+import SuccessIcon from '../../../assets/icon/success.svg'
 
 const HelpRequests = () => {
     const navigation = useNavigation();
@@ -25,7 +26,7 @@ const HelpRequests = () => {
             }}>
                 <View style={{
                     flexDirection: 'row',
-                    alignItems: 'center',
+                    alignItems: 'flex-start',
                     marginBottom: 20
                 }}>
                     <ProfilePicture img={item.user.photo} />
@@ -38,12 +39,18 @@ const HelpRequests = () => {
                         flexDirection: 'row',
                         right: 16
                     }}>
-                        <TouchableOpacity onPress={() => dispatch({ type: 'SET_RESPONSE_HELP_REQUEST_MODAL', value: true })}>
+
+                        {(item.help_request_status_id == 1 && HelpDetailReducer.help.help_status_id != 4) && <TouchableOpacity onPress={() => dispatch({ type: 'SET_RESPONSE_HELP_REQUEST_MODAL', value: true, selected: item.id })}>
                             <CheckIcon />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('ChatRoom')}>
+                        </TouchableOpacity>}
+
+                        {item.help_request_status_id == 2 && <SuccessIcon />}
+
+
+                        {HelpDetailReducer.help.help_status_id != 4 && <TouchableOpacity onPress={() => navigation.navigate('ChatRoom', { user: item.user })}>
                             <ChatIcon style={{ marginLeft: 24 }} />
-                        </TouchableOpacity>
+                        </TouchableOpacity>}
+
                     </View>
                 </View>
                 <P color={Colors.darkGrey} title={item.reason} />

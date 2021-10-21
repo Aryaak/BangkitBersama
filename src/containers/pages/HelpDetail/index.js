@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Image, ScrollView, StyleSheet, View, TouchableOpacity, TextInput } from 'react-native'
-import { PrimaryButton, H3, Small, ProfilePicture, P, AlertDanger, AlertWarning, H4 } from '../../../components'
+import { PrimaryButton, H3, Small, HelpEnded, P, AlertDanger, AlertWarning, H4, AlertSuccess } from '../../../components'
 import { DetailHelpTabView } from '../../templates'
 import { Colors, Async, CountDiffDate } from '../../../utils'
 import ChatIcon from '../../../assets/icon/chat-2.svg'
@@ -12,7 +12,7 @@ import CrossIcon from '../../../assets/icon/cross-2.svg'
 import EditIcon from '../../../assets/icon/edit.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { SetHelpDetail } from '../../../config/redux/action'
-import { HandleHelpSendRequest, HandleUpdateHelpRequest, HandleDeleteHelpRequest } from '../../../config/redux/action'
+import { HandleHelpSendRequest, HandleUpdateHelpRequest, HandleDeleteHelpRequest, HandleAcceptedRequest, SetHelpsForHome } from '../../../config/redux/action'
 import Modal from "react-native-modal";
 import OutlineButton from '../../../components/molecules/OutlineButton'
 
@@ -143,7 +143,7 @@ const HelpDetail = ({ route, navigation }) => {
                                 }} style={{ marginBottom: 40 }} title="Perbarui Permintaan" paddingVertical={15} />
                             </View>}
                         </View>)
-
+                    case 2: return <AlertSuccess style={{ marginBottom: 40 }} text="Permintaan anda disetujui" />
                 }
             } else {
                 return (
@@ -179,7 +179,15 @@ const HelpDetail = ({ route, navigation }) => {
                 <DetailHelpTabView />
             )
         }
-
+    }
+    const submitAccepted = () => {
+        const data = {
+            help_id: HelpDetailReducer.help.id,
+            help_request_id: HelpResponseRequestReducer.selected
+        }
+        dispatch(HandleAcceptedRequest(data, token))
+        dispatch(SetHelpDetail(HelpDetailReducer.help.id, token))
+        dispatch(SetHelpsForHome(token))
     }
 
     const renderRequestForm = () => {
@@ -215,7 +223,7 @@ const HelpDetail = ({ route, navigation }) => {
                 <View style={styles.modalContent}>
                     <P title="Apakah anda yakin ingin menyetujui permintaan pengguna berikut?" />
                     <View style={{ marginTop: 20 }}>
-                        <PrimaryButton style={{ marginBottom: 10 }} title="Setujui" />
+                        <PrimaryButton onPress={() => submitAccepted()} style={{ marginBottom: 10 }} title="Setujui" />
                         <OutlineButton onPress={() => dispatch({ type: 'SET_RESPONSE_HELP_REQUEST_MODAL', value: false })} title="Batal" />
                     </View>
                 </View>
@@ -247,16 +255,23 @@ const HelpDetail = ({ route, navigation }) => {
                     {renderChatButton(inisiator)}
                 </View>
                 <H3 title={HelpDetailReducer.help.name} style={{ marginBottom: 16 }} />
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
-                    <UsersIcon />
-                    <Small style={{ marginLeft: 16 }} title={HelpDetailReducer.help.quota + " Orang"} />
-                </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 40 }}>
-                    <ClockIcon />
-                    <Small style={{ marginLeft: 16 }} title={CountDiffDate(HelpDetailReducer.help.end_date)} />
-                </View>
-                {renderButton(inisiator)}
+                {HelpDetailReducer.help.help_status_id != 4 && <View>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
+                        <UsersIcon />
+                        <Small style={{ marginLeft: 16 }} title={HelpDetailReducer.help.quota + " Orang"} />
+                    </View>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 40 }}>
+                        <ClockIcon />
+                        <Small style={{ marginLeft: 16 }} title={CountDiffDate(HelpDetailReducer.help.end_date)} />
+                    </View>
+                </View>}
+
+                {HelpDetailReducer.help.help_status_id == 4 && <HelpEnded style={{ marginBottom: 40 }} />}
+
+                {HelpDetailReducer.help.help_status_id != 4 && renderButton(inisiator)}
                 {renderDetail(inisiator)}
+
+
             </View>
         </ScrollView >
     )

@@ -13,6 +13,7 @@ import HelpInput from './HelpInput'
 import ChatRoom from './ChatRoom'
 import EditProfile from './EditProfile'
 import Kategori from './Kategori'
+import NetworkError from './NetworkError'
 
 module.exports = {
     Home,
@@ -29,5 +30,6 @@ module.exports = {
     HelpInput,
     ChatRoom,
     EditProfile,
-    Kategori
+    Kategori,
+    NetworkError
 }

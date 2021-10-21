@@ -29,6 +29,7 @@ const HomeScrollContentOne = ({ navigation, style }) => {
                         imgBottom={item.user.photo}
                         titleBottom={item.user.name}
                         textBottom={item.user.profession}
+                        ended={item.help_status_id == 4 ? true : false}
                         style={{ marginLeft: 30 }} />
                     )
                 })}

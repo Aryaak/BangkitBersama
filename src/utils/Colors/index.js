@@ -6,7 +6,8 @@ const Colors = {
     overlay: '#F6F7FB',
     grey: '#B5B5B5',
     darkGrey: '#505050',
-    monoBlack: '#252525'
+    monoBlack: '#252525',
+    red: '#F03D3E'
 }
 
 export default Colors;

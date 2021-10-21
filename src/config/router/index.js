@@ -20,7 +20,6 @@ import {
     EditProfile,
     Kategori
 } from '../../containers/pages'
-import { DetailHelpTabView } from '../../containers/templates'
 import { TabIcon, FeaturesButton, TabItemActive } from '../../components'
 import { Colors, Async } from '../../utils'
 import HeartIcon from '../../assets/icon/heart.svg'
@@ -108,7 +107,6 @@ const Router = () => {
                 <Stack.Screen name="ChatRoom" component={ChatRoom} />
                 <Stack.Screen name="EditProfile" component={EditProfile} />
                 <Stack.Screen name="Kategori" component={Kategori} />
-
             </Stack.Navigator>
         </NavigationContainer>
     );

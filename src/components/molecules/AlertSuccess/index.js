@@ -3,9 +3,9 @@ import { StyleSheet, View } from 'react-native'
 import { P } from '../..'
 import SuccessIcon from '../../../assets/icon/success.svg'
 
-const AlertSuccess = ({ text }) => {
+const AlertSuccess = ({ style, text }) => {
     return (
-        <View style={styles.wrapper}>
+        <View style={[styles.wrapper, style]}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <SuccessIcon style={{ marginRight: 16 }} />
                 <P color="#007B40" title={text} />
