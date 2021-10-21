@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class HelpReviewReplies extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class HelpReviewReplies extends Migration
      */
     public function up()
     {
-        Schema::create('help_review_replies', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('help_review_id');
-            $table->longText('reply');
+            $table->integer('sender');
+            $table->integer('recipient');
+            $table->longText('message');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class HelpReviewReplies extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('help_review_replies');
+        Schema::dropIfExists('messages');
     }
 }

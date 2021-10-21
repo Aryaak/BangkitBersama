@@ -15,4 +15,9 @@ class HelpRequest extends Model
         'reason',
         'help_request_status_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

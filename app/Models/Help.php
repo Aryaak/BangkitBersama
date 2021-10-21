@@ -24,6 +24,10 @@ class Help extends Model
         'help_status_id'
     ];
 
+    public function getPhotoAttribute($value)
+    {
+        return url('storage/app/public/' . $value);
+    }
 
     public function user()
     {
@@ -39,5 +43,15 @@ class Help extends Model
     public function status()
     {
         return $this->hasOne(HelpStatus::class, 'id', 'help_status_id');
+    }
+
+    public function requests()
+    {
+        return $this->hasMany(HelpRequest::class, 'help_id', 'id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(HelpReview::class, 'help_id', 'id');
     }
 }

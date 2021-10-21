@@ -18,7 +18,7 @@ class HelpRequests extends Migration
             $table->integer('help_id');
             $table->integer('user_id');
             $table->longText('reason');
-            $table->integer('help_request_status_id');
+            $table->integer('help_request_status_id')->default(1);
             $table->timestamps();
         });
     }

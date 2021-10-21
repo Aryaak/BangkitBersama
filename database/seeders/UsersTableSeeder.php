@@ -20,6 +20,8 @@ class UsersTableSeeder extends Seeder
             'username' => 'Ampersand',
             'address' => 'Surabaya, Jawa Timur',
             'email' => 'ampersandtechsolution@gmail.com',
+            'profession' => 'Lembaga Nasional',
+            'photo' => 'assets/photo/profile/ampersand.jpg',
             'password' => bcrypt('password123'),
             'document' => 'assets/document/institution/ICxvy6r6IkPNxhGxjjvKKZmsp1LmhMfCaVZnKwBQ.jpg',
             'user_status_id' => 3

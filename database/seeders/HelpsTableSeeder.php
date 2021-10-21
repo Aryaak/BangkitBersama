@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+
 use App\Models\Help;
 
 use Illuminate\Database\Seeder;
@@ -15,109 +16,59 @@ class HelpsTableSeeder extends Seeder
      */
     public function run()
     {
-        //maulana ikhsan
         Help::create([
-            'id' => 1,
             'help_category_id' => 1,
-            'user_id' => 3,
-            'photo' => 'assets/document/institution/ICxvy6r6IkPNxhGxjjvKKZmsp1LmhMfCaVZnKwBQ.jpg',
-            'name' => 'bantu covid',
-            'description' => 'ya gitu deh',
-            'quota' => 3,
-            'end_date' => Carbon::parse('2000-01-01'),
-            'help_status_id' => 1
+            'user_id' => 1,
+            'photo' => 'assets/photo/help/oksigen.jpg',
+            'name' => 'Isi Ulang Oksigen Gratis',
+            'description' => 'Saya ingin membagikan oksigen isi ulang gratis untuk daerah Surabaya dan sekitarnya',
+            'quota' => 10,
+            'end_date' => Carbon::parse('2021-12-01'),
+            'help_status_id' => 2
         ]);
 
-        //apriia amanda
         Help::create([
-            'id' => 2,
-            'help_category_id' => 2,
-            'user_id' => 4,
-            'photo' => 'assets/document/institution/ICxvy6r6IkPNxhGxjjvKKZmsp1LmhMfCaVZnKwBQ.jpg',
-            'name' => 'bantu ekonomi',
-            'description' => 'ya gitu deh',
-            'quota' => 2,
-            'end_date' => Carbon::parse('2021-01-01'),
-            'help_status_id' => 1
+            'help_category_id' => 1,
+            'user_id' => 1,
+            'photo' => 'assets/photo/help/mask.jpg',
+            'name' => '50 Pack Masker Gratis',
+            'description' => 'Saya ingin membagikan 50 pack masker gratis bagi yang membutuhkan, diutamakan domisili Surabay dan sekitarnya',
+            'quota' => 50,
+            'end_date' => Carbon::parse('2021-12-01'),
+            'help_status_id' => 2
         ]);
 
-        //eriko dewantoro
         Help::create([
-            'id' => 3,
+            'help_category_id' => 1,
+            'user_id' => 1,
+            'photo' => 'assets/photo/help/hand-sanitizer.jpg',
+            'name' => 'Hand Sanitizer Gratis',
+            'description' => 'Saya ingin membagikan beberapa Hand Sanitizer gratis untuk anda yang di daerah Surabaya',
+            'quota' => 5,
+            'end_date' => Carbon::parse('2021-12-01'),
+            'help_status_id' => 2
+        ]);
+
+        Help::create([
             'help_category_id' => 3,
-            'user_id' => 5,
-            'photo' => 'assets/document/institution/ICxvy6r6IkPNxhGxjjvKKZmsp1LmhMfCaVZnKwBQ.jpg',
-            'name' => 'bantu pangan',
-            'description' => 'ya gitu deh',
-            'quota' => 4,
-            'end_date' => Carbon::parse('2021-06-17'),
-            'help_status_id' => 1
+            'user_id' => 1,
+            'photo' => 'assets/photo/help/sate.jpg',
+            'name' => 'Bagi-bagi Sate Gratis',
+            'description' => 'Saya ingin membagikan sate untuk anda yang lapar dari sore hingga malam hari',
+            'quota' => 100,
+            'end_date' => Carbon::parse('2021-12-01'),
+            'help_status_id' => 2
         ]);
 
-        //khansa nabila
         Help::create([
-            'id' => 4,
             'help_category_id' => 4,
-            'user_id' => 6,
-            'photo' => 'assets/document/institution/ICxvy6r6IkPNxhGxjjvKKZmsp1LmhMfCaVZnKwBQ.jpg',
-            'name' => 'bant jasa',
-            'description' => 'ya gitu deh',
-            'quota' => 4,
-            'end_date' => Carbon::parse('2021-08-13'),
-            'help_status_id' => 1
+            'user_id' => 1,
+            'photo' => 'assets/photo/help/ambulance.jpg',
+            'name' => 'Jasa Sopir Ambulance',
+            'description' => 'Saya ingin menawarkan diri sebagai sopir ambulance gratis untuk rumah sakit yang membutuhkan',
+            'quota' => 1,
+            'end_date' => Carbon::parse('2021-12-01'),
+            'help_status_id' => 2
         ]);
-
-        //lanang prmudia
-        Help::create([
-            'id' => 5,
-            'help_category_id' => 1, //covid
-            'user_id' => 7,
-            'photo' => 'assets/document/institution/ICxvy6r6IkPNxhGxjjvKKZmsp1LmhMfCaVZnKwBQ.jpg',
-            'name' => 'bant covid',
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita magni ipsam vero odit officiis. Quam sint a quae voluptatum obcaecati libero amet deserunt voluptatem nam iure. Sunt tenetur culpa reiciendis!',
-            'quota' => 4,
-            'end_date' => Carbon::parse('2021-08-13'),
-            'help_status_id' => 1 //pending
-        ]);
-
-        //Naufanda aditya
-        Help::create([
-            'id' => 6,
-            'help_category_id' => 2, //ekonomi
-            'user_id' => 8,
-            'photo' => 'assets/document/institution/ICxvy6r6IkPNxhGxjjvKKZmsp1LmhMfCaVZnKwBQ.jpg',
-            'name' => 'memberi bantuan ekonomi pd naufanda',
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita magni ipsam vero odit officiis. Quam sint a quae voluptatum obcaecati libero amet deserunt voluptatem nam iure. Sunt tenetur culpa reiciendis!',
-            'quota' => 4,
-            'end_date' => Carbon::parse('2021-08-13'),
-            'help_status_id' => 1 //pending
-        ]);
-
-         //maulida amelia
-         Help::create([
-            'id' => 7,
-            'help_category_id' => 3, //pangan
-            'user_id' => 9,
-            'photo' => 'assets/document/institution/ICxvy6r6IkPNxhGxjjvKKZmsp1LmhMfCaVZnKwBQ.jpg',
-            'name' => 'memberi bantuan pangan pd maulida',
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita magni ipsam vero odit officiis. Quam sint a quae voluptatum obcaecati libero amet deserunt voluptatem nam iure. Sunt tenetur culpa reiciendis!',
-            'quota' => 4,
-            'end_date' => Carbon::parse('2021-08-13'),
-            'help_status_id' => 1 //pending
-        ]);
-
-        //risti aprilia
-        Help::create([
-            'id' => 8,
-            'help_category_id' => 4, //jasa
-            'user_id' => 10, //risti
-            'photo' => 'assets/document/institution/ICxvy6r6IkPNxhGxjjvKKZmsp1LmhMfCaVZnKwBQ.jpg',
-            'name' => 'memberi bantuan jasa pada risti',
-            'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita magni ipsam vero odit officiis. Quam sint a quae voluptatum obcaecati libero amet deserunt voluptatem nam iure. Sunt tenetur culpa reiciendis!',
-            'quota' => 4,
-            'end_date' => Carbon::parse('2021-08-13'),
-            'help_status_id' => 1 //pending
-        ]);
-
     }
 }
