@@ -16,6 +16,8 @@ class UsersTableSeeder extends Seeder
     {
         User::create([
             'role_id' => 1,
+            'profession' => 'dokter',
+            'photo' => 'assets/photo/profile/4HXrOPkWLJrm7UywdcgOt4x7ICjo7pXMLdGb7jEp.png',
             'name' => 'Ampersand Team',
             'username' => 'Ampersand',
             'address' => 'Surabaya, Jawa Timur',
@@ -29,50 +31,60 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'role_id' => 2,
+            'profession' => 'dokter',
+            'photo' => 'assets/photo/profile/4HXrOPkWLJrm7UywdcgOt4x7ICjo7pXMLdGb7jEp.png',
             'name' => 'Nadia Wulandari',
             'username' => 'wulan',
             'address' => 'Lamongan, Jawa Timur',
             'email' => 'wulandari@gmail.com',
             'password' => bcrypt('password123'),
             'document' => 'assets/document/institution/ICxvy6r6IkPNxhGxjjvKKZmsp1LmhMfCaVZnKwBQ.jpg',
-            'user_status_id' => 2
+            'user_status_id' => 1
         ]);
 
         User::create([
             'role_id' => 2,
+            'profession' => 'dokter',
+            'photo' => 'assets/photo/profile/4HXrOPkWLJrm7UywdcgOt4x7ICjo7pXMLdGb7jEp.png',
             'name' => 'maulana ikhsan',
             'username' => 'lana',
             'address' => 'Jombang, Jawa Timur',
             'email' => 'jomban@gmail.com',
             'password' => bcrypt('password123'),
             'document' => 'assets/document/institution/ICxvy6r6IkPNxhGxjjvKKZmsp1LmhMfCaVZnKwBQ.jpg',
-            'user_status_id' => 2
+            'user_status_id' => 1
         ]);
 
         User::create([
             'role_id' => 2,
+            'profession' => 'dokter',
+            'photo' => 'assets/photo/profile/4HXrOPkWLJrm7UywdcgOt4x7ICjo7pXMLdGb7jEp.png',
             'name' => 'aprilia amanda',
             'username' => 'april',
             'address' => 'telungagung, Jawa Timur',
             'email' => 'manda@gmail.com',
             'password' => bcrypt('password123'),
             'document' => 'assets/document/institution/ICxvy6r6IkPNxhGxjjvKKZmsp1LmhMfCaVZnKwBQ.jpg',
-            'user_status_id' => 2
+            'user_status_id' => 1
         ]);
 
         User::create([
             'role_id' => 2,
+            'profession' => 'dokter',
+            'photo' => 'assets/photo/profile/4HXrOPkWLJrm7UywdcgOt4x7ICjo7pXMLdGb7jEp.png',
             'name' => 'eriko dewantoro',
             'username' => 'riko',
             'address' => 'Mojokerto, Jawa Timur',
             'email' => 'eriko@gmail.com',
             'password' => bcrypt('password123'),
             'document' => 'assets/document/institution/ICxvy6r6IkPNxhGxjjvKKZmsp1LmhMfCaVZnKwBQ.jpg',
-            'user_status_id' => 2
+            'user_status_id' => 1
         ]);
 
         User::create([
             'role_id' => 2,
+            'profession' => 'dokter',
+            'photo' => 'assets/photo/profile/4HXrOPkWLJrm7UywdcgOt4x7ICjo7pXMLdGb7jEp.png',
             'name' => 'khansa nabila',
             'username' => 'sasa',
             'address' => 'Malang, Jawa Timur',
@@ -85,6 +97,8 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'role_id' => 2,
+            'profession' => 'dokter',
+            'photo' => 'assets/photo/profile/4HXrOPkWLJrm7UywdcgOt4x7ICjo7pXMLdGb7jEp.png',
             'name' => 'lanang pramudia',
             'username' => 'tian',
             'address' => 'Magetan, Jawa Timur',
@@ -96,6 +110,8 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'role_id' => 2,
+            'profession' => 'dokter',
+            'photo' => 'assets/photo/profile/4HXrOPkWLJrm7UywdcgOt4x7ICjo7pXMLdGb7jEp.png',
             'name' => 'Naufanda Aditiya zulfa',
             'username' => 'naufan',
             'address' => 'Magetan, Jawa Timur',
@@ -107,6 +123,8 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'role_id' => 2,
+            'profession' => 'dokter',
+            'photo' => 'assets/photo/profile/4HXrOPkWLJrm7UywdcgOt4x7ICjo7pXMLdGb7jEp.png',
             'name' => 'Maulida Amelia Ayu Hapsari',
             'username' => 'maulida',
             'address' => 'Kediri, Jawa Timur',
@@ -118,6 +136,8 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'role_id' => 2,
+            'profession' => 'dokter',
+            'photo' => 'assets/photo/profile/4HXrOPkWLJrm7UywdcgOt4x7ICjo7pXMLdGb7jEp.png',
             'name' => 'Risti Aprialia yasmin',
             'username' => 'Risti',
             'address' => 'Jombang, Jawa Timur',
@@ -129,6 +149,8 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'role_id' => 2,
+            'profession' => 'dokter',
+            'photo' => 'assets/photo/profile/4HXrOPkWLJrm7UywdcgOt4x7ICjo7pXMLdGb7jEp.png',
             'name' => 'Cinta Ramayanti',
             'username' => 'cinta',
             'address' => 'Trenggalek, Jawa Timur',
@@ -140,6 +162,8 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'role_id' => 2,
+            'profession' => 'dokter',
+            'photo' => 'assets/photo/profile/4HXrOPkWLJrm7UywdcgOt4x7ICjo7pXMLdGb7jEp.png',
             'name' => 'Dimas Adi Prayoga',
             'username' => 'dimdim',
             'address' => 'Surga, Akhirat',
