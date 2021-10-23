@@ -20,10 +20,11 @@ const SetHelpDetail = (help_id, token) => async dispatch => {
                 if (data['my-request']) {
                     dispatch({ type: 'SET_HELP_REQUEST_ID', value: data['my-request'].id })
                 }
-
             }
         })
         .catch(err => console.log('GET HELP DETAIL ', err))
+    dispatch({ type: 'SET_HELP_DETAIL_LOADING', value: false })
+
 }
 
 export default SetHelpDetail

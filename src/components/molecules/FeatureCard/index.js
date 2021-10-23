@@ -3,9 +3,9 @@ import { StyleSheet, View, Image, TouchableOpacity } from 'react-native'
 import { Colors } from '../../../utils'
 import { P, Xsmall, Sicon } from '../../../components'
 
-const FeatureCard = ({ img, title, text, style, navigation }) => {
+const FeatureCard = ({ img, title, text, style, onPress }) => {
     return (
-        <TouchableOpacity style={[styles.wrapper, style]} onPress={navigation}>
+        <TouchableOpacity style={[styles.wrapper, style]} onPress={onPress}>
             <Image source={img} style={{
                 width: styles.wrapper.width - styles.sectionWrapper.width,
                 alignSelf: 'center'

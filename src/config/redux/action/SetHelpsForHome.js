@@ -2,6 +2,7 @@ import Axios from 'axios'
 import { BASE_API_URL } from '../../../config'
 
 const SetHelpsForHome = (token) => async dispatch => {
+    dispatch({ type: 'SET_HELPS_FOR_HOME_LOADING', value: true })
     await Axios.get(BASE_API_URL + 'help/get-for-home', {
         headers: {
             Authorization: token
@@ -15,6 +16,8 @@ const SetHelpsForHome = (token) => async dispatch => {
             }
         })
         .catch(err => console.log('GET HELPS FOR HOME', err))
+    dispatch({ type: 'SET_HELPS_FOR_HOME_LOADING', value: false })
+
 }
 
 export default SetHelpsForHome

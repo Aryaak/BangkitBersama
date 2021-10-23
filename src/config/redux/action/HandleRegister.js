@@ -4,6 +4,8 @@ import { Async } from '../../../utils'
 import { StackActions } from '@react-navigation/native'
 
 const HandleRegister = (dataForm, navigation) => async dispatch => {
+    dispatch({ type: 'SET_LOADING', isLoading: true })
+
     await Axios.post(BASE_API_URL + 'register', dataForm)
         .then(res => {
             const meta = res.data.meta;
@@ -21,6 +23,9 @@ const HandleRegister = (dataForm, navigation) => async dispatch => {
             }
         })
         .catch(err => console.log('REGISTER ', err))
+
+    dispatch({ type: 'SET_LOADING', isLoading: false })
+
 }
 
 export default HandleRegister

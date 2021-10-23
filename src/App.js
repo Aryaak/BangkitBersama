@@ -3,6 +3,7 @@ import { Router, store } from './config'
 import { Provider } from 'react-redux'
 import { useNetInfo } from "@react-native-community/netinfo";
 import { NetworkError } from './containers/pages'
+import { Loading } from './components'
 require('moment/locale/id.js');
 const App = () => {
 
@@ -16,6 +17,7 @@ const App = () => {
   if (connection) {
     return (
       <Provider store={store}>
+        <Loading />
         <Router />
       </Provider>
     )

@@ -12,6 +12,7 @@ import HelpSendReview from './HelpSendReview'
 import HelpResponseRequest from './HelpResponseRequest'
 import Message from './Message'
 import Helps from './Helps'
+import Loading from './Loading'
 
 const reducer = combineReducers({
     Register,
@@ -26,7 +27,8 @@ const reducer = combineReducers({
     HelpSendReview,
     HelpResponseRequest,
     Message,
-    Helps
+    Helps,
+    Loading
 })
 
 export default reducer;

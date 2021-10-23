@@ -15,10 +15,11 @@ import { SetHelpDetail } from '../../../config/redux/action'
 import { HandleHelpSendRequest, HandleUpdateHelpRequest, HandleDeleteHelpRequest, HandleAcceptedRequest, SetHelpsForHome } from '../../../config/redux/action'
 import Modal from "react-native-modal";
 import OutlineButton from '../../../components/molecules/OutlineButton'
+import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
 const HelpDetail = ({ route, navigation }) => {
 
-    const [inisiator, setInisiator] = useState(false)
+    const [user, setUser] = useState(null)
     const [editRequest, setEditRequest] = useState(false)
     const [token, setToken] = useState('')
     const HelpSendRequestReducer = useSelector(state => state.HelpSendRequest)
@@ -31,17 +32,13 @@ const HelpDetail = ({ route, navigation }) => {
     }
 
     useEffect(() => {
+        dispatch({ type: 'SET_HELP_DETAIL_LOADING', value: true })
         Async.get('token')
             .then(res => {
                 setToken(res)
                 dispatch(SetHelpDetail(route.params.help_id, res))
             })
-        Async.get('user')
-            .then(res => {
-                if (HelpDetailReducer.help.user_id == res.id) {
-                    setInisiator(true)
-                }
-            })
+
 
         return () => {
             dispatch({ type: 'SET_HELP_REQUEST_SHOW', value: false })
@@ -96,8 +93,8 @@ const HelpDetail = ({ route, navigation }) => {
     }
 
 
-    const renderButton = (inisiator) => {
-        if (!inisiator) {
+    const renderButton = () => {
+        if (!HelpDetailReducer.help.isInisiator) {
             if (HelpDetailReducer.help['my-request']) {
                 switch (HelpDetailReducer.help['my-request'].help_request_status_id) {
                     case 1:
@@ -158,8 +155,8 @@ const HelpDetail = ({ route, navigation }) => {
         }
 
     }
-    const renderChatButton = (inisiator) => {
-        if (!inisiator) {
+    const renderChatButton = () => {
+        if (!HelpDetailReducer.help.isInisiator) {
             return (
                 <TouchableOpacity onPress={() => navigation.navigate('ChatRoom', { user: HelpDetailReducer.help.user })}>
                     <ChatIcon width={30} height={30} />
@@ -169,8 +166,8 @@ const HelpDetail = ({ route, navigation }) => {
 
     }
 
-    const renderDetail = (inisiator) => {
-        if (!inisiator) {
+    const renderDetail = () => {
+        if (!HelpDetailReducer.help.isInisiator) {
             return (
                 <HelpDetailContent />
             )
@@ -212,8 +209,55 @@ const HelpDetail = ({ route, navigation }) => {
         }
     }
 
-    return (
-        <ScrollView style={styles.wrapper} backdropColor="white">
+    if (HelpDetailReducer.loading) {
+        return (<View>
+            <TouchableOpacity style={{ position: 'absolute', top: 30, left: 30, zIndex: 50 }} onPress={() => navigation.goBack()}>
+                <ArrowLeftIcon />
+            </TouchableOpacity>
+            <ScrollView>
+
+                <SkeletonPlaceholder >
+                    <View style={styles.cover}>
+                        <View style={styles.overlay}></View>
+                        <View style={{ width: '100%', height: '100%', resizeMode: 'cover' }} ></View>
+                    </View>
+
+                    <View style={{ paddingHorizontal: 30 }}>
+                        <View style={{ width: 75, height: 35, marginTop: 30, borderRadius: 8 }}>
+                        </View>
+
+                        <View style={{ height: 75, width: 272, borderRadius: 8, marginTop: 24 }}>
+                        </View>
+
+                        <View style={{ marginTop: 20 }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
+                                <View style={{ width: 24, height: 24, borderRadius: 12 }}></View>
+                                <View style={{ width: 41, height: 15, borderRadius: 8, marginLeft: 16 }}></View>
+                            </View>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+                                <View style={{ width: 24, height: 24, borderRadius: 12 }}></View>
+                                <View style={{ width: 41, height: 15, borderRadius: 8, marginLeft: 16 }}></View>
+                            </View>
+                        </View>
+
+                        <View style={{ width: '100%', height: 59, borderRadius: 8, marginVertical: 40 }}></View>
+
+                        <View style={{ width: 77, height: 29, borderRadius: 8 }}></View>
+                        <View style={{ width: '100%', height: 87, borderRadius: 8, marginTop: 16 }}></View>
+
+                        <View style={{ width: 77, height: 29, borderRadius: 8, marginTop: 40 }}></View>
+                        <View style={{ width: '100%', height: 172, borderRadius: 8, marginTop: 16 }}></View>
+
+                        <View style={{ width: 77, height: 29, borderRadius: 8, marginTop: 40 }}></View>
+                        <View style={{ width: '100%', height: 87, borderRadius: 8, marginTop: 16, marginBottom: 70 }}></View>
+                    </View>
+                </SkeletonPlaceholder>
+            </ScrollView>
+
+
+        </View>)
+    } else {
+        return (<ScrollView style={styles.wrapper} backdropColor="white">
             <Modal
                 testID={'modal'}
                 isVisible={HelpResponseRequestReducer.showModal}
@@ -249,10 +293,11 @@ const HelpDetail = ({ route, navigation }) => {
                 <View style={styles.overlay}></View>
                 <Image style={{ width: '100%', height: '100%', resizeMode: 'cover' }} source={{ uri: HelpDetailReducer.help.photo }} />
             </View>
+
             <View style={styles.content}>
                 <View style={{ flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between' }}>
                     <PrimaryButton style={{ width: 75, height: 35, marginBottom: 24 }} title={HelpDetailReducer.help.category.name} />
-                    {renderChatButton(inisiator)}
+                    {renderChatButton()}
                 </View>
                 <H3 title={HelpDetailReducer.help.name} style={{ marginBottom: 16 }} />
                 {HelpDetailReducer.help.help_status_id != 4 && <View>
@@ -268,13 +313,16 @@ const HelpDetail = ({ route, navigation }) => {
 
                 {HelpDetailReducer.help.help_status_id == 4 && <HelpEnded style={{ marginBottom: 40 }} />}
 
-                {HelpDetailReducer.help.help_status_id != 4 && renderButton(inisiator)}
-                {renderDetail(inisiator)}
+                {HelpDetailReducer.help.help_status_id != 4 && renderButton()}
+                {renderDetail()}
 
 
             </View>
-        </ScrollView >
-    )
+        </ScrollView >)
+    }
+
+
+
 }
 
 export default HelpDetail

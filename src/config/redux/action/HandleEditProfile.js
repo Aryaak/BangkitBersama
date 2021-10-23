@@ -3,6 +3,8 @@ import { BASE_API_URL } from '../../../config'
 import { Async } from '../../../utils'
 
 const HandleEditProfile = (data, token, navigation) => async dispatch => {
+    dispatch({ type: 'SET_LOADING', isLoading: true, text: 'Memperbarui profile...' })
+
     if (data.newPhoto) {
         let formData = new FormData();
         formData.append('file', data.newPhoto);
@@ -60,6 +62,9 @@ const HandleEditProfile = (data, token, navigation) => async dispatch => {
             }
         })
         .catch(err => console.log('UPDATE PROFILE ', err))
+
+    dispatch({ type: 'SET_LOADING', isLoading: false })
+
 }
 
 export default HandleEditProfile

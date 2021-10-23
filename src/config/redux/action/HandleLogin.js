@@ -4,8 +4,11 @@ import { Async } from '../../../utils'
 import { StackActions } from '@react-navigation/native'
 
 const HandleLogin = (dataForm, navigation) => async dispatch => {
+    dispatch({ type: 'SET_LOADING', isLoading: true })
+
     await Axios.post(BASE_API_URL + 'login', dataForm)
         .then(res => {
+
             const meta = res.data.meta;
             const data = res.data.data;
             if (meta.code == 200) {
@@ -19,8 +22,12 @@ const HandleLogin = (dataForm, navigation) => async dispatch => {
                 dispatch({ type: 'SET_ALERT_TEXT_LOGIN', value: 'Email/Password salah' })
                 dispatch({ type: 'SET_ALERT_LOGIN', value: true })
             }
+
         })
         .catch(err => console.log('LOGIN ', err))
+
+    dispatch({ type: 'SET_LOADING', isLoading: false })
+
 }
 
 export default HandleLogin

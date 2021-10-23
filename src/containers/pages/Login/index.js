@@ -7,7 +7,6 @@ const Login = ({ navigation }) => {
 
     return (
         <ScrollView backgroundColor={Colors.primary}>
-
             {/* HeaderLogin  */}
             <HeaderLogin />
 

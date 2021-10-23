@@ -2,6 +2,8 @@ import Axios from 'axios'
 import { BASE_API_URL } from '../../../config'
 
 const HandleHelpInput = (data, token, navigation) => async dispatch => {
+    dispatch({ type: 'SET_LOADING', isLoading: true, text: 'Mambuat bantuan...' })
+
     let formData = new FormData();
     formData.append('file', data.photo);
 
@@ -33,6 +35,9 @@ const HandleHelpInput = (data, token, navigation) => async dispatch => {
             }
         })
         .catch(err => console.log('HELP STORE ', err))
+
+    dispatch({ type: 'SET_LOADING', isLoading: false })
+
 }
 
 export default HandleHelpInput

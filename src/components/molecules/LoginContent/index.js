@@ -26,6 +26,7 @@ const LoginContent = ({ navigation }) => {
         }
 
         dispatch(HandleLogin(LoginReducer.form, navigation))
+
     }
 
     return (

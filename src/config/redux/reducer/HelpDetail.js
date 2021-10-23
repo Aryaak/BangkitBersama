@@ -1,4 +1,5 @@
 const initialState = {
+    loading: true,
     help: {
         id: '',
         category: {
@@ -15,6 +16,11 @@ const initialState = {
 
 const HelpDetail = (state = initialState, action) => {
     switch (action.type) {
+        case 'SET_HELP_DETAIL_LOADING':
+            return {
+                ...state,
+                loading: action.value
+            }
         case 'SET_HELP_DETAIL':
             return {
                 ...state,
