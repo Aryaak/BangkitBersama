@@ -89,6 +89,8 @@ class HelpController extends Controller
         if ($user->id != $data->user->id) {
             $data['my-request'] = HelpRequest::where('user_id', $user->id)->where('help_id', $id)->orderBy('id', 'DESC')->first();
         }
+        $data['isInisiator'] = ($user->id == $data->user->id) ? true : false;
+
         $data['my-review'] = HelpReview::where('user_id', $user->id)->where('help_id', $id)->orderBy('id', 'DESC')->with('user')->first();
 
 
