@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Colors, Async } from '../../../utils'
 import { StackActions } from '@react-navigation/native'
 import { HeaderProfile, H3, OutlineButton, P, PrimaryButton } from '../../../components'
 import { ProfileMenuList } from '../../organisms'
 import Modal from "react-native-modal";
+import LogOut from './../../../assets/icon/log-out.svg'
 
 const Profile = ({ navigation }) => {
     const [willLogout, setWillLogout] = useState(false);
@@ -32,10 +33,14 @@ const Profile = ({ navigation }) => {
                 <H3 title="Pengaturan" style={{ marginBottom: 32 }} />
                 <ProfileMenuList />
                 <H3 title="Akun" style={{ marginBottom: 32 }} />
-                <OutlineButton onPress={() => {
+                <TouchableOpacity  onPress={() => {
                     setWillLogout(true)
-
-                }} title="Keluar" paddingVertical={20} />
+                }}>
+                    <View style={{flexDirection:'row'}}>
+                        <LogOut/>
+                        <P style={{color:'red', marginLeft:32}} title="Keluar"/>
+                    </View>
+                </TouchableOpacity>
             </View>
         </ScrollView>
     )
@@ -55,7 +60,8 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         paddingTop: 40,
-        paddingHorizontal: 30
+        paddingHorizontal: 30, 
+        marginBottom : 35
     },
     modal: {
         justifyContent: 'flex-end',

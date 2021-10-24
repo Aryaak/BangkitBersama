@@ -2,9 +2,9 @@ import React from 'react'
 import { StyleSheet, Text } from 'react-native'
 import { Colors } from '../../../utils'
 
-const H5 = ({ title, color = Colors.primary }) => {
+const H5 = ({ title, color = Colors.primary, style }) => {
     return (
-        <Text style={[styles.h5, { color: color }]}>{title}</Text>
+        <Text style={[styles.h5, { color: color }, style]}>{title}</Text>
     )
 }
 

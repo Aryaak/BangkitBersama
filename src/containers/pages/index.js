@@ -14,6 +14,9 @@ import ChatRoom from './ChatRoom'
 import EditProfile from './EditProfile'
 import Kategori from './Kategori'
 import NetworkError from './NetworkError'
+import KebijakanPrivasi from './KebijakanPrivasi'
+import PesanMasuk from './PesanMasuk'
+import TentangAplikasi from './TentangAplikasi'
 
 module.exports = {
     Home,
@@ -31,5 +34,8 @@ module.exports = {
     ChatRoom,
     EditProfile,
     Kategori,
-    NetworkError
+    NetworkError,
+    KebijakanPrivasi,
+    PesanMasuk,
+    TentangAplikasi
 }
