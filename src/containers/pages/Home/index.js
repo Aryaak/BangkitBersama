@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import { HeaderHome } from '../../../components'
 import { HelpCategory, HomeScrollContentOne, HomeScrollContentTwo } from '../../organisms'
@@ -15,7 +15,7 @@ const Home = ({ navigation }) => {
             .then(res => {
                 dispatch(SetHelpsForHome(res))
             })
-    } )
+    })
 
     return (
         <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, TextInput } from 'react-native'
 import { CategoryItem, H3, H5, KategoriCard } from '../../../components'
 import CovidIcon from '../../../assets/icon/covid.svg'
 import EkonomiIcon from '../../../assets/icon/ekonomi.svg'
 import PanganIcon from '../../../assets/icon/pangan.svg'
 import JasaIcon from '../../../assets/icon/jasa.svg'
 import ArrowLeftIcon from '../../../assets/icon/arrow-left.svg'
-import VerifiedIcon from '../../../assets/icon/verified.svg'
+import SearchIcon from '../../../assets/icon/search.svg'
 import { Async } from '../../../utils'
 import { HandleGetAllHelps } from '../../../config/redux/action'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux'
 const Kategori = ({ navigation, route }) => {
 
     const [category, setCategory] = useState(route.params.category)
+    const [search, setSearch] = useState('')
 
     const dispatch = useDispatch()
     const HelpsReducer = useSelector(state => state.Helps)
@@ -22,15 +23,22 @@ const Kategori = ({ navigation, route }) => {
         Async.get('token')
             .then(res => {
                 dispatch(HandleGetAllHelps(res))
-                console.log('Reducer', HelpsReducer)
             })
+
     }, [])
+
+    const searchHelp = (key) => {
+        const data = key.toLowerCase();
+        let keyword = search.toLowerCase();
+
+        return data.includes(keyword)
+    }
 
 
     return (
         <ScrollView>
             <View style={{ flex: 1, paddingBottom: 62 }}>
-                <View style={{ paddingHorizontal: 30, marginBottom: 40, justifyContent: 'center' }}>
+                <View style={{ paddingHorizontal: 30, marginBottom: 32, justifyContent: 'center' }}>
                     <View style={{ flexDirection: 'row', marginTop: 30, alignItems: 'center' }}>
                         <View style={{ width: 30, height: 30 }}>
                             <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -45,9 +53,13 @@ const Kategori = ({ navigation, route }) => {
                         <CategoryItem onPress={() => setCategory(3)} active={category == 3 ? true : false} title="Pangan" icon={<PanganIcon />} />
                         <CategoryItem onPress={() => setCategory(4)} active={category == 4 ? true : false} title="Jasa" icon={<JasaIcon />} />
                     </View>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10, overflow: 'hidden', height: 59, backgroundColor: 'white', marginTop: 32, borderRadius: 15 }}>
+                        <SearchIcon style={{ marginRight: 10 }} />
+                        <TextInput value={search} onChangeText={value => setSearch(value)} style={{ width: '90%' }} placeholder='Cari bantuan yang anda butuhkan' />
+                    </View>
                 </View>
                 {HelpsReducer.helps.length > 0 && HelpsReducer.helps.map(item => {
-                    if (item.help_category_id == category) {
+                    if (item.help_category_id == category && searchHelp(item.name)) {
                         return (<KategoriCard navigation={navigation} item={item} />)
                     }
                 })}

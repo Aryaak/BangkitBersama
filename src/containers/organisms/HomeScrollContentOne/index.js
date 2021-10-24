@@ -33,6 +33,7 @@ const HomeScrollContentOne = ({ navigation, style }) => {
                         imgTop={item.photo}
                         sumUsers={item.quota}
                         sumDate={item.end_date}
+                        inisiator={item.isInisiator}
                         titleCategory={item.category.name}
                         titleTop={item.name.toUpperCase()}
                         textTop="Setiap hari. Pukul 10.00 - 13.00 WIB"

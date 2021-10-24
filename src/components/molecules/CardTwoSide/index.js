@@ -6,7 +6,7 @@ import ChatIcon from '../../../assets/icon/chat.svg'
 import UsersIcon from '../../../assets/icon/users.svg'
 import ClockIcon from '../../../assets/icon/clock.svg'
 
-const CardTwoSide = ({ sumUsers, sumDate, titleCategory, style, imgTop, titleTop, textTop, imgBottom, titleBottom, textBottom, onPress, onPressChat, ended }) => {
+const CardTwoSide = ({ inisiator, sumUsers, sumDate, titleCategory, style, imgTop, titleTop, textTop, imgBottom, titleBottom, textBottom, onPress, onPressChat, ended }) => {
     return (
         <TouchableOpacity onPress={onPress} style={[styles.wrapper, style]}>
             <View style={styles.topCover}>
@@ -40,7 +40,8 @@ const CardTwoSide = ({ sumUsers, sumDate, titleCategory, style, imgTop, titleTop
                     title={titleBottom}
                     text={textBottom}
                 />
-                <PrimaryButton onPress={onPressChat} title="Hubungi Sekarang" icon={<ChatIcon width={15} height={15} />} /></View>
+                {!inisiator && <PrimaryButton onPress={onPressChat} title="Hubungi Sekarang" icon={<ChatIcon width={15} height={15} />} />}
+            </View>
 
 
         </TouchableOpacity>

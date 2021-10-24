@@ -10,8 +10,10 @@ const App = () => {
   const netInfo = useNetInfo();
   const [connection, setConnection] = useState(true);
 
+
   useEffect(() => {
     setConnection(netInfo.isConnected)
+
   })
 
   if (connection) {
