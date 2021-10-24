@@ -18,7 +18,10 @@ import {
     HelpInput,
     ChatRoom,
     EditProfile,
-    Kategori
+    Kategori,
+    TentangAplikasi,
+    KebijakanPrivasi,
+    PesanMasuk
 } from '../../containers/pages'
 import { TabIcon, FeaturesButton, TabItemActive } from '../../components'
 import { Colors, Async } from '../../utils'
@@ -107,6 +110,9 @@ const Router = () => {
                 <Stack.Screen name="ChatRoom" component={ChatRoom} />
                 <Stack.Screen name="EditProfile" component={EditProfile} />
                 <Stack.Screen name="Kategori" component={Kategori} />
+                <Stack.Screen name="TentangAplikasi" component={TentangAplikasi} />
+                <Stack.Screen name="KebijakanPrivasi" component={KebijakanPrivasi} />
+                <Stack.Screen name="PesanMasuk" component={PesanMasuk} /> 
             </Stack.Navigator>
         </NavigationContainer>
     );

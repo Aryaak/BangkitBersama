@@ -23,6 +23,7 @@ import AlertSuccess from './AlertSuccess'
 import KategoriCard from './KategoriCard'
 import HelpEnded from './HelpEnded'
 import Loading from './Loading'
+import ProfileList from './ProfileList'
 
 module.exports = {
     FeaturesButton,
@@ -49,5 +50,6 @@ module.exports = {
     AlertSuccess,
     KategoriCard,
     HelpEnded,
-    Loading
+    Loading,
+    ProfileList
 }
