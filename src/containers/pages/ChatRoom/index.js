@@ -6,7 +6,7 @@ import SendIcon2 from '../../../assets/icon/send-2.svg'
 import VerifiedIcon from '../../../assets/icon/verified.svg'
 import ArrowLeftIcon from '../../../assets/icon/arrow-left.svg'
 import { Colors, Async } from '../../../utils'
-import { HandleSendMessage, HandleGetMessages } from '../../../config/redux/action'
+import { HandleSendMessage, HandleGetMessages, HandleReadMessages } from '../../../config/redux/action'
 import { useDispatch, useSelector } from 'react-redux'
 import Pusher from 'pusher-js/react-native'
 
@@ -46,6 +46,7 @@ const ChatRoom = ({ route, navigation }) => {
             .then(res => {
                 setToken(res)
                 dispatch(HandleGetMessages(data, res))
+                HandleReadMessages(data, res)
             })
 
 

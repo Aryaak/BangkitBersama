@@ -1,5 +1,6 @@
 const initialState = {
-    messages: []
+    messages: [],
+    incoming: []
 }
 
 
@@ -9,6 +10,11 @@ const Message = (state = initialState, action) => {
             return {
                 ...state,
                 messages: action.value
+            }
+        case 'SET_INCOMING_MESSAGES':
+            return {
+                ...state,
+                incoming: action.value
             }
     }
     return state

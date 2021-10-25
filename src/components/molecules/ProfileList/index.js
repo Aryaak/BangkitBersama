@@ -1,26 +1,28 @@
-import React from 'react'
-import { View, Text, Image } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import Online from '../../../assets/icon/Online.svg'
-import {P, H5} from './../../../components'
-import Colors from '../../../utils/Colors'
+import { P, H5, ProfilePicture } from './../../../components'
+import { Colors } from '../../../utils'
+import moment from 'moment'
 
-const PofileList = () => {
+const PofileList = ({ navigation, item }) => {
+
     return (
-        <View>
-            <View style={{marginTop:32, flexDirection:'row', justifyContent:'space-between', borderBottomColor:'#EBEBEB', borderBottomWidth: 2, paddingBottom:10 }}>
-                <View style={{flexDirection:'row'}}>
-                    <Image style={{width: 55, height: 55}} source={require('./../../../assets/logo/pp.png')} />
-                    <View style={{marginLeft:24}}>
-                        <P style={{color:'black'}} title="Arya Rizzky"/>
-                        <H5 style={{color:'black'}} title="Baik pak terima kasih"/>
+        <TouchableOpacity onPress={() => navigation.navigate('ChatRoom', { user: item })}>
+            <View style={{ marginTop: 32, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', borderBottomColor: '#EBEBEB', borderBottomWidth: 2, paddingBottom: 10 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <ProfilePicture img={item.photo} />
+                    <View style={{ marginLeft: 24 }}>
+                        <P style={{ color: 'black', marginBottom: 8 }} title={item.name} />
+                        <H5 style={{ color: !item.last_message.read ? 'black' : Colors.grey }} title={item.last_message.message} />
                     </View>
                 </View>
-                <View style={{width:50, paddingHorizontal:9}}>
-                    <Text style={{color:Colors.primary, fontSize:9, paddingBottom:3}}>3 Menit</Text>
-                    <Online style={{ marginLeft:18, marginTop:6 }}/>
+                <View style={{ alignItems: 'flex-end', justifyContent: 'center', marginTop: 10 }}>
+                    <Text style={{ color: !item.last_message.read ? Colors.primary : Colors.grey, fontSize: 9, paddingBottom: 8 }}>{moment(item.last_message.created_at).fromNow()}</Text>
+                    {!item.last_message.read && <Online style={{ marginLeft: 18, marginTop: 6 }} />}
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 

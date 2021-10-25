@@ -19,7 +19,8 @@ import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
 const HelpDetail = ({ route, navigation }) => {
 
-    const [user, setUser] = useState(null)
+    const AuthReducer = useSelector(state => state.Auth)
+
     const [editRequest, setEditRequest] = useState(false)
     const [token, setToken] = useState('')
     const HelpSendRequestReducer = useSelector(state => state.HelpSendRequest)
@@ -33,6 +34,11 @@ const HelpDetail = ({ route, navigation }) => {
 
     useEffect(() => {
         dispatch({ type: 'SET_HELP_DETAIL_LOADING', value: true })
+
+        Async.get('user')
+            .then(res => {
+                setUser(res)
+            })
         Async.get('token')
             .then(res => {
                 setToken(res)
@@ -146,8 +152,9 @@ const HelpDetail = ({ route, navigation }) => {
                 return (
                     <View>
                         {renderRequestForm()}
-                        {!HelpSendRequestReducer.show && (<PrimaryButton onPress={() => dispatch({ type: 'SET_HELP_REQUEST_SHOW', value: true })} style={{ marginBottom: 40 }} title="Ajukan Permintaan" paddingVertical={15} />)}
+                        {(!HelpSendRequestReducer.show && AuthReducer.status == 3) && (<PrimaryButton onPress={() => dispatch({ type: 'SET_HELP_REQUEST_SHOW', value: true })} style={{ marginBottom: 40 }} title="Ajukan Permintaan" paddingVertical={15} />)}
 
+                        {AuthReducer.status != 3 && <AlertWarning text="Anda belum terverifikasi" style={{ marginBottom: 40 }} />}
                     </View>
 
                 )
