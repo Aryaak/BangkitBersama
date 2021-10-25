@@ -60,6 +60,107 @@
                         </a>
                       </td>
                     </tr>
+                    <!--Pending Modal -->
+                        <div class="modal fade" id="pendingleModal" tabindex="-1" role="dialog" aria-labelledby="pendingleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h2 class="modal-title" id="pendingleModalLabel">Ubah status Jadi Pending?</h2>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h3 class="text-capitalize">
+                                        {{$pangan -> name}}
+                                    </h3>
+                                    <h3 class="text-capitalize">
+                                        {{$pangan -> user -> name}}
+                                    </h3>
+
+                                    <div class="d-flex">
+
+                                        <form action="/pangan/{{$pangan->id}}/pending" method="post">
+                                            @csrf
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button class="btn btn-warning" type="submit">
+                                                Set Pending
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+
+                        <!--Accepted Modal -->
+                        <div class="modal fade" id="accModal" tabindex="-1" role="dialog" aria-labelledby="accModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h2 class="modal-title" id="accModalLabel">Ubah status Jadi Accepted?</h2>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h3 class="text-capitalize">
+                                        {{$pangan -> name}}
+                                    </h3>
+                                    <h3 class="text-capitalize">
+                                        {{$pangan -> user -> name}}
+                                    </h3>
+
+                                    <div class="d-flex">
+
+                                        <form action="/pangan/{{$pangan->id}}/accepted" method="post">
+                                            @csrf
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button class="btn btn-success" type="submit">
+                                                Set Accepted
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="rejectedModal" tabindex="-1" role="dialog" aria-labelledby="rejectedModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h2 class="modal-title" id="rejectedModalLabel">Ubah status Jadi Rejected?</h2>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h3 class="text-capitalize">
+                                        {{$pangan -> name}}
+                                    </h3>
+                                    <h3 class="text-capitalize">
+                                        {{$pangan -> user -> name}}
+                                    </h3>
+
+                                    <div class="d-flex">
+
+                                        <form action="/pangan/{{$pangan->id}}/rejected" method="post">
+                                            @csrf
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button class="btn btn-danger" type="submit">
+                                                Set Rejected
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                     @endforeach
                   </tbody>
 
@@ -71,107 +172,7 @@
     </div>
   </section>
 
-      <!--Pending Modal -->
-      <div class="modal fade" id="pendingleModal" tabindex="-1" role="dialog" aria-labelledby="pendingleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h2 class="modal-title" id="pendingleModalLabel">Ubah status Jadi Pending?</h2>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-                <h3 class="text-capitalize">
-                    {{$pangan -> name}}
-                </h3>
-                <h3 class="text-capitalize">
-                    {{$pangan -> user -> name}}
-                </h3>
 
-                <div class="d-flex">
-
-                    <form action="/pangan/{{$pangan->id}}/pending" method="post">
-                        @csrf
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button class="btn btn-warning" type="submit">
-                            Set Pending
-                        </button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-        </div>
-    </div>
-
-
-      <!--Accepted Modal -->
-      <div class="modal fade" id="accModal" tabindex="-1" role="dialog" aria-labelledby="accModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h2 class="modal-title" id="accModalLabel">Ubah status Jadi Accepted?</h2>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-                <h3 class="text-capitalize">
-                    {{$pangan -> name}}
-                </h3>
-                <h3 class="text-capitalize">
-                    {{$pangan -> user -> name}}
-                </h3>
-
-                <div class="d-flex">
-
-                    <form action="/pangan/{{$pangan->id}}/accepted" method="post">
-                        @csrf
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button class="btn btn-success" type="submit">
-                            Set Accepted
-                        </button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="rejectedModal" tabindex="-1" role="dialog" aria-labelledby="rejectedModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h2 class="modal-title" id="rejectedModalLabel">Ubah status Jadi Rejected?</h2>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-                <h3 class="text-capitalize">
-                    {{$pangan -> name}}
-                </h3>
-                <h3 class="text-capitalize">
-                    {{$pangan -> user -> name}}
-                </h3>
-
-                <div class="d-flex">
-
-                    <form action="/pangan/{{$pangan->id}}/rejected" method="post">
-                        @csrf
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button class="btn btn-danger" type="submit">
-                            Set Rejected
-                        </button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-        </div>
-    </div>
 @endsection
 
 @push('data-tables')
