@@ -207,6 +207,12 @@
 @endsection
 
 @push('script')
+    <script src="{{asset('app-assets/js/core/app-menu.js')}}" type="text/javascript"></script>
+    <script src="{{asset('app-assets/js/core/app.js')}}" type="text/javascript"></script>
+    <script src="{{asset('app-assets/js/scripts/customizer.js')}}" type="text/javascript"></script>
+    <!-- END STACK JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="{{asset('app-assets/js/scripts/pages/dashboard-analytics.js')}}" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
 
 
