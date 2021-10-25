@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Help;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class JasaController extends Controller
 {
@@ -13,11 +14,15 @@ class JasaController extends Controller
     }
 
      public function detailJasa($id){
-        $data_jasa = Help::findOrFail($id);
+        $user = Help::with('user')->find($id);
+        $data_jasa = DB::table('helps')
+                    ->join('users', 'helps.user_id', '=', 'users.id')
+                    ->select('helps.*', 'users.document')
+                    ->where('helps.id', $id)->first();
         $category = Help::with('category')->find($id);
         $status = Help::with('status')->find($id);
 
-        return view('pages.helps.detail.jasa', ['data_jasa' => $data_jasa, 'category' => $category, 'status' => $status]);
+        return view('pages.helps.detail.jasa', ['data_jasa' => $data_jasa, 'category' => $category, 'status' => $status, 'users' => $user]);
     }
 
     public function setPendingjasa(Request $request, $id){

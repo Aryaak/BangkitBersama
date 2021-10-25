@@ -55,7 +55,7 @@
                                                     <i class="fa fa-times"></i>
                                                 </button>
 
-                                                <a href="{{ route('covid.detail', $ekonomi->id) }}" class="btn btn-info">
+                                                <a href="{{ route('ekonomi.detail', $ekonomi->id) }}" class="btn btn-info">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
                                             </td>
@@ -72,16 +72,9 @@
                                                 </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <h3 class="text-capitalize">
-                                                        {{$ekonomi -> name}}
-                                                    </h3>
-                                                    <h3 class="text-capitalize">
-                                                        {{$ekonomi -> user -> name}}
-                                                    </h3>
-
                                                     <div class="d-flex">
 
-                                                        <form action="/covid/{{$ekonomi->id}}/accepted" method="post">
+                                                        <form action="/ekonomi/{{$ekonomi->id}}/accepted" method="post">
                                                             @csrf
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                             <button class="btn btn-success" type="submit">
@@ -105,16 +98,9 @@
                                                 </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <h3 class="text-capitalize">
-                                                        {{$ekonomi -> name}}
-                                                    </h3>
-                                                    <h3 class="text-capitalize">
-                                                        {{$ekonomi -> user -> name}}
-                                                    </h3>
-
                                                     <div class="d-flex">
 
-                                                        <form action="/covid/{{$ekonomi->id}}/rejected" method="post">
+                                                        <form action="/ekonomi/{{$ekonomi->id}}/rejected" method="post">
                                                             @csrf
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                             <button class="btn btn-danger" type="submit">
@@ -147,7 +133,7 @@
 
                                                     <div class="d-flex">
 
-                                                        <form action="/covid/{{$ekonomi->id}}/pending" method="post">
+                                                        <form action="/ekonomi/{{$ekonomi->id}}/pending" method="post">
                                                             @csrf
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                             <button class="btn btn-warning" type="submit">

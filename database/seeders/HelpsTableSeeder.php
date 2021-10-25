@@ -17,7 +17,7 @@ class HelpsTableSeeder extends Seeder
     public function run()
     {
         Help::create([
-            'help_category_id' => 1,
+            'help_category_id' => 3,
             'user_id' => 1,
             'photo' => 'assets/photo/help/oksigen.jpg',
             'name' => 'Isi Ulang Oksigen Gratis',
@@ -27,16 +27,6 @@ class HelpsTableSeeder extends Seeder
             'help_status_id' => 2
         ]);
 
-        Help::create([
-            'help_category_id' => 1,
-            'user_id' => 1,
-            'photo' => 'assets/photo/help/mask.jpg',
-            'name' => '50 Pack Masker Gratis',
-            'description' => 'Saya ingin membagikan 50 pack masker gratis bagi yang membutuhkan, diutamakan domisili Surabay dan sekitarnya',
-            'quota' => 50,
-            'end_date' => Carbon::parse('2021-12-01'),
-            'help_status_id' => 2
-        ]);
 
         Help::create([
             'help_category_id' => 1,
@@ -47,6 +37,18 @@ class HelpsTableSeeder extends Seeder
             'quota' => 5,
             'end_date' => Carbon::parse('2021-12-01'),
             'help_status_id' => 2
+        ]);
+
+
+        Help::create([
+            'help_category_id' => 1,
+            'user_id' => 1,
+            'photo' => 'assets/photo/help/hand-sanitizer.jpg',
+            'name' => 'ppppppppp',
+            'description' => 'Saya ingin membagikan beberapa Hand Sanitizer gratis untuk anda yang di daerah Surabaya',
+            'quota' => 5,
+            'end_date' => Carbon::parse('2021-12-01'),
+            'help_status_id' => 1
         ]);
 
         Help::create([
@@ -70,5 +72,6 @@ class HelpsTableSeeder extends Seeder
             'end_date' => Carbon::parse('2021-12-01'),
             'help_status_id' => 2
         ]);
+
     }
 }

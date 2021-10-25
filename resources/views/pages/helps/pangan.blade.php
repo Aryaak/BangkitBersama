@@ -71,15 +71,7 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                    <h3 class="text-capitalize">
-                                        {{$pangan -> name}}
-                                    </h3>
-                                    <h3 class="text-capitalize">
-                                        {{$pangan -> user -> name}}
-                                    </h3>
-
                                     <div class="d-flex">
-
                                         <form action="/pangan/{{$pangan->id}}/pending" method="post">
                                             @csrf
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -106,15 +98,7 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                    <h3 class="text-capitalize">
-                                        {{$pangan -> name}}
-                                    </h3>
-                                    <h3 class="text-capitalize">
-                                        {{$pangan -> user -> name}}
-                                    </h3>
-
                                     <div class="d-flex">
-
                                         <form action="/pangan/{{$pangan->id}}/accepted" method="post">
                                             @csrf
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -139,15 +123,7 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                    <h3 class="text-capitalize">
-                                        {{$pangan -> name}}
-                                    </h3>
-                                    <h3 class="text-capitalize">
-                                        {{$pangan -> user -> name}}
-                                    </h3>
-
                                     <div class="d-flex">
-
                                         <form action="/pangan/{{$pangan->id}}/rejected" method="post">
                                             @csrf
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
