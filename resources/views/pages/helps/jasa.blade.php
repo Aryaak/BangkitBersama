@@ -39,19 +39,19 @@
                       <td>
                         <button class="btn @if ($jasa->help_status_id==1)
                             hidden
-                        @endif  btn-warning" data-toggle="modal" data-target="#pendingleModal" type="submit">
+                        @endif  btn-warning" data-toggle="modal" data-target="#pendingleModal{{$jasa->id}}" type="submit">
                             <i class="ft-clock"></i>
                         </button>
 
                         <button class="btn @if ($jasa->help_status_id==2)
                             hidden
-                        @endif btn-success" data-toggle="modal" data-target="#accModal" type="submit">
+                        @endif btn-success" data-toggle="modal" data-target="#accModal{{$jasa->id}}" type="submit">
                             <i class="fa fa-check"></i>
                         </button>
 
                         <button class="btn @if ($jasa->help_status_id==3)
                             hidden
-                        @endif btn-danger" data-toggle="modal" data-target="#rejectedModal" type="submit">
+                        @endif btn-danger" data-toggle="modal" data-target="#rejectedModal{{$jasa->id}}" type="submit">
                             <i class="fa fa-times"></i>
                         </button>
                         <a href="{{route('jasa.detail', $jasa->id)}}" class="btn btn-info">
@@ -61,7 +61,7 @@
                     </tr>
 
                     <!--Pending Modal -->
-                    <div class="modal fade" id="pendingleModal" tabindex="-1" role="dialog" aria-labelledby="pendingleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="pendingleModal{{$jasa->id}}" tabindex="-1" role="dialog" aria-labelledby="pendingleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -96,7 +96,7 @@
 
 
                     <!--Accepted Modal -->
-                    <div class="modal fade" id="accModal" tabindex="-1" role="dialog" aria-labelledby="accModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="accModal{{$jasa->id}}" tabindex="-1" role="dialog" aria-labelledby="accModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -129,7 +129,7 @@
                         </div>
                     </div>
 
-                    <div class="modal fade" id="rejectedModal" tabindex="-1" role="dialog" aria-labelledby="rejectedModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="rejectedModal{{$jasa->id}}" tabindex="-1" role="dialog" aria-labelledby="rejectedModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">

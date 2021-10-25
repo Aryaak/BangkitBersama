@@ -39,19 +39,19 @@
                                             <td class="d-flex justify-content-around">
                                                 <button class="btn  btn-warning @if ($ekonomi->help_status_id==1)
                                                     hidden
-                                                @endif" data-toggle="modal" data-target="#pendingleModal" type="submit">
+                                                @endif" data-toggle="modal" data-target="#pendingleModal{{$ekonomi->id}}" type="submit">
                                                     <i class="ft-clock"></i>
                                                 </button>
 
                                                 <button class="btn btn-success @if ($ekonomi->help_status_id==2)
                                                     hidden
-                                                @endif" data-toggle="modal" data-target="#accModal" type="submit">
+                                                @endif" data-toggle="modal" data-target="#accModal{{$ekonomi->id}}" type="submit">
                                                     <i class="fa fa-check"></i>
                                                 </button>
 
                                                 <button class="btn btn-danger @if ($ekonomi->help_status_id==3)
                                                     hidden
-                                                @endif" data-toggle="modal" data-target="#rejectedModal" type="submit">
+                                                @endif" data-toggle="modal" data-target="#rejectedModal{{$ekonomi->id}}" type="submit">
                                                     <i class="fa fa-times"></i>
                                                 </button>
 
@@ -62,7 +62,7 @@
                                         </tr>
 
                                             <!--Accepted Modal -->
-                                        <div class="modal fade" id="accModal" tabindex="-1" role="dialog" aria-labelledby="accModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="accModal{{$ekonomi->id}}" tabindex="-1" role="dialog" aria-labelledby="accModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -88,7 +88,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="modal fade" id="rejectedModal" tabindex="-1" role="dialog" aria-labelledby="rejectedModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="rejectedModal{{$ekonomi->id}}" tabindex="-1" role="dialog" aria-labelledby="rejectedModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -114,7 +114,7 @@
                                             </div>
                                         </div>
                                          <!--Pending Modal -->
-                                        <div class="modal fade" id="pendingleModal" tabindex="-1" role="dialog" aria-labelledby="pendingleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="pendingleModal{{$ekonomi->id}}" tabindex="-1" role="dialog" aria-labelledby="pendingleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">

@@ -40,19 +40,19 @@
                       <td>
                         <button class="btn @if ($pangan->help_status_id==1)
                             hidden
-                        @endif  btn-warning" data-toggle="modal" data-target="#pendingleModal" type="submit">
+                        @endif  btn-warning" data-toggle="modal" data-target="#pendingleModal{{$pangan->id}}" type="submit">
                             <i class="ft-clock"></i>
                         </button>
 
                         <button class="btn @if ($pangan->help_status_id==2)
                             hidden
-                        @endif btn-success" data-toggle="modal" data-target="#accModal" type="submit">
+                        @endif btn-success" data-toggle="modal" data-target="#accModal{{$pangan->id}}" type="submit">
                             <i class="fa fa-check"></i>
                         </button>
 
                         <button class="btn @if ($pangan->help_status_id==3)
                             hidden
-                        @endif btn-danger" data-toggle="modal" data-target="#rejectedModal" type="submit">
+                        @endif btn-danger" data-toggle="modal" data-target="#rejectedModal{{$pangan->id}}" type="submit">
                             <i class="fa fa-times"></i>
                         </button>
                         <a href="{{route('pangan.detail', $pangan->id)}}" class="btn btn-info">
@@ -61,7 +61,7 @@
                       </td>
                     </tr>
                     <!--Pending Modal -->
-                        <div class="modal fade" id="pendingleModal" tabindex="-1" role="dialog" aria-labelledby="pendingleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="pendingleModal{{$pangan->id}}" tabindex="-1" role="dialog" aria-labelledby="pendingleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -88,7 +88,7 @@
 
 
                         <!--Accepted Modal -->
-                        <div class="modal fade" id="accModal" tabindex="-1" role="dialog" aria-labelledby="accModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="accModal{{$pangan->id}}" tabindex="-1" role="dialog" aria-labelledby="accModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -113,7 +113,7 @@
                             </div>
                         </div>
 
-                        <div class="modal fade" id="rejectedModal" tabindex="-1" role="dialog" aria-labelledby="rejectedModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="rejectedModal{{$pangan->id}}" tabindex="-1" role="dialog" aria-labelledby="rejectedModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
