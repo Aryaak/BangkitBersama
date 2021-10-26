@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -20,10 +21,14 @@ class UserController extends Controller
         ]);
     }
 
-    public function detail(User $user)
+    public function detail($id)
     {
+        $data_user = DB::table('users')
+                    ->where('users.id', $id)->first();
+
+        // dd($data_user);
         return view('pages.user.detail', [
-            'user' => $user
+            'user' => $data_user
         ]);
     }
 

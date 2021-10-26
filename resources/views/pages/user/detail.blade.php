@@ -34,7 +34,7 @@
                 </tr>
                 <tr>
                     <td class="font-size">Alamat</td>
-                    <td class="font-size"> <p class="text-capitalize">{{ $user->address }}</p></td>
+                    <td class="font-size"> <p class="text-capitalize">{{ 'storage/'.$user->address }}</p></td>
                 </tr>
                 <tr>
                     <td class="font-size">Email</td>
@@ -43,7 +43,7 @@
                 <tr>
                     <td class="font-size">Dokumen Verifikasi</td>
                     <td class="font-size">
-                        <a class="btn btn-secondary" href="{{url($user->document)}}">
+                        <a class="btn btn-secondary" href="{{url('storage/'.$user->document)}}">
                             <i class="fa fa-file-o"></i>
                         </a>
                     </td>
@@ -51,7 +51,7 @@
                 <tr>
                     <td class="font-size">User Photo</td>
                     <td class="font-size">
-                        <a class="btn btn-primary" href="{{url($user->photo)}}">
+                        <a class="btn btn-primary" href="{{url('storage/'.$user->photo)}}">
                             <i class="fa fa-picture-o"></i>
                         </a>
                     </td>
