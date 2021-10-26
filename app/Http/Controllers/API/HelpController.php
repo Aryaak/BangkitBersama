@@ -64,8 +64,10 @@ class HelpController extends Controller
     public function getAll()
     {
         $data = Help::with('user', 'category', 'status')->where('help_status_id', 2)->orWhere('help_status_id', 4)->get();
+        $user = Auth::user();
 
         foreach ($data as $d) {
+            $d['isInisiator'] = ($user->id == $d->user->id) ? true : false;
             $this->checkExpiredDate($d['id']);
         }
         return ResponseFormatter::success('Get Help For Home Success!', $data);
@@ -108,7 +110,10 @@ class HelpController extends Controller
     public function getForHome()
     {
         $data = Help::with('user', 'category', 'status')->where('help_status_id', 2)->orWhere('help_status_id', 4)->limit(5)->get();
+        $user = Auth::user();
+
         foreach ($data as $d) {
+            $d['isInisiator'] = ($user->id == $d->user->id) ? true : false;
             $this->checkExpiredDate($d['id']);
         }
         return ResponseFormatter::success('Get Help For Home Success!', $data);

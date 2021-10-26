@@ -28,6 +28,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('message/send', [MessageController::class, 'send']);
     Route::get('message/get/{sender}/{recipent}', [MessageController::class, 'get']);
+    Route::get('message/incoming', [MessageController::class, 'incoming']);
+    Route::put('message/read', [MessageController::class, 'read']);
 
     Route::post('iofile/upload-photo-profile', [IOFileController::class, 'uploadPhotoProfile']);
     Route::post('iofile/upload-photo-help', [IOFileController::class, 'uploadPhotoHelp']);

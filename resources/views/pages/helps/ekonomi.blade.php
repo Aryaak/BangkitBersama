@@ -30,37 +30,43 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data_ekonomi as $ekonomi)
+
+                                    @forelse ($data_ekonomi as $ekonomi)
+                                    <tr>
+                                        <td>{{ $ekonomi->name }}</td>
+                                        <td>{{ $ekonomi->user->name }}</td>
+                                        <td>{{ $ekonomi->quota }}</td>
+                                        <td>{{ $ekonomi->end_date }}</td>
+                                        <td class="d-flex justify-content-around">
+                                            <button class="btn  btn-warning @if ($ekonomi->help_status_id==1)
+                                                hidden
+                                            @endif" data-toggle="modal" data-target="#pendingleModal" type="submit">
+                                                <i class="ft-clock"></i>
+                                            </button>
+
+                                            <button class="btn btn-success @if ($ekonomi->help_status_id==2)
+                                                hidden
+                                            @endif" data-toggle="modal" data-target="#accModal" type="submit">
+                                                <i class="fa fa-check"></i>
+                                            </button>
+
+                                            <button class="btn btn-danger @if ($ekonomi->help_status_id==3)
+                                                hidden
+                                            @endif" data-toggle="modal" data-target="#rejectedModal" type="submit">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+
+                                            <a href="{{ route('covid.detail', $ekonomi->id) }}" class="btn btn-info">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @empty
                                         <tr>
-                                            <td>{{ $ekonomi->name }}</td>
-                                            <td>{{ $ekonomi->user->name }}</td>
-                                            <td>{{ $ekonomi->quota }}</td>
-                                            <td>{{ $ekonomi->end_date }}</td>
-                                            <td class="d-flex justify-content-around">
-                                                <button class="btn  btn-warning @if ($ekonomi->help_status_id==1)
-                                                    hidden
-                                                @endif" data-toggle="modal" data-target="#pendingleModal" type="submit">
-                                                    <i class="ft-clock"></i>
-                                                </button>
-
-                                                <button class="btn btn-success @if ($ekonomi->help_status_id==2)
-                                                    hidden
-                                                @endif" data-toggle="modal" data-target="#accModal" type="submit">
-                                                    <i class="fa fa-check"></i>
-                                                </button>
-
-                                                <button class="btn btn-danger @if ($ekonomi->help_status_id==3)
-                                                    hidden
-                                                @endif" data-toggle="modal" data-target="#rejectedModal" type="submit">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-
-                                                <a href="{{ route('covid.detail', $ekonomi->id) }}" class="btn btn-info">
-                                                    <i class="fa fa-eye"></i>
-                                                </a>
-                                            </td>
+                                            <tr>Kosong</tr>
                                         </tr>
-                                    @endforeach
+                                    @endforelse
+
                                 </tbody>
                             </table>
                         </div>
@@ -82,10 +88,10 @@
             </div>
             <div class="modal-body">
                 <h3 class="text-capitalize">
-                    {{$ekonomi -> name}}
+                    {{$ekonomi->name}}
                 </h3>
                 <h3 class="text-capitalize">
-                    {{$ekonomi -> user -> name}}
+                    {{$ekonomi->user->name}}
                 </h3>
 
                 <div class="d-flex">

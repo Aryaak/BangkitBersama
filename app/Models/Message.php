@@ -15,12 +15,12 @@ class Message extends Model
         'message'
     ];
 
-    public function sender()
+    public function sender_profile()
     {
         return $this->belongsTo(User::class, 'sender', 'id');
     }
 
-    public function recipient()
+    public function recipient_profile()
     {
         return $this->belongsTo(User::class, 'recipient', 'id');
     }
