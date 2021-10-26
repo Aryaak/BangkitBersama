@@ -67,18 +67,19 @@ const ChatRoom = ({ route, navigation }) => {
     return (
         <View style={{ flex: 1, backgroundColor: Colors.overlay }}>
             <View style={{ backgroundColor: 'white', borderBottomRightRadius: 30, borderBottomLeftRadius: 30, height: 89, justifyContent: 'center' }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 30 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20 }}>
                     <View style={{ width: 30, height: 30, marginTop: 10 }}>
                         <TouchableOpacity onPress={() => navigation.goBack()}>
                             <ArrowLeftIcon height="100%" width="100%" />
                         </TouchableOpacity>
 
                     </View>
-                    <ProfilePicture img={route.params.user.photo} style={{ marginLeft: 24 }} />
-                    <H4 title={route.params.user.name} style={{ fontFamily: 'Nunito-Bold' }} style={{ marginLeft: 10 }} />
-                    <View style={{ width: 30, height: 30 }}>
-                        <VerifiedIcon style={{ marginLeft: 5 }} height="100%" width="100%" />
-                    </View>
+                    <ProfilePicture img={route.params.user.photo} style={{ marginLeft: 5 }} />
+                    <Text style={{fontFamily: 'Nunito-Regular',color:Colors.primary, fontSize:21, marginLeft: 10, width:170}} numberOfLines={1} ellipsizeMode='tail'>
+                        {route.params.user.name}
+                    </Text>
+                        <VerifiedIcon style={{ marginLeft: 5 }} height={30} width={30} />
+                
                 </View>
             </View>
             <ScrollView style={{ backgroundColor: Colors.overlay, flex: 1, paddingBottom: 100 }}>

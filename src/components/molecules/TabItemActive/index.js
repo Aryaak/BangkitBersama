@@ -27,7 +27,7 @@ export default TabItemActive
 const styles = StyleSheet.create({
     wrapper: {
         flexDirection: 'row',
-        paddingHorizontal: 24,
+        paddingHorizontal: 20,
         backgroundColor: Colors.background,
         alignSelf: 'flex-end',
         alignItems: 'center',

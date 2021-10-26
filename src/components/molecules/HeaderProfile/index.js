@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 import { ProfilePicture, H3, SecondaryButton } from '../../../components'
 import { Colors, Async } from '../../../utils'
 import { useNavigation } from '@react-navigation/native';
@@ -30,8 +30,10 @@ const HeaderProfile = () => {
             <ProfilePicture width={100} height={100} img={user.photo} />
             <View style={styles.rightWrapper}>
                 <View style={styles.textWrapper}>
-                    <H3 title={user.username} color={Colors.background} style={{ marginBottom: 8, marginRight: 5 }} />
-                    {renderVerifiedIcon()}
+                    <Text style={{color:Colors.background, fontSize:28, marginBottom: 8, marginRight: 5, width:140, fontFamily: 'Nunito-Bold'}} numberOfLines={1} ellipsizeMode='tail'>
+                        {user.username}
+                    </Text>
+                            <VerifiedIcon style={{marginTop:7}}/>
                 </View>
                 <SecondaryButton onPress={() => navigation.navigate('EditProfile')} title="Edit Profile" />
             </View>
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     rightWrapper: {
-        marginLeft: 40
+        marginLeft: 20
     },
     textWrapper: {
         flexDirection: 'row'
