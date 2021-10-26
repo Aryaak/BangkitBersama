@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Help;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PanganController extends Controller
 {
@@ -13,11 +14,15 @@ class PanganController extends Controller
     }
 
      public function detailPangan($id){
-        $data_pangan = Help::findOrFail($id);
+        $user = Help::with('user')->find($id);
+        $data_pangan = DB::table('helps')
+                    ->join('users', 'helps.user_id', '=', 'users.id')
+                    ->select('helps.*', 'users.document')
+                    ->where('helps.id', $id)->first();
         $category = Help::with('category')->find($id);
         $status = Help::with('status')->find($id);
 
-        return view('pages.helps.detail.pangan', ['data_pangan' => $data_pangan, 'category' => $category, 'status' => $status]);
+        return view('pages.helps.detail.pangan', ['data_pangan' => $data_pangan, 'category' => $category, 'status' => $status, 'users' => $user]);
     }
 
     public function setPendingPangan(Request $request, $id){

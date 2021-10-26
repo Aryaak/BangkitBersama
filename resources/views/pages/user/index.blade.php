@@ -117,23 +117,23 @@
 
 @push('data-tables')
 
-<script src="{{asset('app-assets/vendors/js/vendors.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('public/app-assets/vendors/js/vendors.min.js')}}" type="text/javascript"></script>
 <!-- BEGIN VENDOR JS-->
 <!-- BEGIN PAGE VENDOR JS-->
-<script src="{{asset('app-assets/vendors/js/tables/datatable/datatables.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('public/app-assets/vendors/js/tables/datatable/datatables.min.js')}}" type="text/javascript"></script>
 <!-- END PAGE VENDOR JS-->
 <!-- BEGIN STACK JS-->
-<script src="{{asset('app-assets/js/core/app-menu.js')}}" type="text/javascript"></script>
-<script src="{{asset('app-assets/js/core/app.js')}}" type="text/javascript"></script>
-<script src="{{asset('app-assets/js/scripts/customizer.js')}}" type="text/javascript"></script>
+<script src="{{asset('public/app-assets/js/core/app-menu.js')}}" type="text/javascript"></script>
+<script src="{{asset('public/app-assets/js/core/app.js')}}" type="text/javascript"></script>
+<script src="{{asset('public/app-assets/js/scripts/customizer.js')}}" type="text/javascript"></script>
 <!-- END STACK JS-->
 <!-- BEGIN PAGE LEVEL JS-->
-<script src="{{asset('app-assets/js/scripts/tables/datatables/datatable-basic.js')}}"
+<script src="{{asset('public/app-assets/js/scripts/tables/datatables/datatable-basic.js')}}"
 type="text/javascript"></script>
 @endpush
 
 @push('style')
-  <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('public/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
 @endpush
 
 @push('script')

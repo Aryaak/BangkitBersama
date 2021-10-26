@@ -8,24 +8,24 @@
   <meta name="keywords" content="admin template, stack admin template, dashboard template, flat admin template, responsive admin template, web app">
   <meta name="author" content="PIXINVENT">
   <title>BangkitBersama - Login Superadmin</title>
-  <link rel="apple-touch-icon" href="{{asset('app-assets/images/logo/bangkit-bersama.png')}}">
-  <link rel="shortcut icon" type="image/x-icon" href="{{asset('app-assets/images/logo/bangkit-bersama.png')}}">
+  <link rel="apple-touch-icon" href="{{asset('public/app-assets/images/logo/bangkit-bersama.png')}}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{asset('public/app-assets/images/logo/bangkit-bersama.png')}}">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i"
   rel="stylesheet">
   <!-- BEGIN VENDOR CSS-->
-  <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/vendors.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/forms/icheck/icheck.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/forms/icheck/custom.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('public/app-assets/css/vendors.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('public/app-assets/vendors/css/forms/icheck/icheck.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('public/app-assets/vendors/css/forms/icheck/custom.css')}}">
   <!-- END VENDOR CSS-->
   <!-- BEGIN STACK CSS-->
-  <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/app.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('public/app-assets/css/app.css')}}">
   <!-- END STACK CSS-->
   <!-- BEGIN Page Level CSS-->
-  <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/login-register.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('public/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('public/app-assets/css/pages/login-register.css')}}">
   <!-- END Page Level CSS-->
   <!-- BEGIN Custom CSS-->
-  <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/style.css')}}">
   <!-- END Custom CSS-->
 </head>
 <body class="vertical-layout vertical-menu 1-column   menu-expanded blank-page blank-page"
@@ -43,7 +43,7 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                 <div class="card-header border-0">
                   <div class="card-title text-center">
                     <div class="p-1">
-                      <img width="100" src="{{asset('app-assets/images/logo/bangkit-bersama.png')}}" alt="branding logo">
+                      <img width="100" src="{{asset('public/app-assets/images/logo/bangkit-bersama.png')}}" alt="branding logo">
                     </div>
                   </div>
                   <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
@@ -104,20 +104,20 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
   </div>
   <!-- ////////////////////////////////////////////////////////////////////////////-->
   <!-- BEGIN VENDOR JS-->
-  <script src="{{asset('app-assets/vendors/js/vendors.min.js')}}" type="text/javascript"></script>
+  <script src="{{asset('public/app-assets/vendors/js/vendors.min.js')}}" type="text/javascript"></script>
   <!-- BEGIN VENDOR JS-->
   <!-- BEGIN PAGE VENDOR JS-->
-  <script src="{{asset('app-assets/vendors/js/forms/icheck/icheck.min.js')}}" type="text/javascript"></script>
-  <script src="{{asset('app-assets/vendors/js/forms/validation/jqBootstrapValidation.js')}}"
+  <script src="{{asset('public/app-assets/vendors/js/forms/icheck/icheck.min.js')}}" type="text/javascript"></script>
+  <script src="{{asset('public/app-assets/vendors/js/forms/validation/jqBootstrapValidation.js')}}"
   type="text/javascript"></script>
   <!-- END PAGE VENDOR JS-->
   <!-- BEGIN STACK JS-->
-  <script src="{{asset('app-assets/js/core/app-menu.js')}}" type="text/javascript"></script>
-  <script src="{{asset('app-assets/js/core/app.js')}}" type="text/javascript"></script>
-  <script src="{{asset('app-assets/js/scripts/customizer.js')}}" type="text/javascript"></script>
+  <script src="{{asset('public/app-assets/js/core/app-menu.js')}}" type="text/javascript"></script>
+  <script src="{{asset('public/app-assets/js/core/app.js')}}" type="text/javascript"></script>
+  <script src="{{asset('public/app-assets/js/scripts/customizer.js')}}" type="text/javascript"></script>
   <!-- END STACK JS-->
   <!-- BEGIN PAGE LEVEL JS-->
-  <script src="{{asset('app-assets/js/scripts/forms/form-login-register.js')}}" type="text/javascript"></script>
+  <script src="{{asset('public/app-assets/js/scripts/forms/form-login-register.js')}}" type="text/javascript"></script>
   <!-- END PAGE LEVEL JS-->
 </body>
 </html>

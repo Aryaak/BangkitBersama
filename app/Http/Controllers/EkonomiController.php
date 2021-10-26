@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Help;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EkonomiController extends Controller
 {
@@ -33,10 +34,14 @@ class EkonomiController extends Controller
      }
 
      public function detailEkonomi($id){
-        $data_ekonomi = Help::findOrFail($id);
+        $user = Help::with('user')->find($id);
+        $data_ekonomi = DB::table('helps')
+                    ->join('users', 'helps.user_id', '=', 'users.id')
+                    ->select('helps.*', 'users.document')
+                    ->where('helps.id', $id)->first();
         $category = Help::with('category')->find($id);
         $status = Help::with('status')->find($id);
 
-        return view('pages.helps.detail.ekonomi', ['data_ekonomi' => $data_ekonomi, 'category' => $category, 'status' => $status]);
+        return view('pages.helps.detail.ekonomi', ['data_ekonomi' => $data_ekonomi, 'category' => $category, 'status' => $status, 'users' => $user]);
     }
 }

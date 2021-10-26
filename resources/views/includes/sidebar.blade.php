@@ -6,13 +6,14 @@
                 <i class=" ft-minus" data-toggle="tooltip"></i>
             </li>
 
-            <li class="nav-item {{ (request()->is('dashboard')) ? 'active' : '' }}"><a href="/dashboard"><i class="ft-home"></i>
+            <li class="nav-item {{(request()->is('dashboard')) ? 'active' : '' }}"><a href="/dashboard"><i class="ft-home"></i>
                 <span class="menu-title">Dashboard</a>
             </li>
-            <li class=" nav-item {{(request()->is('user')) ? 'active' : '' }}"><a href="{{ route('user.index') }}"><i class="ft-user"></i>
-                <span class="menu-title">User</span></a>
+            <li class="nav-item {{ (request()->is('user')) ? 'active' : '' }}"><a href="/user"><i class="ft-user"></i>
+                <span class="menu-title">User</a>
             </li>
-            <li class="nav-item"><a href=""><i class="ft-edit"></i>
+            <li class="nav-item"><a href="">
+                <i class="ft-edit"></i>
                 <span class="menu-title">Help</span></a>
                 <ul class="menu-content" style="">
                     <li class="is-shown {{(request()->is('covid')) ? 'active' : '' }}"><a class="menu-item" href="{{ route('help.covid') }}">Covid</a>

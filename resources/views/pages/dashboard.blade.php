@@ -180,20 +180,17 @@
                               </h6>
                               <p class="list-group-item-text mb-0">
                                     @if ($new->user_status_id==1)
-                                        <span class="badge badge-warning">Pending</span>
+                                        <span class="badge badge-danger">Unverified</span>
                                     @elseif ($new->user_status_id==2)
-                                        <span class="badge badge-success">Accepted</span>
-                                    @else
-                                        <span class="badge badge-danger">Rejected</span>
+                                        <span class="badge badge-warning">Pending</span>
+                                    @elseif ($new->user_status_id==3)
+                                        <span class="badge badge-success">Verified</span>
                                     @endif
                               </p>
                             </div>
                           </a>
                           @endforeach
-
-
                       </div>
-
                     </div>
                   </div>
                 </div>
@@ -207,6 +204,12 @@
 @endsection
 
 @push('script')
+    <script src="{{asset('public/app-assets/js/core/app-menu.js')}}" type="text/javascript"></script>
+    <script src="{{asset('public/app-assets/js/core/app.js')}}" type="text/javascript"></script>
+    <script src="{{asset('public/app-assets/js/scripts/customizer.js')}}" type="text/javascript"></script>
+    <!-- END STACK JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="{{asset('public/app-assets/js/scripts/pages/dashboard-analytics.js')}}" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
 
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Help;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class CovidController extends Controller
 {
     public function covid_index()
@@ -14,12 +14,17 @@ class CovidController extends Controller
     }
 
     public function detailCovid($id){
-        $data_covid = Help::with('user')->find($id);
+        $user = Help::with('user')->find($id);
+        $data_covid = DB::table('helps')
+                    ->join('users', 'helps.user_id', '=', 'users.id')
+                    ->select('helps.*', 'users.document')
+                    ->where('helps.id', $id)->first();
+
         $category = Help::with('category')->find($id);
         $status = Help::with('status')->find($id);
 
-        // dd($category);
-        return view('pages.helps.detail.covid', ['data_covid'=>$data_covid, 'category' => $category, 'status' => $status]);
+        // dd($data_covid);
+        return view('pages.helps.detail.covid', ['data_covid'=>$data_covid, 'category' => $category, 'status' => $status, 'users' => $user]);
      }
 
      public function setPendingCovid(Request $request, $id){

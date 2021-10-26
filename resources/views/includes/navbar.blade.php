@@ -5,7 +5,7 @@
           <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
           <li class="nav-item">
             <a class="navbar-brand" href="/">
-              <img class="brand-logo" alt="stack admin logo" width="30" src="{{asset('app-assets/images/logo/bangkit-bersama.png')}}">
+              <img class="brand-logo" alt="stack admin logo" width="30" src="{{asset('public/app-assets/images/logo/bangkit-bersama.png')}}">
               <h4 class="brand-text">BangkitBersama</h4>
             </a>
           </li>
@@ -23,7 +23,7 @@
             <li class="dropdown dropdown-user nav-item">
               <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                 <span class="avatar avatar-online">
-                  <img src="{{asset('app-assets/images/logo/ampersand.jpg')}}" alt="avatar"><i></i></span>
+                  <img src="{{asset('public/app-assets/images/logo/ampersand.jpg')}}" alt="avatar"><i></i></span>
                 <span class="user-name"> {{ Auth::user()->username }}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right">

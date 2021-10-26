@@ -39,19 +39,19 @@
                       <td>
                         <button class="btn @if ($jasa->help_status_id==1)
                             hidden
-                        @endif  btn-warning" data-toggle="modal" data-target="#pendingleModal" type="submit">
+                        @endif  btn-warning" data-toggle="modal" data-target="#pendingleModal{{$jasa->id}}" type="submit">
                             <i class="ft-clock"></i>
                         </button>
 
                         <button class="btn @if ($jasa->help_status_id==2)
                             hidden
-                        @endif btn-success" data-toggle="modal" data-target="#accModal" type="submit">
+                        @endif btn-success" data-toggle="modal" data-target="#accModal{{$jasa->id}}" type="submit">
                             <i class="fa fa-check"></i>
                         </button>
 
                         <button class="btn @if ($jasa->help_status_id==3)
                             hidden
-                        @endif btn-danger" data-toggle="modal" data-target="#rejectedModal" type="submit">
+                        @endif btn-danger" data-toggle="modal" data-target="#rejectedModal{{$jasa->id}}" type="submit">
                             <i class="fa fa-times"></i>
                         </button>
                         <a href="{{route('jasa.detail', $jasa->id)}}" class="btn btn-info">
@@ -59,6 +59,108 @@
                         </a>
                       </td>
                     </tr>
+
+                    <!--Pending Modal -->
+                    <div class="modal fade" id="pendingleModal{{$jasa->id}}" tabindex="-1" role="dialog" aria-labelledby="pendingleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h2 class="modal-title" id="pendingleModalLabel">Ubah status Jadi Pending?</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <h3 class="text-capitalize">
+                                    {{$jasa -> name}}
+                                </h3>
+                                <h3 class="text-capitalize">
+                                    {{$jasa -> user -> name}}
+                                </h3>
+
+                                <div class="d-flex">
+
+                                    <form action="/jasa/{{$jasa->id}}/pending" method="post">
+                                        @csrf
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button class="btn btn-warning" type="submit">
+                                            Set Pending
+                                        </button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+
+                    <!--Accepted Modal -->
+                    <div class="modal fade" id="accModal{{$jasa->id}}" tabindex="-1" role="dialog" aria-labelledby="accModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h2 class="modal-title" id="accModalLabel">Ubah status Jadi Accepted?</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <h3 class="text-capitalize">
+                                    {{$jasa -> name}}
+                                </h3>
+                                <h3 class="text-capitalize">
+                                    {{$jasa -> user -> name}}
+                                </h3>
+
+                                <div class="d-flex">
+
+                                    <form action="/jasa/{{$jasa->id}}/accepted" method="post">
+                                        @csrf
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button class="btn btn-success" type="submit">
+                                            Set Accepted
+                                        </button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="rejectedModal{{$jasa->id}}" tabindex="-1" role="dialog" aria-labelledby="rejectedModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h2 class="modal-title" id="rejectedModalLabel">Ubah status Jadi Rejected?</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <h3 class="text-capitalize">
+                                    {{$jasa -> name}}
+                                </h3>
+                                <h3 class="text-capitalize">
+                                    {{$jasa -> user -> name}}
+                                </h3>
+
+                                <div class="d-flex">
+
+                                    <form action="/jasa/{{$jasa->id}}/rejected" method="post">
+                                        @csrf
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button class="btn btn-danger" type="submit">
+                                            Set Rejected
+                                        </button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                     @endforeach
                   </tbody>
                     </table>
@@ -68,128 +170,28 @@
       </div>
     </div>
   </section>
-    <!--Pending Modal -->
-    <div class="modal fade" id="pendingleModal" tabindex="-1" role="dialog" aria-labelledby="pendingleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h2 class="modal-title" id="pendingleModalLabel">Ubah status Jadi Pending?</h2>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-                <h3 class="text-capitalize">
-                    {{$jasa -> name}}
-                </h3>
-                <h3 class="text-capitalize">
-                    {{$jasa -> user -> name}}
-                </h3>
 
-                <div class="d-flex">
-
-                    <form action="/jasa/{{$jasa->id}}/pending" method="post">
-                        @csrf
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button class="btn btn-warning" type="submit">
-                            Set Pending
-                        </button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-        </div>
-    </div>
-
-
-      <!--Accepted Modal -->
-      <div class="modal fade" id="accModal" tabindex="-1" role="dialog" aria-labelledby="accModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h2 class="modal-title" id="accModalLabel">Ubah status Jadi Accepted?</h2>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-                <h3 class="text-capitalize">
-                    {{$jasa -> name}}
-                </h3>
-                <h3 class="text-capitalize">
-                    {{$jasa -> user -> name}}
-                </h3>
-
-                <div class="d-flex">
-
-                    <form action="/jasa/{{$jasa->id}}/accepted" method="post">
-                        @csrf
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button class="btn btn-success" type="submit">
-                            Set Accepted
-                        </button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="rejectedModal" tabindex="-1" role="dialog" aria-labelledby="rejectedModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h2 class="modal-title" id="rejectedModalLabel">Ubah status Jadi Rejected?</h2>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-                <h3 class="text-capitalize">
-                    {{$jasa -> name}}
-                </h3>
-                <h3 class="text-capitalize">
-                    {{$jasa -> user -> name}}
-                </h3>
-
-                <div class="d-flex">
-
-                    <form action="/jasa/{{$jasa->id}}/rejected" method="post">
-                        @csrf
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button class="btn btn-danger" type="submit">
-                            Set Rejected
-                        </button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-        </div>
-    </div>
 @endsection
 
 @push('data-tables')
 
-<script src="{{asset('app-assets/vendors/js/vendors.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('public/app-assets/vendors/js/vendors.min.js')}}" type="text/javascript"></script>
 <!-- BEGIN VENDOR JS-->
 <!-- BEGIN PAGE VENDOR JS-->
-<script src="{{asset('app-assets/vendors/js/tables/datatable/datatables.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('public/app-assets/vendors/js/tables/datatable/datatables.min.js')}}" type="text/javascript"></script>
 <!-- END PAGE VENDOR JS-->
 <!-- BEGIN STACK JS-->
-<script src="{{asset('app-assets/js/core/app-menu.js')}}" type="text/javascript"></script>
-<script src="{{asset('app-assets/js/core/app.js')}}" type="text/javascript"></script>
-<script src="{{asset('app-assets/js/scripts/customizer.js')}}" type="text/javascript"></script>
+<script src="{{asset('public/app-assets/js/core/app-menu.js')}}" type="text/javascript"></script>
+<script src="{{asset('public/app-assets/js/core/app.js')}}" type="text/javascript"></script>
+<script src="{{asset('public/app-assets/js/scripts/customizer.js')}}" type="text/javascript"></script>
 <!-- END STACK JS-->
 <!-- BEGIN PAGE LEVEL JS-->
-<script src="{{asset('app-assets/js/scripts/tables/datatables/datatable-basic.js')}}"
+<script src="{{asset('public/app-assets/js/scripts/tables/datatables/datatable-basic.js')}}"
 type="text/javascript"></script>
 @endpush
 
 @push('style')
-  <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('public/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
 
 @endpush
 

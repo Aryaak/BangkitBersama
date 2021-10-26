@@ -43,15 +43,21 @@
                 <tr>
                     <td class="font-size">Dokumen Verifikasi</td>
                     <td class="font-size">
-                        <a class="btn btn-secondary" href="{{url($user->document)}}">
+                        @if ($user->user_status_id != 1)
+                        <a class="btn btn-secondary" href="{{$user->document}}">
                             <i class="fa fa-file-o"></i>
                         </a>
+                            
+                        @else
+                            <span>-</span>
+                        @endif
+                        
                     </td>
                 </tr>
                 <tr>
                     <td class="font-size">User Photo</td>
                     <td class="font-size">
-                        <a class="btn btn-primary" href="{{url($user->photo)}}">
+                        <a class="btn btn-primary" href="{{$user->photo}}">
                             <i class="fa fa-picture-o"></i>
                         </a>
                     </td>

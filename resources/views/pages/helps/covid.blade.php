@@ -8,11 +8,11 @@
             <div class="col-12">
                 <div class="card">
                     @if ($message = Session::get('success'))
-                    <div class="alert bg-success alert-dismissible mb-2">
-                      <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong>{{ $message }}</strong>
-                    </div>
-                  @endif
+                        <div class="alert bg-success alert-dismissible mb-2">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
                     <div class="card-header">
                         <h4 class="card-title">Table Covid</h4>
                         <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
@@ -37,21 +37,27 @@
                                             <td>{{ $covid->quota }}</td>
                                             <td>{{ $covid->end_date }}</td>
                                             <td class="d-flex justify-content-around">
-                                                <button class="btn  btn-warning @if ($covid->help_status_id==1)
+                                                <button
+                                                    class="btn  btn-warning @if ($covid->help_status_id == 1)
                                                     hidden
-                                                @endif" data-toggle="modal" data-target="#pendingleModal" type="submit">
+                                                @endif"
+                                                    data-toggle="modal" data-target="#pendingleModal{{ $covid->id }}" type="submit">
                                                     <i class="ft-clock"></i>
                                                 </button>
 
-                                                <button class="btn btn-success @if ($covid->help_status_id==2)
+                                                <button
+                                                    class="btn btn-success @if ($covid->help_status_id == 2)
                                                     hidden
-                                                @endif" data-toggle="modal" data-target="#accModal" type="submit">
+                                                @endif"
+                                                    data-toggle="modal" data-target="#accModal{{ $covid->id }}" type="submit">
                                                     <i class="fa fa-check"></i>
                                                 </button>
 
-                                                <button class="btn btn-danger @if ($covid->help_status_id==3)
+                                                <button
+                                                    class="btn btn-danger @if ($covid->help_status_id == 3)
                                                     hidden
-                                                @endif" data-toggle="modal" data-target="#rejectedModal" type="submit">
+                                                @endif"
+                                                    data-toggle="modal" data-target="#rejectedModal{{ $covid->id }}" type="submit">
                                                     <i class="fa fa-times"></i>
                                                 </button>
 
@@ -60,6 +66,103 @@
                                                 </a>
                                             </td>
                                         </tr>
+
+                                        <!--Pending Modal -->
+                                        <div class="modal fade" id="pendingleModal{{ $covid->id }}" tabindex="-1" role="dialog"
+                                            aria-labelledby="pendingleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h2 class="modal-title" id="pendingleModalLabel">Ubah status Jadi
+                                                            Pending?</h2>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="d-flex">
+                                                            <p>{{ $covid->id }}</p>
+                                                            <form action="/covid/{{ $covid->id }}/pending"
+                                                                method="post">
+                                                                @csrf
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button class="btn btn-warning" type="submit">
+                                                                    Set Pending
+                                                                </button>
+                                                            </form>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--Accepted Modal -->
+                                        <div class="modal fade" id="accModal{{ $covid->id }}" tabindex="-1" role="dialog"
+                                            aria-labelledby="accModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h2 class="modal-title" id="accModalLabel">Ubah status Jadi
+                                                            Accepted?</h2>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <div class="d-flex">
+                                                            <p>{{ $covid->id }}</p>
+                                                            <form action="/covid/{{ $covid->id }}/accepted"
+                                                                method="post">
+                                                                @csrf
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button class="btn btn-success" type="submit">
+                                                                    Set Accepted
+                                                                </button>
+                                                            </form>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- set Rejected --}}
+                                        <div class="modal fade" id="rejectedModal{{ $covid->id }}" tabindex="-1" role="dialog"
+                                            aria-labelledby="rejectedModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h2 class="modal-title" id="rejectedModalLabel">Ubah status Jadi
+                                                            Rejected?</h2>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="d-flex">
+                                                            <p>{{ $covid->id }}</p>
+                                                            <form action="/covid/{{ $covid->id }}/rejected"
+                                                                method="post">
+                                                                @csrf
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button class="btn btn-danger" type="submit">
+                                                                    Set Rejected
+                                                                </button>
+                                                            </form>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -70,123 +173,24 @@
         </div>
     </section>
 
-     <!--Pending Modal -->
-     <div class="modal fade" id="pendingleModal" tabindex="-1" role="dialog" aria-labelledby="pendingleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h2 class="modal-title" id="pendingleModalLabel">Ubah status Jadi Pending?</h2>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-                <h3 class="text-capitalize">
-                    {{$covid -> name}}
-                </h3>
-                <h3 class="text-capitalize">
-                    {{$covid -> user -> name}}
-                </h3>
 
-                <div class="d-flex">
-
-                    <form action="/covid/{{$covid->id}}/pending" method="post">
-                        @csrf
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button class="btn btn-warning" type="submit">
-                            Set Pending
-                        </button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-        </div>
-    </div>
-
-
-      <!--Accepted Modal -->
-      <div class="modal fade" id="accModal" tabindex="-1" role="dialog" aria-labelledby="accModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h2 class="modal-title" id="accModalLabel">Ubah status Jadi Accepted?</h2>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-                <h3 class="text-capitalize">
-                    {{$covid -> name}}
-                </h3>
-                <h3 class="text-capitalize">
-                    {{$covid -> user -> name}}
-                </h3>
-
-                <div class="d-flex">
-
-                    <form action="/covid/{{$covid->id}}/accepted" method="post">
-                        @csrf
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button class="btn btn-success" type="submit">
-                            Set Accepted
-                        </button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="rejectedModal" tabindex="-1" role="dialog" aria-labelledby="rejectedModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h2 class="modal-title" id="rejectedModalLabel">Ubah status Jadi Rejected?</h2>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-                <h3 class="text-capitalize">
-                    {{$covid -> name}}
-                </h3>
-                <h3 class="text-capitalize">
-                    {{$covid -> user -> name}}
-                </h3>
-
-                <div class="d-flex">
-
-                    <form action="/covid/{{$covid->id}}/rejected" method="post">
-                        @csrf
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button class="btn btn-danger" type="submit">
-                            Set Rejected
-                        </button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-        </div>
-    </div>
 @endsection
 
 @push('data-tables')
 
-    <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/app-assets/vendors/js/vendors.min.js') }}" type="text/javascript"></script>
     <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
-    <script src="{{ asset('app-assets/vendors/js/tables/datatable/datatables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/app-assets/vendors/js/tables/datatable/datatables.min.js') }}" type="text/javascript">
+    </script>
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN STACK JS-->
-    <script src="{{ asset('app-assets/js/core/app-menu.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('app-assets/js/core/app.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('app-assets/js/scripts/customizer.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/app-assets/js/core/app-menu.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/app-assets/js/core/app.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/app-assets/js/scripts/customizer.js') }}" type="text/javascript"></script>
     <!-- END STACK JS-->
     <!-- BEGIN PAGE LEVEL JS-->
-    <script src="{{ asset('app-assets/js/scripts/tables/datatables/datatable-basic.js') }}" type="text/javascript">
+    <script src="{{ asset('public/app-assets/js/scripts/tables/datatables/datatable-basic.js') }}" type="text/javascript">
     </script>
 @endpush
 
@@ -196,6 +200,6 @@
 
 @push('style')
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('app-assets/vendors/css/tables/datatable/datatables.min.css') }}">
+        href="{{ asset('public/app-assets/vendors/css/tables/datatable/datatables.min.css') }}">
 
 @endpush
