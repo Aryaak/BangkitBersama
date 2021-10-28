@@ -24,6 +24,8 @@ import KategoriCard from './KategoriCard'
 import HelpEnded from './HelpEnded'
 import Loading from './Loading'
 import ProfileList from './ProfileList'
+import TextBoxWarning from './TextBoxWarning'
+import TextBoxDanger from './TextBoxDanger'
 
 module.exports = {
     FeaturesButton,
@@ -51,5 +53,7 @@ module.exports = {
     KategoriCard,
     HelpEnded,
     Loading,
-    ProfileList
+    ProfileList,
+    TextBoxWarning,
+    TextBoxDanger
 }

@@ -1,15 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import PrimaryButton from '../PrimaryButton'
 import InputText from '../InputText'
 import { Small, AlertDanger } from '../../../components'
-import { Colors } from '../../../utils'
+import { Colors, Async } from '../../../utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { SetFormLogin, HandleLogin } from '../../../config/redux/action'
+import { useEffect } from 'react'
 
 const LoginContent = ({ navigation }) => {
     const LoginReducer = useSelector(state => state.Login)
     const dispatch = useDispatch()
+
+    const [deviceToken, setDeviceToken] = useState('')
+
+    useEffect(() => {
+
+        Async.get('device_token')
+            .then(res => {
+                setDeviceToken(res)
+            })
+
+    }, [])
 
     const changeInputValue = (value, input) => {
         dispatch(SetFormLogin(value, input))
@@ -25,7 +37,7 @@ const LoginContent = ({ navigation }) => {
             }
         }
 
-        dispatch(HandleLogin(LoginReducer.form, navigation))
+        dispatch(HandleLogin(LoginReducer.form, deviceToken, navigation))
 
     }
 

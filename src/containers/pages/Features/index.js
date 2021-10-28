@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { StyleSheet, ScrollView, View } from 'react-native'
 import { Colors } from '../../../utils'
 import { H4, FeatureCard, PrimaryButton } from '../../../components'
-import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 import Modal from 'react-native-modal';
 import FeatureOne from '../../../assets/illustrations/feature1.svg'
 import FeatureTwo from '../../../assets/illustrations/feature2.svg'

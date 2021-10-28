@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { View, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native'
-import { P, PrimaryButton, H4, OutlineButton, Small, AlertWarning } from '../../../components'
+import { P, PrimaryButton, H4, OutlineButton, Small, AlertWarning, TextBoxWarning } from '../../../components'
 import { Colors, Async, CountDiffDate } from '../../../utils'
 import ArrowLeftIcon from '../../../assets/icon/arrow-left.svg'
 
@@ -20,6 +20,7 @@ const TawarBantuan = ({ navigation }) => {
 
     useEffect(() => {
         dispatch({ type: 'RESET_HELP_INPUT_STEP', value: 1 })
+        dispatch({ type: 'RESET_HELP_EDIT_STEP', value: 1 })
         Async.get('token')
             .then(res => {
                 dispatch(SetMyHelps(res))
@@ -112,7 +113,9 @@ const TawarBantuan = ({ navigation }) => {
             )
         } else {
             return (
-                <AlertWarning text="Anda belum terverifikasi" />
+                <>
+                    <AlertWarning text="Anda belum terverifikasi" style={{ marginBottom: 20 }} />
+                    <TextBoxWarning text="Lakukan verifikasi pada menu edit profile, dengan menyertakan dokumen verifikasi seperti KTP/PASPOR/SIM." /></>
             )
         }
     }

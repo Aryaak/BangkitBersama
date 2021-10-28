@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Image, ScrollView, StyleSheet, View, TouchableOpacity, TextInput } from 'react-native'
-import { PrimaryButton, H3, Small, HelpEnded, P, AlertDanger, AlertWarning, H4, AlertSuccess } from '../../../components'
+import { PrimaryButton, H3, Small, HelpEnded, P, AlertDanger, AlertWarning, H4, AlertSuccess, TextBoxWarning } from '../../../components'
 import { DetailHelpTabView } from '../../templates'
 import { Colors, Async, CountDiffDate } from '../../../utils'
 import ChatIcon from '../../../assets/icon/chat-2.svg'
@@ -8,6 +8,7 @@ import UsersIcon from '../../../assets/icon/users.svg'
 import ClockIcon from '../../../assets/icon/clock.svg'
 import { HelpDetailContent } from '../../organisms'
 import ArrowLeftIcon from '../../../assets/icon/arrow-left-white.svg'
+import EditIcon2 from '../../../assets/icon/edit-2.svg'
 import CrossIcon from '../../../assets/icon/cross-2.svg'
 import EditIcon from '../../../assets/icon/edit.svg'
 import { useDispatch, useSelector } from 'react-redux'
@@ -154,7 +155,9 @@ const HelpDetail = ({ route, navigation }) => {
                         {renderRequestForm()}
                         {(!HelpSendRequestReducer.show && AuthReducer.status == 3) && (<PrimaryButton onPress={() => dispatch({ type: 'SET_HELP_REQUEST_SHOW', value: true })} style={{ marginBottom: 40 }} title="Ajukan Permintaan" paddingVertical={15} />)}
 
-                        {AuthReducer.status != 3 && <AlertWarning text="Anda belum terverifikasi" style={{ marginBottom: 40 }} />}
+                        {AuthReducer.status != 3 && <><AlertWarning text="Anda belum terverifikasi" style={{ marginBottom: 20 }} />
+                            <TextBoxWarning text="Lakukan verifikasi pada menu edit profile, dengan menyertakan dokumen verifikasi seperti KTP/PASPOR/SIM." style={{ marginBottom: 40 }} /></>}
+
                     </View>
 
                 )
@@ -296,6 +299,10 @@ const HelpDetail = ({ route, navigation }) => {
             <TouchableOpacity style={{ position: 'absolute', top: 30, left: 30, zIndex: 50 }} onPress={() => navigation.goBack()}>
                 <ArrowLeftIcon />
             </TouchableOpacity>
+            {HelpDetailReducer.help.help_status_id == 3 && <TouchableOpacity style={{ position: 'absolute', top: 30, right: 30, zIndex: 50 }} onPress={() => navigation.navigate('HelpEdit', { help: HelpDetailReducer.help })}>
+                <EditIcon2 />
+            </TouchableOpacity>}
+
             <View style={styles.cover}>
                 <View style={styles.overlay}></View>
                 <Image style={{ width: '100%', height: '100%', resizeMode: 'cover' }} source={{ uri: HelpDetailReducer.help.photo }} />

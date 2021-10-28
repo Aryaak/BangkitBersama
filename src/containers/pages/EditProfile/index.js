@@ -1,6 +1,6 @@
 import { View, Image, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { H4, ProfilePicture, P, InputText, Small, AlertDanger, AlertWarning, AlertSuccess } from '../../../components'
+import { H4, ProfilePicture, P, InputText, Small, AlertDanger, AlertWarning, AlertSuccess, TextBoxDanger } from '../../../components'
 import { Colors, Async } from '../../../utils'
 import { Picker } from '@react-native-picker/picker'
 import ArrowLeftIcon from '../../../assets/icon/arrow-left.svg'
@@ -8,7 +8,7 @@ import CheckIcon from '../../../assets/icon/check-3.svg'
 import UploadDocumentIcon from '../../../assets/icon/upload-document.svg'
 import FileIcon from '../../../assets/icon/file.svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { SetEditProfile, HandleEditProfile } from '../../../config/redux/action'
+import { SetEditProfile, HandleEditProfile, HandleGetProfile } from '../../../config/redux/action'
 import { launchImageLibrary } from 'react-native-image-picker';
 import DocumentPicker from 'react-native-document-picker';
 
@@ -70,14 +70,15 @@ const EditProfile = ({ navigation }) => {
     }
 
     useEffect(() => {
+        Async.get('token')
+            .then(res => {
+                dispatch(HandleGetProfile(res))
+                setToken(res)
+            })
         Async.get('user')
             .then(res => {
                 dispatch(SetEditProfile(res))
                 setUser(res)
-            })
-        Async.get('token')
-            .then(res => {
-                setToken(res)
             })
     }, [])
 
@@ -94,6 +95,12 @@ const EditProfile = ({ navigation }) => {
                 return (<View style={{ marginVertical: 10 }}>
                     <AlertSuccess text="Anda telah terverifikasi" />
                     <Small style={{ marginTop: 8 }} color={Colors.grey} title="Kini anda bisa membuat atau mencari bantuan" />
+                </View>)
+            case 4:
+                return (<View style={{ marginVertical: 10 }}>
+                    <AlertDanger set={true} close text="Verifikasi anda ditolak" style={{ marginBottom: 10 }} />
+                    <TextBoxDanger text={user.rejected_reason} />
+                    {renderUploadDocument()}
                 </View>)
         }
     }
