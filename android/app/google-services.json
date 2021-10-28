@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1054744930908",
+    "project_id": "bangkitbersama-d1006",
+    "storage_bucket": "bangkitbersama-d1006.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054744930908:android:151b92e684badc31669499",
+        "android_client_info": {
+          "package_name": "com.bangkitbersama"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054744930908-cnqog8qa59il8hr2me9hk0vtdqekknnk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrv81ZM90uSIRVbAyqiyogWAN1IZpkgOg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054744930908-cnqog8qa59il8hr2me9hk0vtdqekknnk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

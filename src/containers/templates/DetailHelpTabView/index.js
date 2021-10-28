@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { H4 } from '../../../components'
+import { H4, AlertDanger, TextBoxDanger } from '../../../components'
 import { HelpDetailContent, HelpRequests } from '../../organisms'
 import { Colors } from '../../../utils'
+import { useSelector } from 'react-redux'
 
 
 const DetailHelpTabView = () => {
 
     const [view, setView] = useState('detail')
+    const HelpDetailReducer = useSelector(state => state.HelpDetail)
 
     const renderContent = (view) => {
         switch (view) {
@@ -22,6 +24,11 @@ const DetailHelpTabView = () => {
 
     return (
         <View>
+            {HelpDetailReducer.help.help_status_id == 3 && <View style={{ marginBottom: 20 }}>
+                <AlertDanger set={true} close text="bantuan anda ditolak" style={{ marginBottom: 10 }} />
+                <TextBoxDanger text={HelpDetailReducer.help.rejected_reason} />
+            </View>}
+
             <View style={styles.tabButtonWrapper}>
                 <TouchableOpacity style={{ width: '60%' }} onPress={() => setView('detail')}>
                     <H4

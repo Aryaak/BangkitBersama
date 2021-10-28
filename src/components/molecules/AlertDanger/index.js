@@ -4,17 +4,18 @@ import { P } from '../../../components'
 import DangerIcon from '../../../assets/icon/danger.svg'
 import CrossIcon from '../../../assets/icon/cross.svg'
 
-const AlertDanger = ({ text, set, onPress }) => {
+const AlertDanger = ({ text, set, onPress, close, style }) => {
     if (set) {
         return (
-            <View style={styles.wrapper}>
+            <View style={[styles.wrapper, style]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <DangerIcon style={{ marginRight: 16 }} />
                     <P color="#F03D3E" title={text} />
                 </View>
-                <TouchableOpacity onPress={onPress}>
+                {!close && <TouchableOpacity onPress={onPress}>
                     <CrossIcon />
-                </TouchableOpacity>
+                </TouchableOpacity>}
+
             </View>
         )
     } else {

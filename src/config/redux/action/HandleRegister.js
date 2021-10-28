@@ -3,9 +3,9 @@ import { BASE_API_URL } from '../../../config'
 import { Async } from '../../../utils'
 import { StackActions } from '@react-navigation/native'
 
-const HandleRegister = (dataForm, navigation) => async dispatch => {
+const HandleRegister = (dataForm, device_token, navigation) => async dispatch => {
     dispatch({ type: 'SET_LOADING', isLoading: true })
-
+    dataForm.device_token = device_token
     await Axios.post(BASE_API_URL + 'register', dataForm)
         .then(res => {
             const meta = res.data.meta;

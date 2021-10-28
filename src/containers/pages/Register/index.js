@@ -10,6 +10,18 @@ const Register = ({ navigation }) => {
     const RegisterReducer = useSelector(state => state.Register)
     const dispatch = useDispatch()
 
+    const [deviceToken, setDeviceToken] = useState('')
+
+
+    useEffect(() => {
+
+        Async.get('device_token')
+            .then(res => {
+                setDeviceToken(res)
+            })
+
+    }, [])
+
     const changeInputValue = (value, input) => {
         dispatch(SetFormRegister(value, input))
     }
@@ -37,7 +49,7 @@ const Register = ({ navigation }) => {
             return;
         }
 
-        dispatch(HandleRegister(RegisterReducer.form, navigation))
+        dispatch(HandleRegister(RegisterReducer.form, deviceToken, navigation))
     }
 
     return (

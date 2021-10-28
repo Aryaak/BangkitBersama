@@ -20,6 +20,9 @@ import HandleGetAllHelps from "./HandleGetAllHelps";
 import HandleAcceptedRequest from "./HandleAcceptedRequest";
 import HandleGetIncomingMessages from "./HandleGetIncomingMessages";
 import HandleReadMessages from "./HandleReadMessages";
+import HandleGetProfile from "./HandleGetProfile";
+import SetHelpEdit from "./SetHelpEdit";
+import HandleHelpEdit from "./HandleHelpEdit";
 
 module.exports = {
     SetFormRegister,
@@ -43,5 +46,8 @@ module.exports = {
     HandleGetAllHelps,
     HandleAcceptedRequest,
     HandleGetIncomingMessages,
-    HandleReadMessages
+    HandleReadMessages,
+    HandleGetProfile,
+    SetHelpEdit,
+    HandleHelpEdit
 }

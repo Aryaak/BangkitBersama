@@ -6,8 +6,21 @@ import { HeaderProfile, H3, OutlineButton, P, PrimaryButton } from '../../../com
 import { ProfileMenuList } from '../../organisms'
 import Modal from "react-native-modal";
 import LogOut from './../../../assets/icon/log-out.svg'
+import { useEffect } from 'react'
+import { HandleGetProfile } from '../../../config/redux/action'
+import { useDispatch } from 'react-redux'
 
 const Profile = ({ navigation }) => {
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        Async.get('token')
+            .then(res => {
+                dispatch(HandleGetProfile(res))
+            })
+    }, [])
+
     const [willLogout, setWillLogout] = useState(false);
     return (
         <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
@@ -33,12 +46,12 @@ const Profile = ({ navigation }) => {
                 <H3 title="Pengaturan" style={{ marginBottom: 32 }} />
                 <ProfileMenuList />
                 <H3 title="Akun" style={{ marginBottom: 32 }} />
-                <TouchableOpacity  onPress={() => {
+                <TouchableOpacity onPress={() => {
                     setWillLogout(true)
                 }}>
-                    <View style={{flexDirection:'row'}}>
-                        <LogOut/>
-                        <P style={{color:'red', marginLeft:32}} title="Keluar"/>
+                    <View style={{ flexDirection: 'row' }}>
+                        <LogOut />
+                        <P style={{ color: 'red', marginLeft: 32 }} title="Keluar" />
                     </View>
                 </TouchableOpacity>
             </View>
@@ -60,8 +73,8 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         paddingTop: 40,
-        paddingHorizontal: 30, 
-        marginBottom : 35
+        paddingHorizontal: 30,
+        marginBottom: 35
     },
     modal: {
         justifyContent: 'flex-end',

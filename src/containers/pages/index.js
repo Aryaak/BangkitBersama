@@ -10,6 +10,7 @@ import Register from './Register'
 import HelpDetail from './HelpDetail'
 import TawarBantuan from './TawarBantuan'
 import HelpInput from './HelpInput'
+import HelpEdit from './HelpEdit'
 import ChatRoom from './ChatRoom'
 import EditProfile from './EditProfile'
 import Kategori from './Kategori'
@@ -37,5 +38,6 @@ module.exports = {
     NetworkError,
     KebijakanPrivasi,
     PesanMasuk,
-    TentangAplikasi
+    TentangAplikasi,
+    HelpEdit
 }

@@ -2,8 +2,8 @@ import { Picker } from '@react-native-picker/picker'
 import React, { useEffect, useState } from 'react'
 import { View, ScrollView, Image, TextInput, StyleSheet, TouchableOpacity, Text } from 'react-native'
 import { StackActions } from '@react-navigation/native'
-import { P, InputText, PrimaryButton, H4, AlertDanger } from './../../../components'
-import { Colors, Async } from './../../../utils'
+import { P, InputText, PrimaryButton, H4, AlertDanger } from '../../../components'
+import { Colors, Async } from '../../../utils'
 import ArrowLeftIcon from '../../../assets/icon/arrow-left.svg'
 import CheckIcon from '../../../assets/icon/check-2.svg'
 import UploadPhotoIcon from '../../../assets/icon/upload-photo.svg'
@@ -11,13 +11,13 @@ import ComputerIllustration from '../../../assets/illustrations/computer.svg'
 import CalenderIcon from '../../../assets/icon/calender.svg'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useDispatch, useSelector } from 'react-redux'
-import { HandleHelpInput } from '../../../config/redux/action'
+import { HandleHelpEdit, SetHelpEdit } from '../../../config/redux/action'
 import { launchImageLibrary } from 'react-native-image-picker';
 
-const HelpInput = ({ navigation }) => {
+const HelpEdit = ({ route, navigation }) => {
     const [token, setToken] = useState('');
     const [photo, setPhoto] = useState(null)
-    const HelpInputReducer = useSelector(state => state.HelpInput)
+    const HelpEditReducer = useSelector(state => state.HelpEdit)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -25,21 +25,22 @@ const HelpInput = ({ navigation }) => {
             .then(res => {
                 setToken(res)
             })
+        dispatch(SetHelpEdit(route.params.help))
     }, [])
 
     const changeInputValue = (input, value) => {
-        dispatch({ type: 'SET_HELP_INPUT_FORM', input, value })
+        dispatch({ type: 'SET_HELP_EDIT_FORM', input, value })
     }
 
     const choosePhoto = () => {
         launchImageLibrary({ noData: true }, (response) => {
             if (response.didCancel || response.error) {
                 setPhoto(null);
-                dispatch({ type: 'SET_HELP_INPUT_FORM', input: 'photo', value: null })
+                dispatch({ type: 'SET_HELP_EDIT_NEW_PHOTO', value: null })
             } else {
                 setPhoto(response);
                 dispatch({
-                    type: 'SET_HELP_INPUT_FORM', input: 'photo', value: {
+                    type: 'SET_HELP_EDIT_NEW_PHOTO', value: {
                         uri: response.assets[0].uri,
                         name: response.assets[0].fileName,
                         type: response.assets[0].type,
@@ -51,7 +52,7 @@ const HelpInput = ({ navigation }) => {
 
     }
     const renderStep1Text = () => {
-        switch (HelpInputReducer.step) {
+        switch (HelpEditReducer.step) {
             case 1:
                 return (<P style={{ color: 'white', textAlign: 'center', textAlign: 'center' }} title="1" />)
             case 2:
@@ -60,7 +61,7 @@ const HelpInput = ({ navigation }) => {
     }
 
     const renderStep2Text = () => {
-        if (HelpInputReducer.step == 2) {
+        if (HelpEditReducer.step == 2) {
             return (<P title="Proses" />)
         }
     }
@@ -88,16 +89,18 @@ const HelpInput = ({ navigation }) => {
         showMode('date');
     };
 
-    const submitHelpInput = () => {
-        dispatch({ type: 'SET_ALERT_HELP_INPUT', value: false })
-        for (let item in HelpInputReducer.form) {
-            if (!HelpInputReducer.form[item]) {
-                dispatch({ type: 'SET_ALERT_TEXT_HELP_INPUT', value: 'Semua kolom wajib diisi' })
-                dispatch({ type: 'SET_ALERT_HELP_INPUT', value: true })
+    const submitHelpEdit = () => {
+        delete HelpEditReducer.form.user_id
+        dispatch({ type: 'SET_ALERT_HELP_EDIT', value: false })
+        for (let item in HelpEditReducer.form) {
+            if (!HelpEditReducer.form[item]) {
+                console.log(HelpEditReducer.form, HelpEditReducer.form[item])
+                dispatch({ type: 'SET_ALERT_TEXT_HELP_EDIT', value: 'Semua kolom wajib diisi' })
+                dispatch({ type: 'SET_ALERT_HELP_EDIT', value: true })
                 return;
             }
         }
-        dispatch(HandleHelpInput(HelpInputReducer.form, token, navigation))
+        dispatch(HandleHelpEdit(HelpEditReducer, token))
     }
 
     const renderInputPhoto = () => {
@@ -106,7 +109,11 @@ const HelpInput = ({ navigation }) => {
             return < View style={{ marginTop: 24 }}>
                 <P title="Foto" style={{ color: Colors.darkGrey }} />
                 <TouchableOpacity onPress={() => choosePhoto()} style={styles.inputPhoto}>
-                    <UploadPhotoIcon style={{ alignSelf: 'center' }} />
+                    <Image source={{ uri: route.params.help.photo }} style={{
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: 15
+                    }} />
                 </TouchableOpacity>
             </View >
         } else {
@@ -125,12 +132,12 @@ const HelpInput = ({ navigation }) => {
 
 
     const renderContent = (navigation) => {
-        switch (HelpInputReducer.step) {
+        switch (HelpEditReducer.step) {
             case 1:
                 return (
                     < View style={{ marginTop: 48 }
                     }>
-                        <AlertDanger text={HelpInputReducer.alertText} set={HelpInputReducer.setAlert} onPress={() => { dispatch({ type: 'SET_ALERT_HELP_INPUT', value: false }) }} />
+                        <AlertDanger text={HelpEditReducer.alertText} set={HelpEditReducer.setAlert} onPress={() => { dispatch({ type: 'SET_ALERT_HELP_EDIT', value: false }) }} />
 
 
                         < View style={{ marginTop: 10 }}>
@@ -138,7 +145,7 @@ const HelpInput = ({ navigation }) => {
                             <View style={{ backgroundColor: 'white', marginTop: 10, borderRadius: 15 }}>
                                 <Picker
                                     style={{ height: 70, color: Colors.primary }}
-                                    selectedValue={HelpInputReducer.form.help_category_id}
+                                    selectedValue={HelpEditReducer.form.help_category_id}
                                     onValueChange={value => changeInputValue('help_category_id', value)}
                                 >
                                     <Picker.Item label="Kategori yang tepat untuk bantuan ini" enabled={false} />
@@ -153,7 +160,7 @@ const HelpInput = ({ navigation }) => {
 
                         {/* judul input text */}
                         < View style={{ marginTop: 24 }}>
-                            <InputText value={HelpInputReducer.form.name} onChangeText={value => changeInputValue('name', value)} placeholder="Judul Bantuan" name="Judul" />
+                            <InputText value={HelpEditReducer.form.name} onChangeText={value => changeInputValue('name', value)} placeholder="Judul Bantuan" name="Judul" />
                         </View >
 
                         {/* Foto input file */}
@@ -162,19 +169,19 @@ const HelpInput = ({ navigation }) => {
                         {/* input deskripsi */}
                         < View style={{ marginTop: 24 }}>
                             <P title="Deskripsi" style={{ color: Colors.darkGrey }} />
-                            <TextInput value={HelpInputReducer.form.description} onChangeText={value => changeInputValue('description', value)} multiline={true} numberOfLines={4} placeholder="Ceritakan tentang bantuan ini" style={styles.InputDesc} />
+                            <TextInput value={HelpEditReducer.form.description} onChangeText={value => changeInputValue('description', value)} multiline={true} numberOfLines={4} placeholder="Ceritakan tentang bantuan ini" style={styles.InputDesc} />
                         </View >
 
                         {/* jumlah penerima  */}
                         < View style={{ marginTop: 24 }}>
-                            <InputText keyboardType='numeric' value={HelpInputReducer.form.quota} onChangeText={value => changeInputValue('quota', value)} name="Jumlah Penerima" placeholder="Berapa banyak penerima.." />
+                            <InputText keyboardType='numeric' value={`${HelpEditReducer.form.quota}`} onChangeText={value => changeInputValue('quota', value)} name="Jumlah Penerima" placeholder="Berapa banyak penerima.." />
                         </View >
 
                         <View style={{ marginTop: 24 }}>
                             <P title="Tanggal" style={{ color: Colors.darkGrey }} />
                             <TouchableOpacity onPress={showDatepicker}>
                                 <View style={{ backgroundColor: 'white', borderRadius: 15, height: 70, marginTop: 10, flexDirection: 'row', justifyContent: 'space-between', paddingTop: 25, paddingHorizontal: 20 }}>
-                                    <Text>{HelpInputReducer.form.end_date}</Text>
+                                    <Text>{HelpEditReducer.form.end_date}</Text>
                                     <CalenderIcon strokeWidth={15} />
                                 </View>
                             </TouchableOpacity>
@@ -193,7 +200,7 @@ const HelpInput = ({ navigation }) => {
                         )}
 
 
-                        <PrimaryButton onPress={() => submitHelpInput()} title="Tawarkan" style={{ marginTop: 40, marginBottom: 32, height: 59 }} />
+                        <PrimaryButton onPress={() => submitHelpEdit()} title="Tawarkan Lagi" style={{ marginTop: 40, marginBottom: 32, height: 59 }} />
                     </View >)
 
             case 2:
@@ -204,7 +211,7 @@ const HelpInput = ({ navigation }) => {
                         marginVertical: 48
                     }}>
                         <ComputerIllustration />
-                        <H4 style={{ textAlign: 'center' }} title={"Tawaran anda berhasil diajukan dan sedang dalam proses verifikasi. Silahkan cek status tawaran bantuan anda secara berkala"} />
+                        <H4 style={{ textAlign: 'center' }} title={"Tawaran anda berhasil diajukan kembali dan sedang dalam proses verifikasi. Silahkan cek status tawaran bantuan anda secara berkala"} />
                         <PrimaryButton onPress={() => navigation.dispatch(StackActions.replace('TawarBantuan')
                         )} title="Status Bantuan" style={{ width: '100%', marginTop: 40, marginBottom: 32, height: 59 }} />
                     </View>
@@ -230,8 +237,8 @@ const HelpInput = ({ navigation }) => {
                     </View>
                     <View style={{ width: 32, height: 1, backgroundColor: Colors.primary, top: 17, marginHorizontal: 8 }}></View>
                     <View style={{ alignItems: 'center' }}>
-                        <View style={{ width: 35, height: 35, borderRadius: 35, backgroundColor: (HelpInputReducer.step == 2) ? Colors.primary : 'white', marginBottom: 8 }}>
-                            <P style={{ color: (HelpInputReducer.step == 2) ? 'white' : Colors.primary, textAlign: 'center', textAlign: 'center', marginTop: 5 }} title="2" />
+                        <View style={{ width: 35, height: 35, borderRadius: 35, backgroundColor: (HelpEditReducer.step == 2) ? Colors.primary : 'white', marginBottom: 8 }}>
+                            <P style={{ color: (HelpEditReducer.step == 2) ? 'white' : Colors.primary, textAlign: 'center', textAlign: 'center', marginTop: 5 }} title="2" />
                         </View>
                         {renderStep2Text()}
                     </View>
@@ -245,7 +252,7 @@ const HelpInput = ({ navigation }) => {
     )
 }
 
-export default HelpInput
+export default HelpEdit
 
 
 const styles = StyleSheet.create({
@@ -255,9 +262,6 @@ const styles = StyleSheet.create({
         marginTop: 10,
         borderRadius: 15,
         justifyContent: 'center',
-        borderWidth: 2,
-        borderStyle: 'dashed',
-        borderColor: Colors.grey
     },
     InputDesc: {
         color: Colors.primary,
