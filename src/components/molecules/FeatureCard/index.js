@@ -3,19 +3,27 @@ import { StyleSheet, View, Image, TouchableOpacity } from 'react-native'
 import { Colors } from '../../../utils'
 import { P, Xsmall, Sicon } from '../../../components'
 
-const FeatureCard = ({ img, title, text, style, onPress }) => {
+const FeatureCard = ({ img, title, text, style, onPress, imge }) => {
     return (
         <TouchableOpacity style={[styles.wrapper, style]} onPress={onPress}>
-            <Image source={img} style={{
+            {/* <Image source={img} style={{
                 width: styles.wrapper.width - styles.sectionWrapper.width,
                 alignSelf: 'center'
-            }} />
+            }} /> */}
+            <View style={{
+                width: styles.wrapper.width - styles.sectionWrapper.width,
+                alignSelf: 'center'
+            }}>
+                {imge}
+            </View>
+            
             <View style={styles.sectionWrapper}>
                 <View>
                     <P title={title} style={{ fontWeight: '500', marginBottom: 8 }} />
                     <Xsmall title={text} color={Colors.grey} />
                 </View>
                 <Sicon width={5} img={require('../../../assets/icon/left-arrow.png')} />
+                
             </View>
         </TouchableOpacity>
     )

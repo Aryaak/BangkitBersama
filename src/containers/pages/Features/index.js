@@ -4,6 +4,10 @@ import { Colors } from '../../../utils'
 import { H4, FeatureCard, PrimaryButton } from '../../../components'
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 import Modal from 'react-native-modal';
+import FeatureOne from '../../../assets/illustrations/feature1.svg'
+import FeatureTwo from '../../../assets/illustrations/feature2.svg'
+import FeatureThree from '../../../assets/illustrations/feature3.svg'
+
 
 const Features = ({ navigation }) => {
     const [commingSoon, setCommingSoon] = useState(false);
@@ -32,7 +36,7 @@ const Features = ({ navigation }) => {
                     style={{ textAlign: 'center', marginBottom: 53 }} />
                 <FeatureCard
                     onPress={() => navigation.navigate('TawarBantuan')}
-                    img={require('../../../assets/illustrations/feature-1.png')}
+                    imge={<FeatureOne/>}
                     title={"TAWARKAN BANTUAN \nDAN JASA"}
                     text={"Gabung jadi relawan untuk membantu masyarakat \nkita bangkit"}
                     style={{
@@ -41,7 +45,7 @@ const Features = ({ navigation }) => {
                 />
                 <FeatureCard
                     onPress={() => setCommingSoon(true)}
-                    img={require('../../../assets/illustrations/feature-2.png')}
+                    imge={<FeatureTwo/>}
                     title={"MULAI KAMPANYE \nGALANG DANA"}
                     text={"Bantu mereka untuk bangkit dengan menjadi inisiator \nkampanye galang dana"}
                     style={{
@@ -50,7 +54,7 @@ const Features = ({ navigation }) => {
                 />
                 <FeatureCard
                     onPress={() => setCommingSoon(true)}
-                    img={require('../../../assets/illustrations/feature-3.png')}
+                    imge={<FeatureThree/>}
                     title={"PUNYA INFO AKURAT?"}
                     text={"Upload info kamu disini"}
                 />
