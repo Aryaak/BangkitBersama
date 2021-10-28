@@ -3,18 +3,18 @@ import { StyleSheet, View, Text } from 'react-native'
 import { Colors } from '../../../utils'
 import { TabIcon, P } from '../../../components'
 
-const TabItemActive = ({ img, title, textLeft }) => {
+const TabItemActive = ({ img, title, textLeft, icon }) => {
     if (textLeft) {
         return (
             <View style={styles.wrapper}>
                 <P title={title} style={{ marginRight: 8, fontWeight: 'bold' }} />
-                <TabIcon img={img} tintColor={Colors.primary} />
+                {icon}
             </View>
         )
     } else {
         return (
             <View style={styles.wrapper}>
-                <TabIcon img={img} tintColor={Colors.primary} />
+                {icon}
                 <P title={title} style={{ marginLeft: 8, fontWeight: 'bold' }} />
             </View>
         )

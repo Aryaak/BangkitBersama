@@ -5,6 +5,7 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { Colors, Slides, Async } from '../../../utils'
 import { CircleLinearButton, LinearButton } from '../../../components'
 import { OnBoard } from '../../templates';
+import BrokenArrow from '../../../assets/icon/left-broken.svg'
 
 const renderContent = ({ item, index }) => {
     return (
@@ -19,7 +20,7 @@ const pagination = ({ activeSlide }) => {
             activeDotIndex={activeSlide}
             containerStyle={{
                 position: 'absolute',
-                bottom: 158
+                bottom: 90
             }}
             dotStyle={{
                 width: 10,
@@ -44,7 +45,7 @@ const setButton = ({ navigation, activeSlide, setActiveSlide }) => {
             if (activeSlide <= (Slides.length - 1)) {
                 setActiveSlide(activeSlide + 1)
             }
-        }} icon={require('../../../assets/icon/left-broken-arrow.png')} />
+        }} icons={<BrokenArrow style={{marginRight:10}}/>} />
 
     } else {
         return <LinearButton onPress={() => {

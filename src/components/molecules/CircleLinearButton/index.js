@@ -4,11 +4,12 @@ import { Colors } from '../../../utils'
 import { Sicon } from '../../../components'
 import LinearGradient from 'react-native-linear-gradient';
 
-const CircleLinearButton = ({ width = 60, height = 60, icon, style, paddingVertical = 8, onPress }) => {
+const CircleLinearButton = ({ width = 60, height = 60, icon, style, paddingVertical = 8, onPress, icons }) => {
     return (
         <TouchableOpacity style={[{ width: width, height: height, borderRadius: height / 2 }, { paddingVertical: paddingVertical, marginBottom: 40 }]} onPress={onPress}>
             <LinearGradient style={[{ width: width, height: height, borderRadius: height / 2 }, styles.wrapper, style]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={[Colors.background, Colors.smoke]}>
                 <Sicon img={icon} width={15} height={27} style={{ resizeMode: 'cover' }} />
+                {icons}
             </LinearGradient>
         </TouchableOpacity>
     )
