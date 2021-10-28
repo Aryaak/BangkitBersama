@@ -48,7 +48,7 @@ const HelpRequests = () => {
 
 
                         {HelpDetailReducer.help.help_status_id != 4 && <TouchableOpacity onPress={() => navigation.navigate('ChatRoom', { user: item.user })}>
-                            <ChatIcon style={{ marginLeft: 24 }} />
+                            <ChatIcon style={{ marginLeft: 10 }} />
                         </TouchableOpacity>}
 
                     </View>

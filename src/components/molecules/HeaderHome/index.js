@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 import { H3, P, ProfilePicture } from '../../../components'
 import { Colors, Async } from '../../../utils'
 
@@ -17,7 +17,7 @@ const HeaderHome = () => {
     return (
         <View style={styles.wrapper}>
             <View>
-                <H3 title={"Halo, " + user.username} color={Colors.background} />
+                <Text style={{ fontSize: 28,fontFamily: 'Nunito-Bold', color:Colors.background}} numberOfLines={1} ellipsizeMode='tail'>Halo, {user.username}</Text>
                 <P title="Mari bangkit bersama hari ini!" color={Colors.background} />
             </View>
             <ProfilePicture img={user.photo} />
