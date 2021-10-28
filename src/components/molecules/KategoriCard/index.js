@@ -18,11 +18,11 @@ const KategoriCard = ({ navigation, item }) => {
                         {item.help_status_id != 4 && (<>
                             <View style={{ flexDirection: 'row', marginRight: 8 }}>
                                 <UsersIcon width={16} height={16} style={{ marginRight: 4 }} />
-                                <H5 title={item.quota + ' Orang'} style={{ paddingLeft: 8 }} />
+                                <H5 title={item.quota + ' Orang'} style={{ paddingLeft: 2 }} />
                             </View>
                             <View style={{ flexDirection: 'row' }}>
                                 <ClockIcon width={16} height={16} style={{ marginRight: 4 }} />
-                                <H5 title={CountDiffDate(item.end_date)} style={{ paddingLeft: 8 }} />
+                                <H5 title={CountDiffDate(item.end_date)} style={{ paddingLeft: 2 }} />
                             </View></>)}
 
                         {item.help_status_id == 4 &&

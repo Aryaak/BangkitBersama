@@ -27,6 +27,10 @@ import { TabIcon, FeaturesButton, TabItemActive } from '../../components'
 import { Colors, Async } from '../../utils'
 import HeartIcon from '../../assets/icon/heart.svg'
 import { useDispatch } from 'react-redux';
+import HomeIcon from '../../assets/icon/Home.svg'
+import ProfileIcon from '../../assets/icon/User-black.svg'
+import HomeGreenIcon from '../../assets/icon/Home-primary.svg'
+import ProfileGreenIcon from '../../assets/icon/User-primary.svg'
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -51,10 +55,10 @@ const MainPages = () => {
             <Tab.Screen options={{
                 tabBarIcon: ({ focused }) => {
                     if (focused) {
-                        return (<TabItemActive img={require('../../assets/icon/home.png')} title="Home" />)
+                        return (<TabItemActive icon={<HomeGreenIcon/>} title="Home" />)
                     } else {
                         return (
-                            <TabIcon img={require('../../assets/icon/home.png')} />
+                           <HomeIcon/>
                         )
                     }
 
@@ -75,10 +79,10 @@ const MainPages = () => {
             <Tab.Screen options={{
                 tabBarIcon: ({ focused }) => {
                     if (focused) {
-                        return (<TabItemActive img={require('../../assets/icon/profile.png')} title="Profile" textLeft />)
+                        return (<TabItemActive icon={<ProfileGreenIcon/>} title="Profile" textLeft />)
                     } else {
                         return (
-                            <TabIcon img={require('../../assets/icon/profile.png')} />
+                            <ProfileIcon/>
                         )
                     }
 
