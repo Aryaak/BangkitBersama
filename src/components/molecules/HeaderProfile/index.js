@@ -34,7 +34,7 @@ const HeaderProfile = () => {
 
             <View style={styles.rightWrapper}>
                 <View style={styles.textWrapper}>
-                    <Text style={{ color: Colors.background, fontSize: 28, marginBottom: 8, marginRight: 5, fontFamily: 'Nunito-Bold', width: 120 }} numberOfLines={1} ellipsizeMode='tail'>
+                    <Text style={{ color: Colors.background, fontSize: 28, marginBottom: 8, marginRight: 5, fontFamily: 'Nunito-Bold', width: 150 }} numberOfLines={1} ellipsizeMode='tail'>
                         {user.username}
                     </Text>
                 </View>

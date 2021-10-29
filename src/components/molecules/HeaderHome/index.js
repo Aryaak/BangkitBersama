@@ -17,7 +17,7 @@ const HeaderHome = () => {
     return (
         <View style={styles.wrapper}>
             <View>
-                <Text style={{ fontSize: 28,fontFamily: 'Nunito-Bold', color:Colors.background, width:200}} numberOfLines={1} ellipsizeMode='tail'>Halo, {user.username}</Text>
+                <Text style={{ fontSize: 28, fontFamily: 'Nunito-Bold', color: Colors.background, width: 220 }} numberOfLines={1} ellipsizeMode='tail'>Halo, {user.username}</Text>
                 <P title="Mari bangkit bersama hari ini!" color={Colors.background} />
             </View>
             <ProfilePicture img={user.photo} />

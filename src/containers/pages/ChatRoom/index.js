@@ -19,8 +19,8 @@ const ChatRoom = ({ route, navigation }) => {
     const MessageReducer = useSelector(state => state.Message)
     const dispatch = useDispatch()
 
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
+    // // Enable pusher logging - don't include this in production
+    // Pusher.logToConsole = true;
 
     var pusher = new Pusher('46080595e68f22356d9f', {
         cluster: 'ap1'
@@ -74,12 +74,15 @@ const ChatRoom = ({ route, navigation }) => {
                         </TouchableOpacity>
 
                     </View>
-                    <ProfilePicture img={route.params.user.photo} style={{ marginLeft: 5 }} />
-                    <Text style={{fontFamily: 'Nunito-Regular',color:Colors.primary, fontSize:21, marginLeft: 10, width:170}} numberOfLines={1} ellipsizeMode='tail'>
+                    <View style={{ position: 'relative', marginLeft: 20, marginRight: 10 }}>
+                        <ProfilePicture img={route.params.user.photo} />
+                        <VerifiedIcon style={{ position: 'absolute', bottom: 0, right: 0 }} height={20} width={20} />
+                    </View>
+
+                    <Text style={{ fontFamily: 'Nunito-Regular', color: Colors.primary, fontSize: 21, marginLeft: 10, width: 170 }} numberOfLines={1} ellipsizeMode='tail'>
                         {route.params.user.name}
                     </Text>
-                        <VerifiedIcon style={{ marginLeft: 5 }} height={30} width={30} />
-                
+
                 </View>
             </View>
             <ScrollView style={{ backgroundColor: Colors.overlay, flex: 1, paddingBottom: 100 }}>

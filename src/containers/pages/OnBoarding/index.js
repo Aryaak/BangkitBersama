@@ -39,25 +39,28 @@ const pagination = ({ activeSlide }) => {
     );
 }
 
-const setButton = ({ navigation, activeSlide, setActiveSlide }) => {
-    if (activeSlide != (Slides.length - 1)) {
-        return <CircleLinearButton onPress={() => {
-            if (activeSlide <= (Slides.length - 1)) {
-                setActiveSlide(activeSlide + 1)
-            }
-        }} icons={<BrokenArrow style={{marginRight:10}}/>} />
 
-    } else {
-        return <LinearButton onPress={() => {
-            Async.set('isFirtsLaunch', 'true')
-            navigation.dispatch(StackActions.replace('Auth'))
-        }} style={{ marginBottom: 40 }} nextLabel={false} width={206} paddingVertical={15} title="Selanjutnya" />
-    }
-}
 
 const OnBoarding = ({ navigation }) => {
 
+    const setButton = ({ navigation, activeSlide, setActiveSlide }) => {
+        if (activeSlide != (Slides.length - 1)) {
+            return <CircleLinearButton onPress={() => {
+                if (activeSlide <= (Slides.length - 1)) {
+                    carousel.snapToNext()
+                }
+            }} icons={<BrokenArrow style={{ marginRight: 10 }} />} />
+
+        } else {
+            return <LinearButton onPress={() => {
+                Async.set('isFirtsLaunch', 'true')
+                navigation.dispatch(StackActions.replace('Auth'))
+            }} style={{ marginBottom: 40 }} nextLabel={false} width={206} paddingVertical={15} title="Selanjutnya" />
+        }
+    }
+
     const [activeSlide, setActiveSlide] = useState(0)
+    const [carousel, setCarousel] = useState(0)
     return (
         <View style={styles.wrapper}>
             <Carousel
@@ -67,6 +70,7 @@ const OnBoarding = ({ navigation }) => {
                 sliderWidth={Dimensions.get('window').width}
                 itemWidth={Dimensions.get('window').width}
                 onSnapToItem={(index) => setActiveSlide(index)}
+                ref={(c) => { setCarousel(c) }}
             />
             {pagination({ activeSlide })}
             {setButton({ navigation, activeSlide, setActiveSlide })}
