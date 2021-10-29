@@ -9,11 +9,11 @@ use App\Http\Controllers\API\MessageController;
 
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
-Route::post('fcm/send', [FCMController::class, 'send']);
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('profile', [UserController::class, 'profile']);
     Route::put('update', [UserController::class, 'update']);
+    Route::put('logout', [UserController::class, 'logout']);
 
     Route::post('help/store', [HelpController::class, 'store']);
     Route::put('help/update', [HelpController::class, 'update']);

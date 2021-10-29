@@ -92,4 +92,12 @@ class UserController extends Controller
 
         return ResponseFormatter::success('User Update Profile Success!', $user);
     }
+
+    public function logout()
+    {
+        $user = Auth::user();
+
+        User::where('id', $user->id)->update(['device_token' => null]);
+        return ResponseFormatter::success('User Logout Success!', []);
+    }
 }
