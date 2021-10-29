@@ -54,7 +54,6 @@ const HelpEdit = (state = initialState, action) => {
                 form: {
                     ...state.form,
                     help_category_id: null,
-                    user_id: null,
                     photo: '',
                     name: '',
                     description: '',

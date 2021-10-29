@@ -1,16 +1,19 @@
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import PushNotification from "react-native-push-notification";
-import { Async } from '../../utils'
+
 
 const Notification = {
 
-    configure() {
+
+    device_token: '',
+
+    configure(navigation) {
         // Must be outside of any component LifeCycle (such as `componentDidMount`).
         PushNotification.configure({
             // (optional) Called when Token is generated (iOS and Android)
             onRegister: function (token) {
                 console.log("TOKEN:", token);
-                Async.set('device_token', token)
+                Notification.device_token = token.token
             },
 
             // (required) Called when a remote is received or opened, or local notification is opened

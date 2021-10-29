@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native'
 import { InputText, PrimaryButton, H3, Small, AlertDanger } from '../../../components'
-import { Colors, ValidateEmail } from '../../../utils'
+import { Colors, ValidateEmail, Async } from '../../../utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { SetFormRegister, HandleRegister } from '../../../config/redux/action'
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Router, store } from './config'
-import { Notification } from './utils'
+import { Notification, Async } from './utils'
 import { Provider } from 'react-redux'
 import { useNetInfo } from "@react-native-community/netinfo";
 import { NetworkError } from './containers/pages'
@@ -18,6 +18,10 @@ const App = () => {
   useEffect(() => {
     Firebase.initializeApp(this)
     Notification.configure()
+
+    Async.set('device_token', Notification.device_token)
+
+
     setConnection(netInfo.isConnected)
 
   })

@@ -23,6 +23,7 @@ import HandleReadMessages from "./HandleReadMessages";
 import HandleGetProfile from "./HandleGetProfile";
 import SetHelpEdit from "./SetHelpEdit";
 import HandleHelpEdit from "./HandleHelpEdit";
+import HandleHelpSendReport from "./HandleHelpSendReport";
 
 module.exports = {
     SetFormRegister,
@@ -49,5 +50,6 @@ module.exports = {
     HandleReadMessages,
     HandleGetProfile,
     SetHelpEdit,
-    HandleHelpEdit
+    HandleHelpEdit,
+    HandleHelpSendReport
 }

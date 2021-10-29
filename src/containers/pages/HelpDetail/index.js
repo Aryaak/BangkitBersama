@@ -9,10 +9,11 @@ import ClockIcon from '../../../assets/icon/clock.svg'
 import { HelpDetailContent } from '../../organisms'
 import ArrowLeftIcon from '../../../assets/icon/arrow-left-white.svg'
 import EditIcon2 from '../../../assets/icon/edit-2.svg'
+import ReportIcon from '../../../assets/icon/report.svg'
 import CrossIcon from '../../../assets/icon/cross-2.svg'
 import EditIcon from '../../../assets/icon/edit.svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { SetHelpDetail } from '../../../config/redux/action'
+import { SetHelpDetail, HandleHelpSendReport } from '../../../config/redux/action'
 import { HandleHelpSendRequest, HandleUpdateHelpRequest, HandleDeleteHelpRequest, HandleAcceptedRequest, SetHelpsForHome } from '../../../config/redux/action'
 import Modal from "react-native-modal";
 import OutlineButton from '../../../components/molecules/OutlineButton'
@@ -24,6 +25,9 @@ const HelpDetail = ({ route, navigation }) => {
 
     const [editRequest, setEditRequest] = useState(false)
     const [token, setToken] = useState('')
+    const [showReportModal, setShowReportModal] = useState(false)
+    const [reports] = useState(['Penipuan', 'Bantuan tidak pernah dikirim', 'Bersifat menyinggung', 'Terdapat unsur kekerasan', 'Tidak layak'])
+    const [selectedReport, setSelectedReport] = useState('')
     const HelpSendRequestReducer = useSelector(state => state.HelpSendRequest)
     const HelpResponseRequestReducer = useSelector(state => state.HelpResponseRequest)
     const dispatch = useDispatch();
@@ -53,6 +57,15 @@ const HelpDetail = ({ route, navigation }) => {
         }
     }, [])
 
+    const submitHelpReport = () => {
+        const data = {
+            help_id: route.params.help_id,
+            report: selectedReport
+        }
+        dispatch(HandleHelpSendReport(data, token))
+        setShowReportModal(false)
+        setSelectedReport('')
+    }
 
 
     const submitHelpRequest = () => {
@@ -296,11 +309,45 @@ const HelpDetail = ({ route, navigation }) => {
                     </View>
                 </View>
             </Modal>
+
+            <Modal
+                testID={'modal'}
+                isVisible={showReportModal}
+                style={styles.modal}
+                animationOut="slideOutDown">
+
+                <View style={styles.modalContent}>
+                    <P title="Laporkan bantuan" style={{ marginBottom: 5 }} />
+                    {reports.map(item => {
+                        if (selectedReport == item) {
+                            return (<TouchableOpacity style={{ paddingVertical: 10, borderWidth: 1, borderColor: Colors.primary, backgroundColor: Colors.primary, paddingHorizontal: 8, marginTop: 10, borderRadius: 5 }} onPress={() => setSelectedReport(item)}>
+                                <P title={item} color={'#FFFFFF'} />
+                            </TouchableOpacity>)
+                        } else {
+                            return (<TouchableOpacity style={{ paddingVertical: 10, borderWidth: 1, borderColor: Colors.primary, paddingHorizontal: 8, marginTop: 10, borderRadius: 5 }} onPress={() => setSelectedReport(item)}>
+                                <P title={item} />
+                            </TouchableOpacity>)
+                        }
+
+
+
+                    })}
+
+                    <View style={{ marginTop: 20 }}>
+                        <PrimaryButton onPress={() => submitHelpReport()} style={{ marginBottom: 10 }} title="Laporkan" />
+                        <OutlineButton onPress={() => { setShowReportModal(false); setSelectedReport('') }} title="Batal" />
+                    </View>
+                </View>
+            </Modal>
             <TouchableOpacity style={{ position: 'absolute', top: 30, left: 30, zIndex: 50 }} onPress={() => navigation.goBack()}>
                 <ArrowLeftIcon />
             </TouchableOpacity>
             {HelpDetailReducer.help.help_status_id == 3 && <TouchableOpacity style={{ position: 'absolute', top: 30, right: 30, zIndex: 50 }} onPress={() => navigation.navigate('HelpEdit', { help: HelpDetailReducer.help })}>
                 <EditIcon2 />
+            </TouchableOpacity>}
+
+            {!HelpDetailReducer.help.isInisiator && <TouchableOpacity style={{ position: 'absolute', top: 30, right: 30, zIndex: 50 }} onPress={() => setShowReportModal(true)}>
+                <ReportIcon />
             </TouchableOpacity>}
 
             <View style={styles.cover}>
