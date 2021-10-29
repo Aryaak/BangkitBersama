@@ -35,7 +35,7 @@ const Features = ({ navigation }) => {
                     style={{ textAlign: 'center', marginBottom: 53 }} />
                 <FeatureCard
                     onPress={() => navigation.navigate('TawarBantuan')}
-                    imge={<FeatureOne/>}
+                    img={<FeatureOne style={{alignItems:'center', marginBottom:20}}/>}
                     title={"TAWARKAN BANTUAN \nDAN JASA"}
                     text={"Gabung jadi relawan untuk membantu masyarakat \nkita bangkit"}
                     style={{
@@ -44,7 +44,7 @@ const Features = ({ navigation }) => {
                 />
                 <FeatureCard
                     onPress={() => setCommingSoon(true)}
-                    imge={<FeatureTwo/>}
+                    img={<FeatureTwo style={{alignItems:'center', marginBottom:20, paddingRight:30}}/>}
                     title={"MULAI KAMPANYE \nGALANG DANA"}
                     text={"Bantu mereka untuk bangkit dengan menjadi inisiator \nkampanye galang dana"}
                     style={{
@@ -53,7 +53,7 @@ const Features = ({ navigation }) => {
                 />
                 <FeatureCard
                     onPress={() => setCommingSoon(true)}
-                    imge={<FeatureThree/>}
+                    img={<FeatureThree/>}
                     title={"PUNYA INFO AKURAT?"}
                     text={"Upload info kamu disini"}
                 />
