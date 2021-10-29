@@ -7,19 +7,26 @@ import { ProfileMenuList } from '../../organisms'
 import Modal from "react-native-modal";
 import LogOut from './../../../assets/icon/log-out.svg'
 import { useEffect } from 'react'
-import { HandleGetProfile } from '../../../config/redux/action'
+import { HandleGetProfile, HandleLogout } from '../../../config/redux/action'
 import { useDispatch } from 'react-redux'
 
 const Profile = ({ navigation }) => {
 
     const dispatch = useDispatch()
 
+    const [token, setToken] = useState(token);
+
     useEffect(() => {
         Async.get('token')
             .then(res => {
                 dispatch(HandleGetProfile(res))
+                setToken(res)
             })
     }, [])
+
+    const submitLogout = () => {
+        HandleLogout(token)
+    }
 
     const [willLogout, setWillLogout] = useState(false);
     return (
@@ -36,6 +43,7 @@ const Profile = ({ navigation }) => {
                         <PrimaryButton onPress={() => {
                             navigation.dispatch(StackActions.replace('Auth'))
                             Async.remove('isLogged')
+                            submitLogout()
                         }} style={{ marginBottom: 10 }} title="Keluar" />
                         <OutlineButton onPress={() => setWillLogout(false)} title="Batal" />
                     </View>

@@ -24,6 +24,7 @@ import HandleGetProfile from "./HandleGetProfile";
 import SetHelpEdit from "./SetHelpEdit";
 import HandleHelpEdit from "./HandleHelpEdit";
 import HandleHelpSendReport from "./HandleHelpSendReport";
+import HandleLogout from "./HandleLogout";
 
 module.exports = {
     SetFormRegister,
@@ -51,5 +52,6 @@ module.exports = {
     HandleGetProfile,
     SetHelpEdit,
     HandleHelpEdit,
-    HandleHelpSendReport
+    HandleHelpSendReport,
+    HandleLogout
 }

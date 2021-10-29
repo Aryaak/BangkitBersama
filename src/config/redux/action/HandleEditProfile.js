@@ -3,8 +3,6 @@ import { BASE_API_URL } from '../../../config'
 import { Async } from '../../../utils'
 
 const HandleEditProfile = (data, token, navigation) => async dispatch => {
-    console.log(data.form)
-    console.log(data)
     dispatch({ type: 'SET_LOADING', isLoading: true, text: 'Memperbarui profile...' })
 
     if (data.newPhoto) {
