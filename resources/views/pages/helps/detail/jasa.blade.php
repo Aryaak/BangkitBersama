@@ -69,7 +69,7 @@
                 </tr>
                 <tr class="my-auto">
                     <td class="col-md-6"><p class="font-size">Foto</p></td>
-                    <td class="col-md-6"> 
+                    <td class="col-md-6">
                         <a class="btn btn-primary" target="_blank" href="{{$category->photo}}">
                             <i class="fa fa-picture-o"></i>
                         </a>
@@ -121,7 +121,7 @@
                                                                 method="post">
                                                                 @csrf
                                                                 @method("DELETE")
-                                                              
+
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-dismiss="modal">Batal</button> &nbsp;&nbsp;
                                                                 <button class="btn btn-danger" type="submit">

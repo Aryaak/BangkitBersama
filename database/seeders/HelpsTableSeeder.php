@@ -24,19 +24,19 @@ class HelpsTableSeeder extends Seeder
             'description' => 'Saya ingin membagikan oksigen isi ulang gratis untuk daerah Surabaya dan sekitarnya',
             'quota' => 10,
             'end_date' => Carbon::parse('2021-12-01'),
-            'help_status_id' => 2
+            'help_status_id' => 1
         ]);
 
 
         Help::create([
-            'help_category_id' => 1,
+            'help_category_id' => 2,
             'user_id' => 1,
             'photo' => 'assets/photo/help/hand-sanitizer.jpg',
             'name' => 'Hand Sanitizer Gratis',
             'description' => 'Saya ingin membagikan beberapa Hand Sanitizer gratis untuk anda yang di daerah Surabaya',
             'quota' => 5,
             'end_date' => Carbon::parse('2021-12-01'),
-            'help_status_id' => 2
+            'help_status_id' => 1
         ]);
 
 
@@ -48,7 +48,7 @@ class HelpsTableSeeder extends Seeder
             'description' => 'Saya ingin membagikan sate untuk anda yang lapar dari sore hingga malam hari',
             'quota' => 100,
             'end_date' => Carbon::parse('2021-12-01'),
-            'help_status_id' => 2
+            'help_status_id' => 1
         ]);
 
         Help::create([
@@ -59,7 +59,7 @@ class HelpsTableSeeder extends Seeder
             'description' => 'Saya ingin menawarkan diri sebagai sopir ambulance gratis untuk rumah sakit yang membutuhkan',
             'quota' => 1,
             'end_date' => Carbon::parse('2021-12-01'),
-            'help_status_id' => 2
+            'help_status_id' => 1
         ]);
     }
 }
