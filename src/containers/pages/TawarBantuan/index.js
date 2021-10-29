@@ -29,19 +29,19 @@ const TawarBantuan = ({ navigation }) => {
 
     const renderPendingButton = () => {
         if (category == 1) {
-            return <PrimaryButton style={{ fontSize: 12, width: 84, marginHorizontal: 5 }} title="Tertunda" />
+            return <PrimaryButton style={{ fontSize: 12, width: 100, marginHorizontal: 5 }} title="Tertunda" />
         } else {
-            return <OutlineButton onPress={() => setCategory(1)} style={{ fontSize: 10, width: 100, marginHorizontal: 5 }} title="Tertunda" />
+            return <OutlineButton onPress={() => setCategory(1)} style={{ fontSize: 12, width: 100, marginHorizontal: 5 }} title="Tertunda" />
         }
     }
 
 
     const renderStartButton = () => {
         if (category == 2) {
-            return <PrimaryButton style={{ fontSize: 10, width: 100, marginHorizontal: 5 }} title="Berlangsung" />
+            return <PrimaryButton style={{ fontSize: 10, width: 120, marginHorizontal: 5 }} title="Berlangsung" />
 
         } else {
-            return <OutlineButton onPress={() => { setCategory(2) }} style={{ fontSize: 10, width: 100, marginHorizontal: 5 }} title="Berlangsung" />
+            return <OutlineButton onPress={() => { setCategory(2) }} style={{ fontSize: 10, width: 120, marginHorizontal: 5, paddingHorizontal:10 }} title="Berlangsung" />
         }
     }
 
