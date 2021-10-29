@@ -62,7 +62,7 @@
                                                 <i class="fa fa-check"></i>
                                             </button>
                                         @endif
-                                   
+
                                         @if ($ekonomi->help_status_id == 1)
                                             <button
                                             class="btn btn-danger"
@@ -70,9 +70,9 @@
                                             <i class="fa fa-times"></i>
                                             </button>
                                         @endif
-                                    
-                    
-                                       
+
+
+
                                           </td>
                                         </tr>
 
@@ -81,7 +81,7 @@
                                             <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                <h2 class="modal-title" id="accModalLabel">Ubah status Jadi Accepted?</h2>
+                                                <h2 class="modal-title" id="accModalLabel">Ubah status jadi accepted?</h2>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -91,7 +91,7 @@
 
                                                         <form action="/ekonomi/{{$ekonomi->id}}/accepted" method="post">
                                                             @csrf
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Close</button>
                                                             <button class="btn btn-success" type="submit">
                                                                 Set Accepted
                                                             </button>
@@ -107,7 +107,7 @@
                                             <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                <h2 class="modal-title" id="rejectedModalLabel">Ubah status Jadi Rejected?</h2>
+                                                <h2 class="modal-title" id="rejectedModalLabel">Ubah status jadi rejected?</h2>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -126,7 +126,7 @@
                                                                     Set Rejected
                                                                 </button>
                                                             </div>
-                                                          
+
                                                         </form>
                                                     </div>
 

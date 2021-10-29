@@ -121,7 +121,7 @@
                                                                 method="post">
                                                                 @csrf
                                                                 @method("DELETE")
-                                                              
+
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-dismiss="modal">Batal</button> &nbsp;&nbsp;
                                                                 <button class="btn btn-danger" type="submit">
