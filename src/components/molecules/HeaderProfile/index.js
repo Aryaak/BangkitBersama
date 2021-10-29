@@ -21,15 +21,26 @@ const HeaderProfile = () => {
 
     const renderVerifiedIcon = () => {
         if (AuthReducer.status == 3) {
-            return <VerifiedIcon style={{ position: 'absolute', bottom: 0, right: 5 }} />
+            return <VerifiedIcon style={{ position: 'absolute', bottom: 0, right: 5, zIndex: 50 }} />
         }
     }
 
     return (
         <View style={styles.wrapper}>
             <View style={{ position: 'relative' }}>
-                <ProfilePicture width={100} height={100} img={user.photo} />
                 {renderVerifiedIcon()}
+                <View style={{
+                    position: 'absolute',
+                    backgroundColor: 'black',
+                    opacity: 0.2,
+                    zIndex: 40,
+                    height: '100%',
+                    width: '100%',
+                    borderRadius: 1000
+                }}>
+                </View>
+                <ProfilePicture width={100} height={100} img={user.photo} />
+
             </View>
 
             <View style={styles.rightWrapper}>
