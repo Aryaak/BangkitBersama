@@ -62,6 +62,9 @@ class UserController extends Controller
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
             $user['token'] =  $user->createToken('nApp')->accessToken;
+            if (request('device_token')) {
+                User::where('id', $user->id)->update(['device_token' => request('device_token')]);
+            }
             return ResponseFormatter::success('User Login Success!', $user);
         } else {
             return ResponseFormatter::failed('User Login Failed!', 401, ['Unauthorized']);
@@ -80,7 +83,7 @@ class UserController extends Controller
         $query = User::where('id', $user->id);
         $input = request()->all();
 
-        if (isset($input['document'])) {
+        if (isset($input['document']) && $user->user_status_id != 3) {
             $input['user_status_id'] = 2;
         }
 

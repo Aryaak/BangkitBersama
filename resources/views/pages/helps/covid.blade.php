@@ -25,7 +25,8 @@
                                         <th class="col-md-2">Judul</th>
                                         <th class="col-md-2">Inisiator</th>
                                         <th class="col-md-1">Kuota</th>
-                                        <th class="col-md-1">Start date</th>
+                                        <th class="col-md-1">Selesai pada</th>
+                                        <th class="col-md-1">Status</th>
                                         <th class="col-md-2">Action</th>
                                     </tr>
                                 </thead>
@@ -36,68 +37,44 @@
                                             <td>{{ $covid->user->name }}</td>
                                             <td>{{ $covid->quota }}</td>
                                             <td>{{ $covid->end_date }}</td>
+                                            <td>
+                                                @if ($covid->help_status_id == 1)
+                                                <span class="badge badge-pill badge-warning">pending</span>
+                                                @endif
+                                                @if ($covid->help_status_id == 2)
+                                                <span class="badge badge-pill badge-success">accepted</span>
+                                                @endif
+                                                @if ($covid->help_status_id == 3)
+                                                <span class="badge badge-pill badge-danger">rejected</span>
+                                                @endif
+                                                @if ($covid->help_status_id == 4)
+                                                <span class="badge badge-pill badge-secondary">ended</span>
+                                                @endif
+                                            </td>
                                             <td class="d-flex justify-content-around">
-                                                <button
-                                                    class="btn  btn-warning @if ($covid->help_status_id == 1)
-                                                    hidden
-                                                @endif"
-                                                    data-toggle="modal" data-target="#pendingleModal{{ $covid->id }}" type="submit">
-                                                    <i class="ft-clock"></i>
-                                                </button>
-
-                                                <button
-                                                    class="btn btn-success @if ($covid->help_status_id == 2)
-                                                    hidden
-                                                @endif"
-                                                    data-toggle="modal" data-target="#accModal{{ $covid->id }}" type="submit">
-                                                    <i class="fa fa-check"></i>
-                                                </button>
-
-                                                <button
-                                                    class="btn btn-danger @if ($covid->help_status_id == 3)
-                                                    hidden
-                                                @endif"
-                                                    data-toggle="modal" data-target="#rejectedModal{{ $covid->id }}" type="submit">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-
                                                 <a href="{{ route('covid.detail', $covid->id) }}" class="btn btn-info">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
+                                                @if ($covid->help_status_id == 1)
+                                                        <button
+                                                        class="btn btn-success "
+                                                        data-toggle="modal" data-target="#accModal{{ $covid->id }}" type="submit">
+                                                        <i class="fa fa-check"></i>
+                                                    </button>
+                                                @endif
+                                               
+                                                @if ($covid->help_status_id == 1)
+                                                    <button
+                                                    class="btn btn-danger"
+                                                    data-toggle="modal" data-target="#rejectedModal{{ $covid->id }}" type="submit">
+                                                    <i class="fa fa-times"></i>
+                                                    </button>
+                                                @endif
+                                               
+
+                                               
                                             </td>
                                         </tr>
-
-                                        <!--Pending Modal -->
-                                        <div class="modal fade" id="pendingleModal{{ $covid->id }}" tabindex="-1" role="dialog"
-                                            aria-labelledby="pendingleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h2 class="modal-title" id="pendingleModalLabel">Ubah status Jadi
-                                                            Pending?</h2>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="d-flex">
-                                                            <p>{{ $covid->id }}</p>
-                                                            <form action="/covid/{{ $covid->id }}/pending"
-                                                                method="post">
-                                                                @csrf
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</button>
-                                                                <button class="btn btn-warning" type="submit">
-                                                                    Set Pending
-                                                                </button>
-                                                            </form>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                         <!--Accepted Modal -->
                                         <div class="modal fade" id="accModal{{ $covid->id }}" tabindex="-1" role="dialog"
@@ -115,10 +92,10 @@
                                                     <div class="modal-body">
 
                                                         <div class="d-flex">
-                                                            <p>{{ $covid->id }}</p>
                                                             <form action="/covid/{{ $covid->id }}/accepted"
                                                                 method="post">
                                                                 @csrf
+                                                              
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-dismiss="modal">Close</button>
                                                                 <button class="btn btn-success" type="submit">
@@ -146,16 +123,22 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <div class="d-flex">
-                                                            <p>{{ $covid->id }}</p>
+                                                        <div >
                                                             <form action="/covid/{{ $covid->id }}/rejected"
                                                                 method="post">
                                                                 @csrf
-                                                                <button type="button" class="btn btn-secondary"
+                                                                <div class="form-group">
+                                                                    <label for="rejected_reason">Alasan</label>
+                                                                    <textarea required rows="10" placeholder="Masukan alasan anda menolak verifikasi bantuan berikut &#10contoh: Bantuan tidak valid" class="form-control" name="rejected_reason" id="rejected_reason" rows="3"></textarea>
+                                                                  </div>
+                                                                  <div class="ml-auto pull-right">
+                                                                    <button type="button" class="btn btn-secondary"
                                                                     data-dismiss="modal">Close</button>
                                                                 <button class="btn btn-danger" type="submit">
                                                                     Set Rejected
                                                                 </button>
+                                                                  </div>
+                                                           
                                                             </form>
                                                         </div>
 

@@ -5,24 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class HelpRequest extends Model
+class HelpReport extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'help_id',
         'user_id',
-        'reason',
-        'help_request_status_id'
+        'report'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
-    }
-
-    public function help()
-    {
-        return $this->belongsTo(Help::class, 'help_id', 'id');
     }
 }

@@ -54,4 +54,9 @@ class Help extends Model
     {
         return $this->hasMany(HelpReview::class, 'help_id', 'id');
     }
+
+    public function reports()
+    {
+        return $this->hasMany(HelpReport::class, 'help_id', 'id');
+    }
 }

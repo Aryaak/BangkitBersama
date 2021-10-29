@@ -27,5 +27,9 @@ class UserStatusesTableSeeder extends Seeder
             'id' => 3,
             'name' => 'VERIFIED'
         ]);
+        UserStatus::create([
+            'id' => 4,
+            'name' => 'REJECTED'
+        ]);
     }
 }

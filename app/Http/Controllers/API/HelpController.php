@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Help;
+use App\Models\HelpReport;
 use App\Models\HelpRequest;
 use App\Models\HelpReview;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +60,18 @@ class HelpController extends Controller
         $data = Help::create($input);
 
         return ResponseFormatter::success('Create New Help Success!', $data);
+    }
+
+    public function update()
+    {
+        $input = request()->all();
+
+        $user = Auth::user();
+        $input['user_id'] = $user->id;
+        $input['help_status_id'] = 1;
+        $data = Help::where('id', $input['id'])->update($input);
+
+        return ResponseFormatter::success('Update Help Success!', $data);
     }
 
     public function getAll()
@@ -175,10 +188,24 @@ class HelpController extends Controller
     public function acceptedRequest()
     {
         $input = request()->all();
+        $query = HelpRequest::where('id', $input['help_request_id']);
 
-        HelpRequest::where('id', $input['help_request_id'])->update(['help_request_status_id' => 2]);
+        $query->update(['help_request_status_id' => 2]);
         $this->reduceQuota($input['help_id']);
 
+        $helpRequest = $query->with('user', 'help')->first();
+
+        FCMController::send($helpRequest->user->device_token, $helpRequest->help->name, 'Permintaan bantuan anda disetujui. Hubungi inisiator untuk informasi lebih lanjut.');
+
         return ResponseFormatter::success('Accepted Help Request Success!', []);
+    }
+    public function sendReport()
+    {
+        $input = request()->all();
+        $user = Auth::user();
+        $input['user_id'] = $user->id;
+        $data = HelpReport::create($input);
+
+        return ResponseFormatter::success('Send Help Report Success!', $data);
     }
 }

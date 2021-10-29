@@ -26,6 +26,7 @@
                         <th class="col-md-2">Inisiator</th>
                         <th class="col-md-1">Kuota</th>
                         <th class="col-md-1">Start date</th>
+                        <th class="col-md-1">Status</th>
                         <th class="col-md-2">Action</th>
                     </tr>
                   </thead>
@@ -37,62 +38,45 @@
                       <td>{{$jasa -> quota}}</td>
                       <td>{{$jasa -> end_date}}</td>
                       <td>
-                        <button class="btn @if ($jasa->help_status_id==1)
-                            hidden
-                        @endif  btn-warning" data-toggle="modal" data-target="#pendingleModal{{$jasa->id}}" type="submit">
-                            <i class="ft-clock"></i>
-                        </button>
-
-                        <button class="btn @if ($jasa->help_status_id==2)
-                            hidden
-                        @endif btn-success" data-toggle="modal" data-target="#accModal{{$jasa->id}}" type="submit">
-                            <i class="fa fa-check"></i>
-                        </button>
-
-                        <button class="btn @if ($jasa->help_status_id==3)
-                            hidden
-                        @endif btn-danger" data-toggle="modal" data-target="#rejectedModal{{$jasa->id}}" type="submit">
-                            <i class="fa fa-times"></i>
-                        </button>
-                        <a href="{{route('jasa.detail', $jasa->id)}}" class="btn btn-info">
+                        @if ($jasa->help_status_id == 1)
+                        <span class="badge badge-pill badge-warning">pending</span>
+                        @endif
+                        @if ($jasa->help_status_id == 2)
+                        <span class="badge badge-pill badge-success">accepted</span>
+                        @endif
+                        @if ($jasa->help_status_id == 3)
+                        <span class="badge badge-pill badge-danger">rejected</span>
+                        @endif
+                        @if ($jasa->help_status_id == 4)
+                        <span class="badge badge-pill badge-secondary">ended</span>
+                        @endif
+                    </td>
+                      <td>
+                        <a href="{{ route('jasa.detail', $jasa->id) }}" class="btn btn-info">
                             <i class="fa fa-eye"></i>
                         </a>
+                        @if ($jasa->help_status_id == 1)
+                                                        <button
+                                                        class="btn btn-success "
+                                                        data-toggle="modal" data-target="#accModal{{ $jasa->id }}" type="submit">
+                                                        <i class="fa fa-check"></i>
+                                                    </button>
+                                                @endif
+                                               
+                                                @if ($jasa->help_status_id == 1)
+                                                    <button
+                                                    class="btn btn-danger"
+                                                    data-toggle="modal" data-target="#rejectedModal{{ $jasa->id }}" type="submit">
+                                                    <i class="fa fa-times"></i>
+                                                    </button>
+                                                @endif
+                                               
+
+                                               
                       </td>
                     </tr>
 
-                    <!--Pending Modal -->
-                    <div class="modal fade" id="pendingleModal{{$jasa->id}}" tabindex="-1" role="dialog" aria-labelledby="pendingleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h2 class="modal-title" id="pendingleModalLabel">Ubah status Jadi Pending?</h2>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            </div>
-                            <div class="modal-body">
-                                <h3 class="text-capitalize">
-                                    {{$jasa -> name}}
-                                </h3>
-                                <h3 class="text-capitalize">
-                                    {{$jasa -> user -> name}}
-                                </h3>
-
-                                <div class="d-flex">
-
-                                    <form action="/jasa/{{$jasa->id}}/pending" method="post">
-                                        @csrf
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button class="btn btn-warning" type="submit">
-                                            Set Pending
-                                        </button>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                        </div>
-                    </div>
+            
 
 
                     <!--Accepted Modal -->
@@ -146,14 +130,21 @@
                                     {{$jasa -> user -> name}}
                                 </h3>
 
-                                <div class="d-flex">
+                                <div >
 
                                     <form action="/jasa/{{$jasa->id}}/rejected" method="post">
                                         @csrf
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button class="btn btn-danger" type="submit">
-                                            Set Rejected
-                                        </button>
+                                        <div class="form-group">
+                                            <label for="rejected_reason">Alasan</label>
+                                            <textarea required rows="10" placeholder="Masukan alasan anda menolak verifikasi bantuan berikut &#10contoh: Bantuan tidak valid" class="form-control" name="rejected_reason" id="rejected_reason" rows="3"></textarea>
+                                          </div>
+                                          <div class="ml-auto pull-right">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button class="btn btn-danger" type="submit">
+                                                Set Rejected
+                                            </button>
+                                          </div>
+                                      
                                     </form>
                                 </div>
 

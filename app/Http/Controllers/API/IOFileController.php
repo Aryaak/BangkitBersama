@@ -39,11 +39,11 @@ class IOFileController extends Controller
         ]);
         if (request()->file('file')) {
             try {
-                $data['file'] = request()->file('file')->store('assets/document/institution', 'public');
-                $data['file'] = $this->formatFile($data['file'], 'document/institution/');
-                return ResponseFormatter::success('Upload File Document Institution Successfull!', $data);
+                $data['file'] = request()->file('file')->store('assets/document/user', 'public');
+                $data['file'] = $this->formatFile($data['file'], 'document/user/');
+                return ResponseFormatter::success('Upload File Document User Successfull!', $data);
             } catch (Exception $e) {
-                return ResponseFormatter::failed('Upload File Document Institution Failed!', 409, $e);
+                return ResponseFormatter::failed('Upload File Document User Failed!', 409, $e);
             }
         } else {
             return ResponseFormatter::success('No File Uploaded!');

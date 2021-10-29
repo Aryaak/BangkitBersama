@@ -26,7 +26,8 @@ class User extends Authenticatable
         'profession',
         'password',
         'document',
-        'user_status_id'
+        'user_status_id',
+        'device_token'
     ];
 
     /**

@@ -26,6 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->string('document')->nullable();
             $table->integer('user_status_id')->default(1);
+            $table->string('rejected_reason')->nullable();
+            $table->longText('device_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

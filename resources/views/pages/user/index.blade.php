@@ -27,6 +27,7 @@
                             <th>Email</th>
                             <th>Nama</th>
                             <th>Alamat</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                   </thead>
@@ -37,17 +38,31 @@
                         <td>{{$user->name}}</td>
                         <td>{{$user->address}}</td>
                         <td>
+                          @if ($user->user_status_id == 1)
+                          <span class="badge badge-pill badge-secondary">unverified</span>
+                          @endif
+                          @if ($user->user_status_id == 2)
+                          <span class="badge badge-pill badge-warning">pending</span>
+                          @endif
+                          @if ($user->user_status_id == 3)
+                          <span class="badge badge-pill badge-success">verified</span>
+                          @endif
+                          @if ($user->user_status_id == 4)
+                          <span class="badge badge-pill badge-danger">rejected</span>
+                          @endif
+                        </td>
+                        <td>
                           <a href="user/{{$user->id}}">
                           <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="View Detail user">
                             <i class="fa fa-eye"></i> 
                           </button></a>
                          
-                          @if ($user->user_status_id != 3)
+                          @if ($user->user_status_id == 2 )
                           <button  data-verified="{{$user->id}}"  class="verified-btn btn btn-success" data-toggle="modal" data-target="#verificationModal" data-toggle="tooltip" data-placement="top" title="Verification User">
                             <i class="fa fa-check"></i> 
                           </button>
                           @endif
-                          @if ($user->user_status_id != 1)
+                          @if ($user->user_status_id == 2 )
                           <button  data-unverified="{{$user->id}}"  class="unverified-btn btn btn-danger" data-toggle="modal" data-target="#unVerificationModal" data-toggle="tooltip" data-placement="top" title="unVerification User">
                             <i class="fa fa-times"></i> 
                           </button>
@@ -101,15 +116,23 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
+        <div class="modal-body">
           <form action="{{route('user.unverified')}}" method="post">
             @csrf
             @method('PUT')
-              <input type="hidden" id="id-unverified" name="id">
+            <input type="hidden" id="id-unverified" name="id">
+            <div class="form-group">
+              <label for="rejected_reason">Alasan</label>
+              <textarea required rows="10" placeholder="Masukan alasan anda menolak verifikasi pengguna berikut &#10contoh: Dokumen tidak valid" class="form-control" name="rejected_reason" id="rejected_reason" rows="3"></textarea>
+            </div>
+            <div class="ml-auto pull-right">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
               <button type="submit" class="btn btn-primary">Ya</button>
+            </div>
+         
           </form>
-        </div>
+      </div>
+       
       </div>
     </div>
   </div>

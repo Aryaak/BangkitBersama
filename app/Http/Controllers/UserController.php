@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\API\FCMController;
 use App\Models\User;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
@@ -33,20 +34,27 @@ class UserController extends Controller
 
     public function verified()
     {
-        User::where('id', request('id'))->update([
+        $query = User::where('id', request('id'));
+        $query->update([
             'user_status_id' => 3
         ]);
+        $user = $query->first();
         Session::flash('message', 'Verification User Successfull');
+        FCMController::send($user->device_token, 'Verifikasi Profile Berhasil', 'Kini anda dapat memebuat atau meminta bantuan.');
         return redirect()->back();
     }
 
     public function unverified()
     {
-        User::where('id', request('id'))->update([
-            'user_status_id' => 1,
+        $query = User::where('id', request('id'));
+        $query->update([
+            'user_status_id' => 4,
+            'rejected_reason' => request('rejected_reason'),
             'document' => null
         ]);
+        $user = $query->first();
         Session::flash('message', 'Unverification User Successfull');
+        FCMController::send($user->device_token, 'Verifikasi Profile Ditolak', 'Lakukan verifikasi ulang.');
         return redirect()->back();
     }
 }

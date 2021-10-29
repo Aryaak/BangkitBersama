@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Help Covid-19')
+@section('title', 'Help Ekonomi')
 
 @section('content')
     <section id="configuration">
@@ -26,6 +26,7 @@
                                         <th class="col-md-2">Inisiator</th>
                                         <th class="col-md-1">Kuota</th>
                                         <th class="col-md-1">Start date</th>
+                                        <th class="col-md-1">Status</th>
                                         <th class="col-md-2">Action</th>
                                     </tr>
                                 </thead>
@@ -36,29 +37,43 @@
                                             <td>{{ $ekonomi->user->name }}</td>
                                             <td>{{ $ekonomi->quota }}</td>
                                             <td>{{ $ekonomi->end_date }}</td>
-                                            <td class="d-flex justify-content-around">
-                                                <button class="btn  btn-warning @if ($ekonomi->help_status_id==1)
-                                                    hidden
-                                                @endif" data-toggle="modal" data-target="#pendingleModal{{$ekonomi->id}}" type="submit">
-                                                    <i class="ft-clock"></i>
-                                                </button>
-
-                                                <button class="btn btn-success @if ($ekonomi->help_status_id==2)
-                                                    hidden
-                                                @endif" data-toggle="modal" data-target="#accModal{{$ekonomi->id}}" type="submit">
-                                                    <i class="fa fa-check"></i>
-                                                </button>
-
-                                                <button class="btn btn-danger @if ($ekonomi->help_status_id==3)
-                                                    hidden
-                                                @endif" data-toggle="modal" data-target="#rejectedModal{{$ekonomi->id}}" type="submit">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-
+                                            <td>
+                                                @if ($ekonomi->help_status_id == 1)
+                                                <span class="badge badge-pill badge-warning">pending</span>
+                                                @endif
+                                                @if ($ekonomi->help_status_id == 2)
+                                                <span class="badge badge-pill badge-success">accepted</span>
+                                                @endif
+                                                @if ($ekonomi->help_status_id == 3)
+                                                <span class="badge badge-pill badge-danger">rejected</span>
+                                                @endif
+                                                @if ($ekonomi->help_status_id == 4)
+                                                <span class="badge badge-pill badge-secondary">ended</span>
+                                                @endif
+                                            </td>
+                                            <td>
                                                 <a href="{{ route('ekonomi.detail', $ekonomi->id) }}" class="btn btn-info">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                            </td>
+                                                @if ($ekonomi->help_status_id == 1)
+                                                <button
+                                                class="btn btn-success "
+                                                data-toggle="modal" data-target="#accModal{{ $ekonomi->id }}" type="submit">
+                                                <i class="fa fa-check"></i>
+                                            </button>
+                                        @endif
+                                   
+                                        @if ($ekonomi->help_status_id == 1)
+                                            <button
+                                            class="btn btn-danger"
+                                            data-toggle="modal" data-target="#rejectedModal{{ $ekonomi->id }}" type="submit">
+                                            <i class="fa fa-times"></i>
+                                            </button>
+                                        @endif
+                                    
+                    
+                                       
+                                          </td>
                                         </tr>
 
                                             <!--Accepted Modal -->
@@ -98,47 +113,20 @@
                                                 </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="d-flex">
-
+                                                    <div >
                                                         <form action="/ekonomi/{{$ekonomi->id}}/rejected" method="post">
                                                             @csrf
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button class="btn btn-danger" type="submit">
-                                                                Set Rejected
-                                                            </button>
-                                                        </form>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                         <!--Pending Modal -->
-                                        <div class="modal fade" id="pendingleModal{{$ekonomi->id}}" tabindex="-1" role="dialog" aria-labelledby="pendingleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <h2 class="modal-title" id="pendingleModalLabel">Ubah status Jadi Pending?</h2>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <h3 class="text-capitalize">
-                                                        {{$ekonomi -> name}}
-                                                    </h3>
-                                                    <h3 class="text-capitalize">
-                                                        {{$ekonomi -> user -> name}}
-                                                    </h3>
-
-                                                    <div class="d-flex">
-
-                                                        <form action="/ekonomi/{{$ekonomi->id}}/pending" method="post">
-                                                            @csrf
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button class="btn btn-warning" type="submit">
-                                                                Set Pending
-                                                            </button>
+                                                            <div class="form-group">
+                                                                <label for="rejected_reason">Alasan</label>
+                                                                <textarea required rows="10" placeholder="Masukan alasan anda menolak verifikasi bantuan berikut &#10contoh: Bantuan tidak valid" class="form-control" name="rejected_reason" id="rejected_reason" rows="3"></textarea>
+                                                            </div>
+                                                            <div class="ml-auto pull-right">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button class="btn btn-danger" type="submit">
+                                                                    Set Rejected
+                                                                </button>
+                                                            </div>
+                                                          
                                                         </form>
                                                     </div>
 

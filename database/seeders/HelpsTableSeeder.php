@@ -17,7 +17,7 @@ class HelpsTableSeeder extends Seeder
     public function run()
     {
         Help::create([
-            'help_category_id' => 3,
+            'help_category_id' => 1,
             'user_id' => 1,
             'photo' => 'assets/photo/help/oksigen.jpg',
             'name' => 'Isi Ulang Oksigen Gratis',
@@ -41,17 +41,6 @@ class HelpsTableSeeder extends Seeder
 
 
         Help::create([
-            'help_category_id' => 1,
-            'user_id' => 1,
-            'photo' => 'assets/photo/help/hand-sanitizer.jpg',
-            'name' => 'ppppppppp',
-            'description' => 'Saya ingin membagikan beberapa Hand Sanitizer gratis untuk anda yang di daerah Surabaya',
-            'quota' => 5,
-            'end_date' => Carbon::parse('2021-12-01'),
-            'help_status_id' => 1
-        ]);
-
-        Help::create([
             'help_category_id' => 3,
             'user_id' => 1,
             'photo' => 'assets/photo/help/sate.jpg',
@@ -72,6 +61,5 @@ class HelpsTableSeeder extends Seeder
             'end_date' => Carbon::parse('2021-12-01'),
             'help_status_id' => 2
         ]);
-
     }
 }

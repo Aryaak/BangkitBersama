@@ -6,6 +6,8 @@ use App\Events\MessageSend;
 use App\Http\Controllers\Controller;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Http\Controllers\API\FCMController;
 
 class MessageController extends Controller
 {
@@ -15,6 +17,11 @@ class MessageController extends Controller
 
         Message::create($input);
         $data = $this->get($input['sender'], $input['recipient']);
+
+        $recipient = User::where('id', $input['recipient'])->first();
+        $sender = User::where('id', $input['sender'])->first();
+
+        FCMController::send($recipient->device_token, 'Pesan baru dari ' . $sender->name, $input['message']);
 
         event(new MessageSend($data));
 

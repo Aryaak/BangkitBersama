@@ -23,6 +23,7 @@ class Helps extends Migration
             $table->integer('quota');
             $table->timestamp('end_date');
             $table->integer('help_status_id')->default(1);
+            $table->string('rejected_reason')->nullable();
             $table->timestamps();
         });
     }
