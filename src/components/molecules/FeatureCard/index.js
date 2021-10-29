@@ -1,9 +1,10 @@
 import React from 'react'
 import { StyleSheet, View, Image, TouchableOpacity } from 'react-native'
 import { Colors } from '../../../utils'
-import { P, Xsmall, Sicon } from '../../../components'
+import { P, Xsmall } from '../../../components'
+import ChevronRight from '../../../assets/icon/chevron-right1.svg'
 
-const FeatureCard = ({ img, title, text, style, onPress, imge }) => {
+const FeatureCard = ({ img, title, text, style, onPress }) => {
     return (
         <TouchableOpacity style={[styles.wrapper, style]} onPress={onPress}>
             {/* <Image source={img} style={{
@@ -15,16 +16,17 @@ const FeatureCard = ({ img, title, text, style, onPress, imge }) => {
                 alignSelf: 'center',
                 position: 'relative'
             }}>
-                {imge}
+                {img}
             </View>
+
 
             <View style={styles.sectionWrapper}>
                 <View>
                     <P title={title} style={{ fontWeight: '500', marginBottom: 8 }} />
                     <Xsmall title={text} color={Colors.grey} />
                 </View>
-                <Sicon width={5} img={require('../../../assets/icon/left-arrow.png')} />
-
+                {/* <Sicon width={5} img={require('../../../assets/icon/left-arrow.png')} /> */}
+                <ChevronRight />
             </View>
         </TouchableOpacity>
     )
