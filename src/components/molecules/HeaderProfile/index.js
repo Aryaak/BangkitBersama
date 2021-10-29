@@ -21,19 +21,22 @@ const HeaderProfile = () => {
 
     const renderVerifiedIcon = () => {
         if (AuthReducer.status == 3) {
-            return <VerifiedIcon />
+            return <VerifiedIcon style={{ position: 'absolute', bottom: 0, right: 5 }} />
         }
     }
 
     return (
         <View style={styles.wrapper}>
-            <ProfilePicture width={100} height={100} img={user.photo} />
+            <View style={{ position: 'relative' }}>
+                <ProfilePicture width={100} height={100} img={user.photo} />
+                {renderVerifiedIcon()}
+            </View>
+
             <View style={styles.rightWrapper}>
                 <View style={styles.textWrapper}>
-                    <Text style={{ color: Colors.background, fontSize: 28, marginBottom: 8, marginRight: 5, fontFamily: 'Nunito-Bold' }} numberOfLines={1} ellipsizeMode='tail'>
+                    <Text style={{ color: Colors.background, fontSize: 28, marginBottom: 8, marginRight: 5, fontFamily: 'Nunito-Bold', width: 120 }} numberOfLines={1} ellipsizeMode='tail'>
                         {user.username}
                     </Text>
-                    {renderVerifiedIcon()}
                 </View>
                 <SecondaryButton onPress={() => navigation.navigate('EditProfile')} title="Edit Profile" />
             </View>

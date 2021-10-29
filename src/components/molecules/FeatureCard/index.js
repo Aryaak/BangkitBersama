@@ -12,18 +12,19 @@ const FeatureCard = ({ img, title, text, style, onPress, imge }) => {
             }} /> */}
             <View style={{
                 width: styles.wrapper.width - styles.sectionWrapper.width,
-                alignSelf: 'center'
+                alignSelf: 'center',
+                position: 'relative'
             }}>
                 {imge}
             </View>
-            
+
             <View style={styles.sectionWrapper}>
                 <View>
                     <P title={title} style={{ fontWeight: '500', marginBottom: 8 }} />
                     <Xsmall title={text} color={Colors.grey} />
                 </View>
                 <Sicon width={5} img={require('../../../assets/icon/left-arrow.png')} />
-                
+
             </View>
         </TouchableOpacity>
     )

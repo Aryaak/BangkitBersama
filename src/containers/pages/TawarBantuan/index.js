@@ -3,6 +3,7 @@ import { View, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-nat
 import { P, PrimaryButton, H4, OutlineButton, Small, AlertWarning, TextBoxWarning } from '../../../components'
 import { Colors, Async, CountDiffDate } from '../../../utils'
 import ArrowLeftIcon from '../../../assets/icon/arrow-left.svg'
+import FeatureOne from '../../../assets/illustrations/saly.svg'
 
 import CovidIcon from '../../../assets/icon/covid.svg'
 import EkonomiIcon from '../../../assets/icon/ekonomi.svg'
@@ -127,7 +128,7 @@ const TawarBantuan = ({ navigation }) => {
                 <TouchableOpacity onPress={() => navigation.navigate('MainPages')}>
                     <ArrowLeftIcon />
                 </TouchableOpacity>
-                <Image source={require('../../../assets/illustrations/Saly-15.png')} style={{ alignSelf: 'center', marginTop: 40 }} />
+                <FeatureOne style={{ alignSelf: 'center', marginTop: 40 }} />
                 <P title="Tawarkan Bantuanmu dan Jadilah Inisiator Kebangkitan Bangsa!" style={{ alignSelf: 'center', textAlign: 'center', marginTop: 16, marginBottom: 24 }} />
                 {renderContent(AuthReducer.status, navigation)}
             </View>

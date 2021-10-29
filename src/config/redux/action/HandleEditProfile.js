@@ -3,6 +3,8 @@ import { BASE_API_URL } from '../../../config'
 import { Async } from '../../../utils'
 
 const HandleEditProfile = (data, token, navigation) => async dispatch => {
+    console.log(data.form)
+    console.log(data)
     dispatch({ type: 'SET_LOADING', isLoading: true, text: 'Memperbarui profile...' })
 
     if (data.newPhoto) {
@@ -21,6 +23,7 @@ const HandleEditProfile = (data, token, navigation) => async dispatch => {
             })
             .catch(err => {
                 console.log('UPLOAD PHOTO EDIT PROFILE', err)
+                delete data.form.photo
             });
     } else {
         delete data.form.photo
@@ -42,6 +45,7 @@ const HandleEditProfile = (data, token, navigation) => async dispatch => {
             })
             .catch(err => {
                 console.log('UPLOAD DOCUMENT EDIT PROFILE', err)
+                delete data.form.document
             });
     } else {
         delete data.form.document
